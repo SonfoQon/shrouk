@@ -3,154 +3,42 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>يا شروقتي — من مصطفى</title>
+<title>يا شروقي — من مصطفى</title>
 <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Lateef:wght@400;600;700&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --pink:#d4607e;--deep:#9a2858;--light:#fdedf2;--blush:#fce0e8;
-  --white:#ffffff;--cream:#fdf8fa;--gold:#c09040;--softgold:#f5e6c0;
+  --white:#fff;--cream:#fdf8fa;--gold:#c09040;--softgold:#f5e6c0;
   --ink:#1a0c14;--muted:#8a5a6a;--petal:#f0b8cc;--dark:#0e080c;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{font-family:'Noto Naskh Arabic','Amiri',serif;background:var(--cream);color:var(--ink);overflow-x:hidden}
 
-/* ══════════ WELCOME SCREEN ══════════ */
-#welcome-screen{
-  position:fixed;inset:0;z-index:99999;
-  background:linear-gradient(135deg,#1a0510 0%,#2a0818 50%,#1a0510 100%);
-  display:flex;align-items:center;justify-content:center;
-  transition:opacity .8s ease,transform .8s ease;
-}
-#welcome-screen.gone{opacity:0;transform:scale(1.05);pointer-events:none}
-#welcome-inner{
-  text-align:center;padding:48px 40px;max-width:420px;
-  background:rgba(255,255,255,.06);border-radius:28px;
-  border:1px solid rgba(255,255,255,.14);
-  backdrop-filter:blur(16px);
-  position:relative;overflow:hidden;
-  animation:wifadein 1s ease forwards;
-}
-@keyframes wifadein{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
-#welcome-inner::before{content:'💕';position:absolute;top:-20px;left:50%;transform:translateX(-50%);font-size:4rem;opacity:.08;pointer-events:none}
-#w-petals{position:absolute;inset:0;pointer-events:none;overflow:hidden}
-.w-logo{font-size:3.5rem;animation:hb 2s ease-in-out infinite;margin-bottom:18px;display:block}
-.w-from{font-size:.75rem;color:rgba(255,200,220,.55);letter-spacing:.25em;text-transform:uppercase;margin-bottom:14px;font-family:'Amiri',serif}
-.w-q{font-family:'Lateef',serif;font-size:2.4rem;color:var(--petal);font-weight:700;margin-bottom:6px;line-height:1.2}
-.w-hint{font-family:'Amiri',serif;font-size:.9rem;color:rgba(255,255,255,.45);margin-bottom:24px;font-style:italic}
-#name-input{
-  width:100%;padding:14px 20px;
-  background:rgba(255,255,255,.1);
-  border:1px solid rgba(255,255,255,.2);
-  border-radius:14px;color:var(--white);
-  font-family:'Noto Naskh Arabic','Amiri',serif;
-  font-size:1.15rem;text-align:center;
-  outline:none;transition:border .3s,background .3s;
-  direction:rtl;
-}
-#name-input::placeholder{color:rgba(255,255,255,.35)}
-#name-input:focus{border-color:var(--pink);background:rgba(255,255,255,.15)}
-#name-btn{
-  margin-top:16px;width:100%;padding:14px;
-  background:linear-gradient(135deg,var(--pink),var(--deep));
-  border:none;border-radius:14px;color:var(--white);
-  font-family:'Lateef',serif;font-size:1.3rem;cursor:pointer;
-  transition:transform .2s,box-shadow .2s;
-  box-shadow:0 4px 20px rgba(154,40,88,.35);
-}
-#name-btn:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(154,40,88,.5)}
-#name-btn:active{transform:translateY(0)}
-.w-error{color:#ff9090;font-size:.85rem;margin-top:10px;font-family:'Amiri',serif;min-height:20px}
-
-/* Wrong name shake */
-@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-8px)}40%{transform:translateX(8px)}60%{transform:translateX(-6px)}80%{transform:translateX(6px)}}
-.wrong-shake{animation:shake .4s ease}
-
-/* ══════════ MIDNIGHT POPUP ══════════ */
-#midnight-popup{
-  position:fixed;inset:0;z-index:9999;
-  display:flex;align-items:center;justify-content:center;
-  background:rgba(0,0,0,.8);backdrop-filter:blur(8px);
-  opacity:0;pointer-events:none;transition:opacity .6s ease;
-}
-#midnight-popup.show{opacity:1;pointer-events:all}
-#midnight-inner{
-  max-width:460px;margin:20px;text-align:center;
-  background:linear-gradient(135deg,#1a0510 0%,#250a18 100%);
-  border-radius:28px;padding:48px 44px;
-  border:1px solid rgba(255,255,255,.12);
-  position:relative;overflow:hidden;
-  animation:mpop .6s ease forwards;
-}
-@keyframes mpop{from{transform:scale(.8);opacity:0}to{transform:scale(1);opacity:1}}
-.mp-stars{position:absolute;inset:0;pointer-events:none}
-.mp-icon{font-size:3rem;display:block;margin-bottom:16px;animation:moonpulse 3s ease-in-out infinite}
-@keyframes moonpulse{0%,100%{transform:scale(1) rotate(-5deg)}50%{transform:scale(1.1) rotate(5deg)}}
-.mp-title{font-family:'Lateef',serif;font-size:1.6rem;color:var(--petal);font-weight:700;margin-bottom:20px}
-.mp-body{font-family:'Amiri',serif;font-size:1rem;color:rgba(255,255,255,.82);line-height:2.2;font-style:italic}
-.mp-love{
-  font-family:'Lateef',serif;font-size:1.4rem;font-style:normal;
-  color:var(--petal);display:block;margin:4px 0;
-  animation:gp 2s ease-in-out infinite;
-  text-shadow:0 0 20px rgba(212,96,126,.7);
-}
-.mp-me{
-  font-family:'Lateef',serif;font-size:1.2rem;font-style:normal;
-  color:var(--softgold);display:block;margin:4px 0;
-}
-.mp-sub{font-size:.82rem;color:rgba(255,255,255,.45);font-style:italic;margin-top:8px;display:block}
-.mp-close{
-  margin-top:24px;padding:12px 32px;
-  background:linear-gradient(135deg,var(--pink),var(--deep));
-  border:none;border-radius:50px;color:var(--white);
-  font-family:'Lateef',serif;font-size:1.15rem;cursor:pointer;
-  box-shadow:0 4px 20px rgba(154,40,88,.4);transition:transform .2s;
-}
-.mp-close:hover{transform:scale(1.05)}
-
-/* ══════════ MUSIC BOX ══════════ */
-#music-box{
-  position:fixed;bottom:24px;left:24px;z-index:9998;
-  background:rgba(154,40,88,.9);
-  border-radius:50px;padding:10px 18px;
-  display:flex;align-items:center;gap:10px;
-  box-shadow:0 4px 20px rgba(154,40,88,.4);
-  cursor:pointer;transition:all .3s;backdrop-filter:blur(10px);
-  border:1px solid rgba(255,255,255,.2);
-}
-#music-box:hover{transform:scale(1.05);box-shadow:0 6px 28px rgba(154,40,88,.6)}
-#mb-note{font-size:1.2rem;animation:notebeat 1s ease-in-out infinite}
-@keyframes notebeat{0%,100%{transform:scale(1) rotate(-5deg)}50%{transform:scale(1.2) rotate(5deg)}}
-#mb-text{font-family:'Amiri',serif;font-size:.8rem;color:var(--white);white-space:nowrap}
-#music-box.playing #mb-note{animation:notespin 2s linear infinite}
-@keyframes notespin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
-
 /* PETALS */
 #petals{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
 .petal{position:absolute;top:-40px;opacity:0;animation:pfall linear infinite}
 @keyframes pfall{0%{opacity:0;transform:translateY(0) rotate(0) scale(.7)}7%{opacity:.7}92%{opacity:.3}100%{opacity:0;transform:translateY(110vh) rotate(380deg) scale(1.1)}}
 
-/* WORD EFFECTS */
+/* WORD FX */
 .glow{display:inline-block;color:var(--deep);font-weight:700;font-family:'Lateef',serif;font-size:1.08em;animation:gp 2.5s ease-in-out infinite}
-@keyframes gp{0%,100%{text-shadow:0 0 8px rgba(154,40,88,.4),0 0 20px rgba(154,40,88,.2)}50%{text-shadow:0 0 16px rgba(154,40,88,.9),0 0 40px rgba(212,96,126,.5),0 0 60px rgba(212,96,126,.2)}}
-.glow-gold{display:inline-block;color:var(--gold);font-weight:700;font-family:'Lateef',serif;font-size:1.08em;animation:gg 2.5s ease-in-out infinite}
-@keyframes gg{0%,100%{text-shadow:0 0 8px rgba(192,144,64,.4)}50%{text-shadow:0 0 20px rgba(192,144,64,.9),0 0 40px rgba(245,230,192,.5)}}
-.float{display:inline-block;animation:fw 3s ease-in-out infinite}
-@keyframes fw{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@keyframes gp{0%,100%{text-shadow:0 0 8px rgba(154,40,88,.4)}50%{text-shadow:0 0 20px rgba(154,40,88,.9),0 0 40px rgba(212,96,126,.5)}}
 .heartbeat{display:inline-block;color:var(--pink);font-weight:700;font-family:'Lateef',serif;font-size:1.15em;animation:hbw 1.2s ease-in-out infinite}
 @keyframes hbw{0%,100%{transform:scale(1)}15%{transform:scale(1.3)}30%{transform:scale(1)}45%{transform:scale(1.18)}60%{transform:scale(1)}}
 .rainbow{background:linear-gradient(135deg,#d4607e,#c09040,#d4607e,#9a2858);background-size:300% 300%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:rb 3s ease infinite;font-weight:700;font-family:'Lateef',serif;font-size:1.08em}
 @keyframes rb{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.float{display:inline-block;animation:fw 3s ease-in-out infinite}
+@keyframes fw{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
 .sparkle-word{position:relative;display:inline-block}
-.sparkle-word::before{content:'✨';position:absolute;top:-10px;right:-10px;font-size:.6em;opacity:0;animation:sp 2s ease-in-out infinite}
-.sparkle-word::after{content:'🌸';position:absolute;bottom:-8px;left:-8px;font-size:.55em;opacity:0;animation:sp 2s ease-in-out .6s infinite}
+.sparkle-word::before{content:'✨';position:absolute;top:-10px;right:-10px;font-size:.55em;opacity:0;animation:sp 2s ease-in-out infinite}
+.sparkle-word::after{content:'🌸';position:absolute;bottom:-8px;left:-8px;font-size:.5em;opacity:0;animation:sp 2s ease-in-out .6s infinite}
 @keyframes sp{0%,100%{opacity:0;transform:scale(0)}50%{opacity:1;transform:scale(1.2)}}
 .bounce{display:inline-block;animation:bw 1s ease-in-out infinite}
 @keyframes bw{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
 .shimmer-name{font-family:'Lateef',serif;font-size:5rem;font-weight:700;line-height:1;margin-bottom:14px;display:block;background:linear-gradient(135deg,var(--deep),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:ns 3s ease-in-out infinite}
 @keyframes ns{0%,100%{filter:brightness(1)}50%{filter:brightness(1.25) drop-shadow(0 0 12px rgba(212,96,126,.5))}}
 
-/* REVEALS */
+/* REVEAL */
 .r{opacity:0;transform:translateY(30px);transition:opacity .8s ease,transform .8s ease}
 .r.on{opacity:1;transform:translateY(0)}
 .rl{opacity:0;transform:translateX(40px);transition:opacity .8s ease,transform .8s ease}
@@ -167,19 +55,174 @@ section{position:relative;z-index:1}
 .sh2{font-family:'Lateef',serif;font-size:clamp(2rem,5vw,3.2rem);color:var(--deep);text-align:center;margin-bottom:48px;line-height:1.25}
 .wave{width:100%;height:2px;background:linear-gradient(to left,transparent,var(--petal),transparent)}
 
-/* HERO */
+/* ══ WELCOME SCREEN ══ */
+#ws{position:fixed;inset:0;z-index:99999;background:linear-gradient(135deg,#1a0510 0%,#2a0818 50%,#1a0510 100%);display:flex;align-items:center;justify-content:center;transition:opacity .8s ease,transform .8s ease}
+#ws.gone{opacity:0;transform:scale(1.05);pointer-events:none}
+#wi{text-align:center;padding:48px 40px;max-width:420px;background:rgba(255,255,255,.06);border-radius:28px;border:1px solid rgba(255,255,255,.14);backdrop-filter:blur(16px);position:relative;overflow:hidden;animation:wfade 1s ease forwards}
+@keyframes wfade{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+#wp{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.w-logo{font-size:3.5rem;animation:hb 2s ease-in-out infinite;margin-bottom:18px;display:block}
+@keyframes hb{0%,100%{transform:scale(1)}30%{transform:scale(1.2)}65%{transform:scale(1.1)}}
+.w-from{font-size:.75rem;color:rgba(255,200,220,.55);letter-spacing:.25em;text-transform:uppercase;margin-bottom:14px;font-family:'Amiri',serif}
+.w-q{font-family:'Lateef',serif;font-size:2.4rem;color:var(--petal);font-weight:700;margin-bottom:6px;line-height:1.2}
+.w-hint{font-family:'Amiri',serif;font-size:.9rem;color:rgba(255,255,255,.45);margin-bottom:24px;font-style:italic}
+#nin{width:100%;padding:14px 20px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:14px;color:var(--white);font-family:'Noto Naskh Arabic','Amiri',serif;font-size:1.15rem;text-align:center;outline:none;transition:border .3s,background .3s;direction:rtl}
+#nin::placeholder{color:rgba(255,255,255,.35)}
+#nin:focus{border-color:var(--pink);background:rgba(255,255,255,.15)}
+#nbtn{margin-top:16px;width:100%;padding:14px;background:linear-gradient(135deg,var(--pink),var(--deep));border:none;border-radius:14px;color:var(--white);font-family:'Lateef',serif;font-size:1.3rem;cursor:pointer;transition:transform .2s,box-shadow .2s;box-shadow:0 4px 20px rgba(154,40,88,.35)}
+#nbtn:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(154,40,88,.5)}
+#werr{color:#ff9090;font-size:.85rem;margin-top:10px;font-family:'Amiri',serif;min-height:20px}
+@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-8px)}40%{transform:translateX(8px)}60%{transform:translateX(-6px)}80%{transform:translateX(6px)}}
+.wshake{animation:shake .4s ease}
+
+/* ══ MIDNIGHT POPUP ══ */
+#mp{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.82);backdrop-filter:blur(8px);opacity:0;pointer-events:none;transition:opacity .6s ease}
+#mp.show{opacity:1;pointer-events:all}
+#mpi{max-width:460px;margin:20px;text-align:center;background:linear-gradient(135deg,#1a0510,#250a18);border-radius:28px;padding:48px 44px;border:1px solid rgba(255,255,255,.12);position:relative;overflow:hidden;animation:mpop .6s ease forwards}
+@keyframes mpop{from{transform:scale(.8);opacity:0}to{transform:scale(1);opacity:1}}
+.mp-stars{position:absolute;inset:0;pointer-events:none}
+.mp-icon{font-size:3rem;display:block;margin-bottom:16px;animation:moon 3s ease-in-out infinite}
+@keyframes moon{0%,100%{transform:scale(1) rotate(-5deg)}50%{transform:scale(1.1) rotate(5deg)}}
+.mp-title{font-family:'Lateef',serif;font-size:1.6rem;color:var(--petal);font-weight:700;margin-bottom:20px}
+.mp-body{font-family:'Amiri',serif;font-size:1rem;color:rgba(255,255,255,.82);line-height:2.2;font-style:italic}
+.mp-love{font-family:'Lateef',serif;font-size:1.4rem;font-style:normal;color:var(--petal);display:block;margin:4px 0;text-shadow:0 0 20px rgba(212,96,126,.7);animation:gp 2s ease-in-out infinite}
+.mp-me{font-family:'Lateef',serif;font-size:1.2rem;font-style:normal;color:var(--softgold);display:block;margin:4px 0}
+.mp-sub{font-size:.82rem;color:rgba(255,255,255,.45);font-style:italic;margin-top:8px;display:block}
+.mp-close{margin-top:24px;padding:12px 32px;background:linear-gradient(135deg,var(--pink),var(--deep));border:none;border-radius:50px;color:var(--white);font-family:'Lateef',serif;font-size:1.15rem;cursor:pointer;box-shadow:0 4px 20px rgba(154,40,88,.4);transition:transform .2s}
+.mp-close:hover{transform:scale(1.05)}
+
+/* ══ MEMORY BOX ══ */
+.membox-sec{padding:100px 22px;background:var(--white)}
+.membox-wrap{max-width:700px;margin:0 auto;text-align:center}
+.giftbox{display:inline-block;cursor:pointer;position:relative;margin-bottom:30px;transition:transform .3s}
+.giftbox:hover{transform:scale(1.05) rotate(-2deg)}
+.box-lid{width:180px;height:50px;background:linear-gradient(135deg,var(--pink),var(--deep));border-radius:10px 10px 0 0;margin:0 auto;position:relative;transition:transform .6s ease,top .6s ease;transform-origin:bottom center;top:0}
+.giftbox.open .box-lid{transform:rotateX(-120deg) translateY(-20px);top:-20px}
+.box-bow{position:absolute;top:-20px;left:50%;transform:translateX(-50%);font-size:2rem;animation:bowpulse 2s ease-in-out infinite}
+@keyframes bowpulse{0%,100%{transform:translateX(-50%) scale(1)}50%{transform:translateX(-50%) scale(1.15)}}
+.box-body{width:180px;height:140px;background:linear-gradient(135deg,var(--blush),#ffe8f0);border:2px solid rgba(212,96,126,.3);border-radius:0 0 14px 14px;margin:0 auto;position:relative;overflow:hidden}
+.box-ribbon-v{position:absolute;left:50%;top:0;bottom:0;width:28px;transform:translateX(-50%);background:linear-gradient(135deg,var(--pink),var(--deep));opacity:.4}
+.box-ribbon-h{position:absolute;top:50%;left:0;right:0;height:28px;transform:translateY(-50%);background:linear-gradient(135deg,var(--pink),var(--deep));opacity:.4}
+.box-hint{margin-top:12px;font-family:'Amiri',serif;font-size:.85rem;color:var(--muted);font-style:italic;animation:bl 2s ease-in-out infinite}
+.box-contents{display:none;margin-top:10px;animation:slideup .6s ease}
+.giftbox.open~.box-contents,.box-contents.show{display:block}
+.box-item{background:var(--cream);border-radius:18px;padding:24px 28px;margin-bottom:16px;border:1px solid rgba(212,96,126,.15);box-shadow:0 3px 18px rgba(154,40,88,.07);text-align:right}
+.bi-dress{background:linear-gradient(135deg,var(--blush),var(--light))}
+.dress-icon{font-size:3rem;text-align:center;margin-bottom:12px}
+.dress-title{font-family:'Lateef',serif;font-size:1.3rem;color:var(--deep);font-weight:700;margin-bottom:10px;text-align:center}
+.dress-text{font-family:'Amiri',serif;font-size:.95rem;color:var(--ink);line-height:2.2;font-style:italic}
+.bi-dates{background:var(--white)}
+.dates-title{font-family:'Lateef',serif;font-size:1.1rem;color:var(--deep);font-weight:700;margin-bottom:14px}
+.date-row{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;font-family:'Amiri',serif;font-size:.9rem}
+.dr-icon{flex-shrink:0;font-size:1rem}
+.dr-date{color:var(--gold);font-weight:700;min-width:120px;flex-shrink:0}
+.dr-txt{color:var(--muted);font-style:italic}
+.bi-note{background:linear-gradient(135deg,#fff8e8,var(--softgold)22)}
+.note-icon{font-size:2rem;text-align:center;margin-bottom:10px}
+.note-text{font-family:'Amiri',serif;font-size:.95rem;color:var(--ink);line-height:2.2;font-style:italic;text-align:center}
+
+/* ══ CROSSWORD ══ */
+.crossword-sec{padding:100px 22px;background:var(--cream)}
+.cw-wrap{max-width:860px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:32px}
+@media(max-width:700px){.cw-wrap{grid-template-columns:1fr}}
+.cw-questions{background:var(--white);border-radius:20px;padding:28px;border:1px solid rgba(212,96,126,.12);box-shadow:0 3px 18px rgba(154,40,88,.06)}
+.cw-section{margin-bottom:22px}
+.cw-section:last-child{margin-bottom:0}
+.cw-section-title{font-family:'Lateef',serif;font-size:1.1rem;color:var(--deep);font-weight:700;margin-bottom:12px;padding-bottom:6px;border-bottom:1px solid var(--blush)}
+.cw-q{font-family:'Amiri',serif;font-size:.88rem;color:var(--muted);line-height:1.9;margin-bottom:8px;display:flex;gap:8px;align-items:flex-start}
+.cw-num{background:var(--pink);color:var(--white);width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.72rem;flex-shrink:0;margin-top:2px;font-family:'Lateef',serif}
+.cw-grid-wrap{background:var(--white);border-radius:20px;padding:28px;border:1px solid rgba(212,96,126,.12);box-shadow:0 3px 18px rgba(154,40,88,.06)}
+.cw-inputs{display:flex;flex-direction:column;gap:12px;margin-bottom:18px}
+.cw-inp-row{display:flex;align-items:center;gap:10px;font-family:'Amiri',serif;font-size:.85rem;color:var(--muted)}
+.cw-inp-row label{min-width:80px;font-weight:600;color:var(--deep)}
+.cw-inp-row input{flex:1;padding:8px 14px;border:1px solid rgba(212,96,126,.25);border-radius:10px;font-family:'Noto Naskh Arabic',serif;font-size:.9rem;outline:none;direction:rtl;transition:border .3s}
+.cw-inp-row input:focus{border-color:var(--pink)}
+.cw-check{font-size:1rem;width:22px;text-align:center}
+.cw-btn{padding:12px 28px;background:linear-gradient(135deg,var(--pink),var(--deep));border:none;border-radius:50px;color:var(--white);font-family:'Lateef',serif;font-size:1.1rem;cursor:pointer;transition:transform .2s;box-shadow:0 4px 16px rgba(154,40,88,.3)}
+.cw-btn:hover{transform:translateY(-2px)}
+.cw-result{display:none;margin-top:14px;padding:18px;background:linear-gradient(135deg,var(--blush),var(--light));border-radius:14px;font-family:'Amiri',serif;font-size:.95rem;color:var(--deep);line-height:2;text-align:center;animation:slideup .4s ease}
+
+/* ══ ROMANTIC GALLERY ══ */
+.gallery-sec{padding:100px 22px;background:var(--cream)}
+.quotes-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;margin-bottom:28px}
+.qcard{border-radius:20px;padding:32px 28px;position:relative;overflow:hidden;transition:transform .3s,box-shadow .3s}
+.qcard:hover{transform:translateY(-5px)}
+.qc-dark{background:linear-gradient(135deg,#1a0510,#2a0818);color:rgba(255,255,255,.9)}
+.qc-light{background:var(--white);border:1px solid rgba(212,96,126,.15);box-shadow:0 3px 18px rgba(154,40,88,.07);color:var(--ink)}
+.qc-rose{background:linear-gradient(135deg,var(--blush),var(--light));border:1px solid rgba(212,96,126,.2);color:var(--ink)}
+.qmark{font-family:Georgia,serif;font-size:4.5rem;color:rgba(212,96,126,.25);line-height:.5;margin-bottom:12px;display:block}
+.qtext{font-family:'Amiri',serif;font-size:1rem;line-height:2.3;font-style:italic;margin-bottom:16px}
+.qc-dark .qtext{color:rgba(255,255,255,.88)}
+.qsrc{font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);font-family:'Amiri',serif}
+.gallery-note{text-align:center;font-family:'Amiri',serif;font-style:italic;color:var(--muted);font-size:.95rem}
+
+/* ══ POEM ══ */
+.poem-sec{padding:100px 22px;background:linear-gradient(135deg,#0e080c 0%,#1a0510 50%,#0e080c 100%);color:var(--white);position:relative;overflow:hidden}
+.poem-sec::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(212,96,126,.15) 0%,transparent 60%),radial-gradient(ellipse at 70% 50%,rgba(192,144,64,.08) 0%,transparent 60%)}
+.poem-sec .stag{color:rgba(245,200,210,.5);position:relative;z-index:1}
+.poem-sec .sh2{color:var(--petal);position:relative;z-index:1}
+.poem-wrap{max-width:720px;margin:0 auto;text-align:center;position:relative;z-index:1}
+.poem-deco{font-size:3rem;margin-bottom:28px;animation:hb 2s ease-in-out infinite;display:block}
+.poem-lines{background:rgba(255,255,255,.05);border-radius:24px;padding:44px 52px;border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(8px)}
+.poem-line{font-family:'Amiri',serif;font-size:1.1rem;color:rgba(255,255,255,.88);line-height:2.4;margin-bottom:2px;font-style:italic}
+.poem-name{font-family:'Lateef',serif;font-size:2rem;color:var(--petal);font-weight:700;margin:8px 0;text-shadow:0 0 20px rgba(212,96,126,.5)}
+.poem-break{height:14px}
+.poem-sig{font-family:'Lateef',serif;font-size:1.3rem;color:var(--gold);margin-top:28px;letter-spacing:.05em}
+@media(max-width:640px){.poem-lines{padding:28px 20px}.poem-line{font-size:.95rem}}
+
+/* ══ BLUE DRESS ══ */
+.dress-sec{padding:100px 22px;background:linear-gradient(135deg,#f0f8ff 0%,#e8f4ff 60%,#f5f0ff 100%)}
+.dress-sec .stag{color:#4a70a0}
+.dress-sec .sh2{color:#1a3060}
+.dress-wrap{max-width:800px;margin:0 auto}
+.dress-card{background:var(--white);border-radius:28px;padding:50px 60px;border:1px solid rgba(42,80,128,.15);box-shadow:0 8px 50px rgba(42,80,128,.12);position:relative;overflow:hidden}
+.dress-card::before{content:'💙';position:absolute;bottom:-20px;left:-10px;font-size:14rem;opacity:.04;pointer-events:none}
+.dress-top{text-align:center;margin-bottom:36px;padding-bottom:28px;border-bottom:1px solid rgba(42,80,128,.1)}
+.dress-emoji-big{font-size:4rem;display:block;margin-bottom:12px;animation:hb 3s ease-in-out infinite}
+.dress-subtitle{font-family:'Lateef',serif;font-size:1.3rem;color:#1a3060;font-weight:700}
+.dress-paragraphs{display:flex;flex-direction:column;gap:18px}
+.dress-p{display:flex;gap:16px;align-items:flex-start;padding:18px 20px;background:rgba(42,80,128,.04);border-radius:14px;border-right:3px solid rgba(42,80,128,.25)}
+.dp-icon{font-size:1.5rem;flex-shrink:0;margin-top:2px}
+.dp-text{font-family:'Amiri',serif;font-size:1.05rem;color:var(--ink);line-height:2.3;font-style:italic}
+@media(max-width:640px){.dress-card{padding:30px 22px}.dress-p{flex-direction:column;gap:8px}}
+
+#mb{position:fixed;bottom:24px;left:24px;z-index:9998;background:rgba(154,40,88,.92);border-radius:50px;padding:10px 18px;display:flex;align-items:center;gap:10px;box-shadow:0 4px 20px rgba(154,40,88,.4);cursor:pointer;transition:all .3s;backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.2);opacity:0;transition:opacity 1s ease,transform .3s ease,box-shadow .3s ease}
+#mb:hover{transform:scale(1.05);box-shadow:0 6px 28px rgba(154,40,88,.6)}
+#mbn{font-size:1.2rem;animation:nbeat 1s ease-in-out infinite}
+@keyframes nbeat{0%,100%{transform:scale(1) rotate(-5deg)}50%{transform:scale(1.2) rotate(5deg)}}
+#mbt{font-family:'Amiri',serif;font-size:.8rem;color:var(--white);white-space:nowrap}
+#mb.playing #mbn{animation:nspin 2s linear infinite}
+@keyframes nspin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+
+/* ══ HERO ══ */
 .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 22px;background:radial-gradient(ellipse at 18% 22%,rgba(212,96,126,.2) 0%,transparent 50%),radial-gradient(ellipse at 82% 78%,rgba(192,144,64,.13) 0%,transparent 50%),var(--cream)}
 .h-tag{font-size:.88rem;color:var(--gold);letter-spacing:.3em;font-family:'Amiri',serif;opacity:0;animation:up .9s ease .2s forwards;margin-bottom:10px}
 .h-name{font-family:'Lateef',serif;font-size:clamp(5rem,18vw,11rem);font-weight:700;line-height:.9;background:linear-gradient(135deg,var(--deep) 0%,var(--pink) 50%,#e090a8 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;opacity:0;animation:up .9s ease .5s forwards}
 .h-sub{font-family:'Amiri',serif;font-size:clamp(1.05rem,2.8vw,1.45rem);color:var(--muted);font-style:italic;line-height:2.2;opacity:0;animation:up .9s ease .8s forwards;padding:18px 0;max-width:600px;border-top:1px solid var(--petal);border-bottom:1px solid var(--petal);margin:18px 0}
 .h-heart{font-size:3rem;opacity:0;animation:up .9s ease 1.1s forwards,hb 2s ease 2.2s infinite}
 .h-date{font-size:.8rem;color:var(--gold);letter-spacing:.1em;opacity:0;animation:up .9s ease 1.4s forwards;margin-top:16px}
-.scroll{position:absolute;bottom:26px;font-size:.76rem;color:var(--muted);opacity:0;animation:up .9s ease 2s forwards,bl 2s ease 3s infinite;letter-spacing:.05em}
+/* Hidden dot */
+.secret-dot{cursor:pointer;color:var(--ink);display:inline-block;transition:transform .3s;user-select:none;font-size:1.2em}
+.secret-dot:hover{transform:scale(2);color:var(--pink)}
+.scroll-hint{position:absolute;bottom:26px;font-size:.76rem;color:var(--muted);opacity:0;animation:up .9s ease 2s forwards,bl 2s ease 3s infinite;letter-spacing:.05em}
 @keyframes up{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
-@keyframes hb{0%,100%{transform:scale(1)}30%{transform:scale(1.2)}65%{transform:scale(1.1)}}
 @keyframes bl{0%,100%{opacity:.3}50%{opacity:1}}
 
-/* RETURN COUNTDOWN */
+/* ══ CONFETTI ══ */
+.conf-piece{position:fixed;pointer-events:none;z-index:99998;font-size:1.2rem;animation:conffall 2s ease-in forwards}
+@keyframes conffall{0%{opacity:1;transform:translateY(0) rotate(0) scale(1)}100%{opacity:0;transform:translateY(90vh) rotate(720deg) scale(.5)}}
+
+/* ══ HIDDEN MESSAGE POPUP ══ */
+#secret-popup{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.85);backdrop-filter:blur(12px);opacity:0;pointer-events:none;transition:opacity .5s}
+#secret-popup.show{opacity:1;pointer-events:all}
+#secret-inner{max-width:500px;margin:20px;background:linear-gradient(135deg,#fff5f8,#fff);border-radius:28px;padding:50px 44px;text-align:center;box-shadow:0 8px 60px rgba(154,40,88,.25);border:1px solid rgba(212,96,126,.2);animation:mpop .5s ease}
+.si-icon{font-size:3rem;display:block;margin-bottom:14px}
+.si-title{font-family:'Lateef',serif;font-size:1.6rem;color:var(--deep);font-weight:700;margin-bottom:18px}
+.si-body{font-family:'Amiri',serif;font-size:1rem;color:var(--ink);line-height:2.3;font-style:italic;margin-bottom:22px}
+.si-close{padding:10px 28px;background:linear-gradient(135deg,var(--pink),var(--deep));border:none;border-radius:50px;color:var(--white);font-family:'Lateef',serif;font-size:1.1rem;cursor:pointer;transition:transform .2s}
+.si-close:hover{transform:scale(1.05)}
+
+/* ══ RETURN COUNTDOWN ══ */
 .return-sec{padding:80px 22px;background:linear-gradient(135deg,var(--deep) 0%,#7a1a40 100%);color:var(--white);text-align:center;position:relative;overflow:hidden}
 .return-sec::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(255,255,255,.07) 0%,transparent 60%)}
 .return-sec .stag{color:rgba(255,255,255,.5)}
@@ -192,7 +235,13 @@ section{position:relative;z-index:1}
 .cdl{font-size:.76rem;color:rgba(255,255,255,.6);margin-top:5px;letter-spacing:.07em}
 .cd-note{margin-top:22px;font-family:'Amiri',serif;font-style:italic;color:rgba(255,255,255,.55);font-size:.88rem}
 
-/* MILESTONES */
+/* ══ NIGHT SKY ══ */
+.sky-sec{padding:0;background:var(--dark);min-height:400px;position:relative;overflow:hidden}
+#skycanvas{width:100%;height:400px;display:block}
+.sky-label{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);text-align:center;color:rgba(255,255,255,.7);font-family:'Amiri',serif;font-style:italic;font-size:.95rem;z-index:2;pointer-events:none}
+.sky-label strong{color:var(--petal);display:block;font-size:1.1rem;margin-bottom:6px;font-family:'Lateef',serif;font-style:normal}
+
+/* ══ MILESTONES ══ */
 .miles-sec{padding:100px 22px;background:var(--white)}
 .ms-wrap{max-width:880px;margin:0 auto;position:relative}
 .ms-wrap::before{content:'';position:absolute;right:50%;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,transparent,var(--petal) 5%,var(--petal) 95%,transparent);transform:translateX(50%)}
@@ -204,45 +253,149 @@ section{position:relative;z-index:1}
 .d-p{background:var(--pink);box-shadow:0 0 0 3px rgba(212,96,126,.25)}
 .d-g{background:var(--gold);box-shadow:0 0 0 3px rgba(192,144,64,.25)}
 .d-b{width:22px;height:22px;background:var(--deep);box-shadow:0 0 0 5px rgba(154,40,88,.22)}
-.d-l{width:22px;height:22px;background:#e04060;box-shadow:0 0 0 5px rgba(224,64,96,.25);animation:dp 1.5s ease-in-out infinite}
-@keyframes dp{0%,100%{box-shadow:0 0 0 5px rgba(224,64,96,.25)}50%{box-shadow:0 0 0 10px rgba(224,64,96,.08)}}
+.d-l{width:22px;height:22px;background:#e04060;box-shadow:0 0 0 5px rgba(224,64,96,.25);animation:dpulse 1.5s ease-in-out infinite}
+@keyframes dpulse{0%,100%{box-shadow:0 0 0 5px rgba(224,64,96,.25)}50%{box-shadow:0 0 0 10px rgba(224,64,96,.08)}}
 .mc{background:var(--cream);border-radius:16px;padding:20px 22px;border:1px solid rgba(212,96,126,.12);box-shadow:0 3px 20px rgba(154,40,88,.07)}
-.mc.sp{background:linear-gradient(135deg,var(--blush) 0%,var(--light) 100%);border-color:rgba(212,96,126,.22)}
-.mc.love{background:linear-gradient(135deg,#ffe8f0 0%,#fff0f8 100%);border-color:rgba(224,64,96,.25)}
+.mc.sp{background:linear-gradient(135deg,var(--blush),var(--light));border-color:rgba(212,96,126,.22)}
+.mc.lv{background:linear-gradient(135deg,#ffe8f0,#fff0f8);border-color:rgba(224,64,96,.25)}
 .mc-date{font-size:.69rem;color:var(--gold);font-weight:700;letter-spacing:.1em;margin-bottom:4px}
 .mc-title{font-family:'Lateef',serif;font-size:1.18rem;color:var(--deep);font-weight:700;margin-bottom:5px}
-.mc.love .mc-title{color:#e04060}
+.mc.lv .mc-title{color:#e04060}
 .mc-body{font-size:.87rem;color:var(--muted);line-height:1.9}
 .ms-empty{}
 @media(max-width:640px){.ms-wrap::before{right:20px;transform:none}.ms-row{grid-template-columns:36px 1fr}.ms-l,.ms-r{grid-column:2;text-align:right;padding:0}.ms-dc{grid-column:1;justify-content:center}.ms-empty{display:none}}
 
-/* NAME */
-.name-sec{padding:100px 22px;background:var(--cream)}
-.name-card{max-width:760px;margin:0 auto;text-align:center;padding:60px 70px;background:linear-gradient(135deg,var(--white) 0%,var(--light) 100%);border-radius:28px;border:1px solid rgba(212,96,126,.18);box-shadow:0 8px 60px rgba(154,40,88,.09);position:relative;overflow:hidden}
-.name-card::before{content:'شروق';position:absolute;bottom:-25px;left:-12px;font-family:'Lateef',serif;font-size:14rem;color:rgba(212,96,126,.04);font-weight:700;line-height:1;pointer-events:none}
-.name-text{font-family:'Amiri',serif;font-size:1.1rem;color:var(--ink);line-height:2.4;font-style:italic;margin-bottom:22px}
-.chips{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
-.chip{background:var(--white);border-radius:50px;padding:9px 18px;font-size:.86rem;color:var(--deep);font-weight:600;border:1px solid rgba(212,96,126,.2);box-shadow:0 2px 10px rgba(154,40,88,.06);transition:transform .3s}
-.chip:hover{transform:translateY(-3px)}
+/* ══ MAP OF US ══ */
+.map-sec{padding:100px 22px;background:var(--cream)}
+.map-container{max-width:800px;margin:0 auto;position:relative}
+.map-svg-wrap{background:linear-gradient(135deg,#e8f4f8,#d0e8f0);border-radius:24px;padding:20px;border:2px solid rgba(212,96,126,.18);box-shadow:0 8px 40px rgba(154,40,88,.1);position:relative;overflow:hidden}
+.map-svg-wrap::before{content:'🗺️';position:absolute;top:12px;right:16px;font-size:1.5rem;opacity:.3}
+.map-visual{width:100%;height:360px;position:relative;background:linear-gradient(135deg,#c8dff0 0%,#b8d0e8 50%,#c0d8e8 100%);border-radius:16px;overflow:hidden}
+/* Egypt shape */
+.country-egypt{position:absolute;bottom:38%;right:35%;width:90px;height:110px;background:linear-gradient(135deg,#f5e6a8,#e8d080);border-radius:12px 8px 20px 10px;border:2px solid rgba(200,160,50,.4);cursor:pointer;transition:all .3s;box-shadow:0 4px 15px rgba(0,0,0,.15)}
+.country-egypt:hover{transform:scale(1.08) translateY(-4px);box-shadow:0 8px 25px rgba(212,96,126,.4);border-color:var(--pink)}
+.country-egypt::after{content:'🇪🇬';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:1.8rem}
+.egypt-label{position:absolute;bottom:-24px;left:50%;transform:translateX(-50%);font-size:.72rem;color:var(--deep);font-weight:700;white-space:nowrap;font-family:'Amiri',serif}
+.pin-egypt{position:absolute;top:-14px;left:50%;transform:translateX(-50%);font-size:1.4rem;animation:pinpop 2s ease-in-out infinite}
+@keyframes pinpop{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-5px)}}
 
-/* BEAUTY */
+/* Saudi shape */
+.country-saudi{position:absolute;bottom:36%;right:18%;width:100px;height:95px;background:linear-gradient(135deg,#d4c890,#c8b860);border-radius:14px 18px 16px 10px;border:2px solid rgba(180,140,40,.4);cursor:pointer;transition:all .3s;box-shadow:0 4px 15px rgba(0,0,0,.15)}
+.country-saudi:hover{transform:scale(1.08) translateY(-4px);box-shadow:0 8px 25px rgba(212,96,126,.4);border-color:var(--pink)}
+.country-saudi::after{content:'🇸🇦';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:1.8rem}
+.saudi-label{position:absolute;bottom:-24px;left:50%;transform:translateX(-50%);font-size:.72rem;color:var(--deep);font-weight:700;white-space:nowrap;font-family:'Amiri',serif}
+.pin-saudi{position:absolute;top:-14px;left:50%;transform:translateX(-50%);font-size:1.4rem;animation:pinpop 2s ease-in-out .5s infinite}
+
+/* Love line between countries */
+.love-line{position:absolute;bottom:41%;right:22%;width:120px;height:2px;background:linear-gradient(to left,rgba(212,96,126,.8),rgba(212,96,126,.2));animation:linepulse 2s ease-in-out infinite}
+@keyframes linepulse{0%,100%{opacity:.6}50%{opacity:1}}
+.love-line::after{content:'💕';position:absolute;top:-12px;left:50%;transform:translateX(-50%);font-size:.9rem;animation:fw 2s ease-in-out infinite}
+
+.map-popup{display:none;position:absolute;z-index:10;background:var(--white);border-radius:18px;padding:20px 24px;max-width:260px;box-shadow:0 8px 40px rgba(154,40,88,.2);border:1px solid rgba(212,96,126,.2);animation:mpop .3s ease}
+.map-popup.show{display:block}
+.mp-name{font-family:'Lateef',serif;font-size:1.2rem;color:var(--deep);font-weight:700;margin-bottom:8px}
+.mp-content{font-family:'Amiri',serif;font-size:.9rem;color:var(--muted);line-height:1.9;font-style:italic}
+.mp-x{position:absolute;top:10px;left:12px;cursor:pointer;font-size:1rem;color:var(--muted);border:none;background:none;padding:4px 8px}
+.map-footer{text-align:center;margin-top:16px;font-family:'Amiri',serif;font-style:italic;color:var(--muted);font-size:.85rem}
+
+/* ══ BEAUTY LETTER ══ */
 .beauty-sec{padding:100px 22px;background:var(--white)}
 .beauty-card{max-width:760px;margin:0 auto;background:var(--cream);border-radius:28px;padding:56px 70px;border:1px solid rgba(212,96,126,.12);box-shadow:0 4px 40px rgba(154,40,88,.08);position:relative}
 .beauty-card::before{content:'❝';position:absolute;top:20px;right:34px;font-size:5.5rem;color:var(--blush);font-family:Georgia,serif;line-height:1}
 .bp{font-family:'Amiri',serif;font-size:1.1rem;color:var(--ink);line-height:2.55;margin-bottom:16px}
 .beauty-attr{font-size:.73rem;color:var(--gold);text-align:left;margin-top:22px;letter-spacing:.08em;padding-top:16px;border-top:1px solid var(--blush)}
+@media(max-width:640px){.beauty-card{padding:36px 26px}}
 
-/* LOVE NIGHT */
+/* ══ PASSWORD UNLOCK ══ */
+.unlock-sec{padding:80px 22px;background:var(--deep);text-align:center;color:var(--white)}
+.unlock-sec .stag{color:rgba(255,255,255,.5)}
+.unlock-sec .sh2{color:var(--softgold)}
+.unlock-wrap{max-width:500px;margin:0 auto;background:rgba(255,255,255,.07);border-radius:22px;padding:36px;border:1px solid rgba(255,255,255,.12)}
+.unlock-hint{font-family:'Amiri',serif;font-style:italic;color:rgba(255,255,255,.7);margin-bottom:24px;font-size:.95rem;line-height:1.9}
+#pw-input{width:100%;padding:14px 20px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:14px;color:var(--white);font-family:'Noto Naskh Arabic',serif;font-size:1.1rem;text-align:center;outline:none;direction:rtl;transition:border .3s}
+#pw-input:focus{border-color:var(--petal)}
+#pw-btn{margin-top:14px;padding:12px 32px;background:linear-gradient(135deg,var(--pink),var(--deep));border:none;border-radius:50px;color:var(--white);font-family:'Lateef',serif;font-size:1.2rem;cursor:pointer;transition:transform .2s,box-shadow .2s;box-shadow:0 4px 18px rgba(154,40,88,.4)}
+#pw-btn:hover{transform:translateY(-2px)}
+#pw-result{display:none;margin-top:20px;background:rgba(255,255,255,.08);border-radius:16px;padding:24px;border:1px solid rgba(255,220,200,.2)}
+.pw-dates-title{font-family:'Lateef',serif;font-size:1.2rem;color:var(--softgold);margin-bottom:14px}
+.pw-date-item{font-family:'Amiri',serif;font-size:.92rem;color:rgba(255,255,255,.85);margin:8px 0;line-height:1.8}
+.pw-date-item span{color:var(--petal);font-weight:700}
+
+/* ══ JAR OF REASONS ══ */
+.jar-sec{padding:100px 22px;background:var(--cream)}
+.jar-wrap{max-width:600px;margin:0 auto;text-align:center}
+.jar-visual{position:relative;cursor:pointer;display:inline-block;transition:transform .3s}
+.jar-visual:hover{transform:scale(1.05)}
+.jar-svg{width:160px;height:200px;filter:drop-shadow(0 8px 20px rgba(154,40,88,.2))}
+.jar-shake{animation:jarshake .6s ease}
+@keyframes jarshake{0%,100%{transform:rotate(0)}20%{transform:rotate(-8deg)}40%{transform:rotate(8deg)}60%{transform:rotate(-5deg)}80%{transform:rotate(5deg)}}
+.jar-btn{margin-top:20px;padding:14px 32px;background:linear-gradient(135deg,var(--pink),var(--deep));border:none;border-radius:50px;color:var(--white);font-family:'Lateef',serif;font-size:1.2rem;cursor:pointer;box-shadow:0 4px 20px rgba(154,40,88,.3);transition:transform .2s}
+.jar-btn:hover{transform:translateY(-3px)}
+#jar-reason{min-height:100px;margin:24px auto;max-width:480px;padding:24px 28px;background:var(--white);border-radius:18px;border:1px solid rgba(212,96,126,.15);box-shadow:0 4px 24px rgba(154,40,88,.08);font-family:'Amiri',serif;font-size:1.1rem;color:var(--ink);line-height:2.2;font-style:italic;display:none;animation:slideup .4s ease}
+@keyframes slideup{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.jar-count{font-size:.78rem;color:var(--muted);margin-top:8px}
+
+/* ══ SCRATCH COUPONS ══ */
+.scratch-sec{padding:100px 22px;background:var(--white)}
+.coupons-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px;max-width:900px;margin:0 auto}
+.coupon{position:relative;border-radius:18px;overflow:hidden;box-shadow:0 4px 20px rgba(154,40,88,.1);cursor:pointer;height:160px}
+.coupon-cover{position:absolute;inset:0;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:.9rem;color:var(--white);font-family:'Amiri',serif;font-weight:700;transition:opacity .6s ease;user-select:none;z-index:2}
+.coupon-cover.scratched{opacity:0;pointer-events:none}
+.coupon-content{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:16px;text-align:center;border-radius:18px;z-index:1}
+.coupon-icon{font-size:1.8rem;margin-bottom:8px}
+.coupon-title{font-family:'Lateef',serif;font-size:1.1rem;color:var(--deep);font-weight:700;margin-bottom:4px}
+.coupon-text{font-size:.8rem;color:var(--muted);line-height:1.7}
+.scratch-hint{text-align:center;font-family:'Amiri',serif;font-style:italic;color:var(--muted);margin-bottom:30px;font-size:.9rem}
+
+/* ══ OPEN WHEN LETTERS ══ */
+.letters-sec{padding:100px 22px;background:var(--cream)}
+.letters-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px;max-width:900px;margin:0 auto}
+.envelope{background:var(--white);border-radius:16px;padding:24px;text-align:center;border:1px solid rgba(212,96,126,.15);box-shadow:0 3px 18px rgba(154,40,88,.07);cursor:pointer;transition:transform .3s,box-shadow .3s;position:relative;overflow:hidden}
+.envelope:hover{transform:translateY(-6px);box-shadow:0 12px 30px rgba(154,40,88,.15)}
+.env-flap{font-size:2.5rem;display:block;margin-bottom:12px;transition:transform .3s}
+.envelope:hover .env-flap{transform:rotateX(30deg)}
+.env-title{font-family:'Lateef',serif;font-size:1rem;color:var(--deep);font-weight:700;line-height:1.4}
+.env-badge{position:absolute;top:10px;right:10px;width:10px;height:10px;background:var(--pink);border-radius:50%;animation:dpulse 2s ease-in-out infinite}
+
+/* Letter modal */
+#letter-modal{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.8);backdrop-filter:blur(10px);opacity:0;pointer-events:none;transition:opacity .5s;padding:20px}
+#letter-modal.show{opacity:1;pointer-events:all}
+#letter-modal-inner{max-width:560px;width:100%;background:var(--white);border-radius:28px;padding:48px 44px;position:relative;overflow:hidden;max-height:90vh;overflow-y:auto;animation:mpop .4s ease}
+.lm-icon{font-size:2.5rem;display:block;margin-bottom:14px;text-align:center}
+.lm-title{font-family:'Lateef',serif;font-size:1.6rem;color:var(--deep);font-weight:700;text-align:center;margin-bottom:22px}
+.lm-body{font-family:'Amiri',serif;font-size:1.05rem;color:var(--ink);line-height:2.4;font-style:italic}
+.lm-close{position:absolute;top:14px;left:16px;cursor:pointer;background:none;border:none;font-size:1.3rem;color:var(--muted)}
+@media(max-width:640px){#letter-modal-inner{padding:32px 24px}}
+
+/* ══ HOUSE BLUEPRINT ══ */
+.house-sec{padding:100px 22px;background:var(--dark);color:var(--white)}
+.house-sec .stag{color:rgba(255,255,255,.5)}
+.house-sec .sh2{color:var(--softgold)}
+.blueprint{max-width:720px;margin:0 auto;background:rgba(30,60,120,.4);border-radius:24px;padding:32px;border:2px solid rgba(100,150,255,.2);position:relative}
+.blueprint::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(100,150,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(100,150,255,.08) 1px,transparent 1px);background-size:20px 20px;border-radius:22px}
+.bp-title{text-align:center;font-family:'Lateef',serif;font-size:1.4rem;color:rgba(180,210,255,.8);margin-bottom:24px;letter-spacing:.1em}
+.rooms-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;position:relative;z-index:1}
+.room{background:rgba(255,255,255,.07);border:1px solid rgba(100,150,255,.25);border-radius:12px;padding:20px;text-align:center;cursor:pointer;transition:all .3s}
+.room:hover{background:rgba(212,96,126,.15);border-color:var(--pink);transform:scale(1.03)}
+.room-icon{font-size:1.8rem;display:block;margin-bottom:8px}
+.room-name{font-family:'Lateef',serif;font-size:1rem;color:rgba(200,220,255,.8);font-weight:600}
+.room-hint{font-size:.7rem;color:rgba(255,255,255,.35);font-family:'Amiri',serif;margin-top:4px}
+.room-wide{grid-column:1/-1}
+#room-msg{display:none;margin-top:20px;background:rgba(212,96,126,.15);border-radius:16px;padding:22px;border:1px solid rgba(212,96,126,.3);text-align:center;position:relative;z-index:1;animation:slideup .4s ease}
+.rm-title{font-family:'Lateef',serif;font-size:1.2rem;color:var(--petal);margin-bottom:10px;font-weight:700}
+.rm-body{font-family:'Amiri',serif;font-size:.95rem;color:rgba(255,255,255,.82);line-height:2;font-style:italic}
+
+/* ══ LOVE NIGHT ══ */
 .love-sec{padding:100px 22px;background:var(--dark);color:var(--white);text-align:center;position:relative;overflow:hidden}
 .love-sec::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 25% 35%,rgba(212,96,126,.22) 0%,transparent 50%),radial-gradient(ellipse at 75% 65%,rgba(192,144,64,.1) 0%,transparent 50%)}
-.stars{position:absolute;inset:0;pointer-events:none}
+.stars-bg{position:absolute;inset:0;pointer-events:none}
 .star{position:absolute;background:white;border-radius:50%;animation:tw 2s ease-in-out infinite}
 @keyframes tw{0%,100%{opacity:.2}50%{opacity:1}}
 .love-sec .stag{color:rgba(255,200,220,.5);position:relative;z-index:1}
 .love-sec .sh2{color:var(--petal);position:relative;z-index:1}
 .love-dtag{font-family:'Amiri',serif;font-size:.88rem;color:rgba(255,180,200,.6);margin-bottom:34px;letter-spacing:.12em;position:relative;z-index:1}
 .love-box{max-width:720px;margin:0 auto;background:rgba(255,255,255,.06);border-radius:26px;padding:44px 54px;border:1px solid rgba(255,255,255,.12);position:relative;z-index:1;backdrop-filter:blur(10px)}
-.love-icon{font-size:2.5rem;display:block;margin-bottom:20px;animation:hb 2s ease-in-out infinite}
+.love-icon-big{font-size:2.5rem;display:block;margin-bottom:20px;animation:hb 2s ease-in-out infinite}
 .love-her{font-family:'Amiri',serif;font-size:1.08rem;line-height:2.5;color:rgba(255,255,255,.85);font-style:italic;margin-bottom:24px}
 .ldiv{display:flex;align-items:center;gap:12px;margin:24px 0}
 .ldiv::before,.ldiv::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.15)}
@@ -250,8 +403,9 @@ section{position:relative;z-index:1}
 .love-me{font-family:'Amiri',serif;font-size:1.08rem;line-height:2.5;color:rgba(255,255,255,.82);font-style:italic}
 .love-stamp{margin-top:36px;font-family:'Lateef',serif;font-size:1.8rem;color:var(--petal);position:relative;z-index:1;animation:ls 2.5s ease-in-out infinite}
 @keyframes ls{0%,100%{transform:scale(1)}50%{transform:scale(1.05);text-shadow:0 0 30px rgba(212,96,126,.6)}}
+@media(max-width:640px){.love-box{padding:32px 24px}}
 
-/* HER WORDS */
+/* ══ HER WORDS ══ */
 .her-sec{padding:100px 22px;background:var(--cream)}
 .hw-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px}
 .hw-card{background:var(--white);border-radius:20px;padding:28px;border-right:4px solid var(--pink);box-shadow:0 3px 18px rgba(154,40,88,.06);transition:transform .3s,box-shadow .3s}
@@ -260,7 +414,7 @@ section{position:relative;z-index:1}
 .hw-from{font-size:.68rem;color:var(--pink);font-weight:700;letter-spacing:.12em;margin-bottom:8px;text-transform:uppercase}
 .hw-text{font-family:'Amiri',serif;font-size:1rem;color:var(--ink);line-height:2.15;font-style:italic}
 
-/* APPRECIATE */
+/* ══ APPRECIATE ══ */
 .ap-sec{padding:100px 22px;background:var(--white)}
 .ap-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(265px,1fr));gap:18px}
 .ap-card{background:var(--cream);border-radius:20px;padding:28px;border:1px solid rgba(212,96,126,.1);box-shadow:0 3px 16px rgba(154,40,88,.06);transition:transform .3s,box-shadow .3s}
@@ -269,51 +423,40 @@ section{position:relative;z-index:1}
 .ap-title{font-family:'Lateef',serif;font-size:1.2rem;color:var(--deep);font-weight:700;margin-bottom:8px}
 .ap-text{font-family:'Amiri',serif;font-size:.98rem;color:var(--muted);line-height:2.1;font-style:italic}
 
-/* FUNNY */
-.funny-sec{padding:100px 22px;background:var(--dark);color:var(--white)}
-.funny-sec .stag{color:rgba(245,200,210,.5)}
-.funny-sec .sh2{color:var(--petal)}
-.fg{display:grid;grid-template-columns:repeat(auto-fill,minmax(258px,1fr));gap:16px}
-.fc{background:rgba(255,255,255,.06);border-radius:18px;padding:26px;border:1px solid rgba(255,255,255,.09);transition:all .3s}
-.fc:hover{background:rgba(255,255,255,.1);transform:translateY(-4px)}
-.fn{font-family:'Lateef',serif;font-size:2.6rem;color:var(--pink);line-height:1;margin-bottom:5px}
-.ft{font-family:'Lateef',serif;font-size:1.18rem;color:var(--petal);font-weight:700;margin-bottom:8px}
-.fb{font-size:.86rem;color:rgba(255,255,255,.72);line-height:1.9}
-
-/* SCENE */
+/* ══ ANIMATED SCENE ══ */
 .scene-sec{padding:80px 22px;background:var(--cream);overflow:hidden}
 .scene-box{max-width:720px;margin:0 auto;background:linear-gradient(180deg,#ffe0f0 0%,#ffd8ec 30%,#d8f0e0 70%,#a8d888 100%);border-radius:28px;padding:44px 30px 0;border:2px solid rgba(212,96,126,.18);position:relative;min-height:300px;overflow:hidden}
-.s-sun{position:absolute;top:16px;left:26px;width:52px;height:52px;background:radial-gradient(circle,#ffea80 0%,#ffb800 100%);border-radius:50%;box-shadow:0 0 30px rgba(255,190,0,.5);animation:sp2 3s ease-in-out infinite}
-@keyframes sp2{0%,100%{box-shadow:0 0 30px rgba(255,190,0,.4)}50%{box-shadow:0 0 50px rgba(255,220,0,.7)}}
+.s-sun{position:absolute;top:16px;left:26px;width:52px;height:52px;background:radial-gradient(circle,#ffea80,#ffb800);border-radius:50%;box-shadow:0 0 30px rgba(255,190,0,.5);animation:sunp 3s ease-in-out infinite}
+@keyframes sunp{0%,100%{box-shadow:0 0 30px rgba(255,190,0,.4)}50%{box-shadow:0 0 50px rgba(255,220,0,.7)}}
 .s-cloud{position:absolute;background:rgba(255,255,255,.92);border-radius:20px;animation:cf linear infinite}
 .s-cloud::before,.s-cloud::after{content:'';position:absolute;background:rgba(255,255,255,.92);border-radius:50%}
-.ca{width:88px;height:22px;top:20px;right:-100px;animation-duration:19s;animation-delay:-5s}
-.ca::before{width:38px;height:32px;top:-16px;left:14px}
-.ca::after{width:30px;height:24px;top:-10px;left:44px}
-.cb{width:68px;height:18px;top:8px;right:-80px;animation-duration:25s;animation-delay:-12s}
-.cb::before{width:28px;height:22px;top:-12px;left:10px}
-.cb::after{width:22px;height:16px;top:-8px;left:30px}
+.ca2{width:88px;height:22px;top:20px;right:-100px;animation-duration:19s;animation-delay:-5s}
+.ca2::before{width:38px;height:32px;top:-16px;left:14px}
+.ca2::after{width:30px;height:24px;top:-10px;left:44px}
+.cb2{width:68px;height:18px;top:8px;right:-80px;animation-duration:25s;animation-delay:-12s}
+.cb2::before{width:28px;height:22px;top:-12px;left:10px}
+.cb2::after{width:22px;height:16px;top:-8px;left:30px}
 @keyframes cf{from{right:-110px}to{right:110%}}
-.s-ground{position:absolute;bottom:0;left:0;right:0;height:70px;background:linear-gradient(180deg,#88cc55 0%,#55a030 100%)}
+.s-ground{position:absolute;bottom:0;left:0;right:0;height:70px;background:linear-gradient(180deg,#88cc55,#55a030)}
 .s-chars{display:flex;justify-content:center;align-items:flex-end;gap:90px;padding-bottom:72px;position:relative}
 .cm,.cs{display:flex;flex-direction:column;align-items:center}
 .cm{animation:bob 2.4s ease-in-out infinite}
 .cs{animation:bob 2.4s ease-in-out .6s infinite}
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-.cm .hd{width:48px;height:48px;background:radial-gradient(circle at 35% 35%,#f0d090,#d0a060);border-radius:50%;border:2px solid #b08040;display:flex;align-items:center;justify-content:center;font-size:26px}
+.cm .hd,.cs .hd{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px}
+.cm .hd{background:radial-gradient(circle at 35% 35%,#f0d090,#d0a060);border:2px solid #b08040}
+.cs .hd{background:radial-gradient(circle at 35% 35%,#f8d8a0,#e0b070);border:2px solid #c09050}
 .cm .bd{width:40px;height:54px;background:linear-gradient(180deg,#2a50a0,#1a3a80);border-radius:10px 10px 5px 5px;margin-top:2px;position:relative}
 .cm .ar{width:11px;height:36px;background:#2a50a0;border-radius:6px;position:absolute;right:-13px;top:4px;transform-origin:top;animation:w1 1.8s ease-in-out infinite}
 .cm .al{width:11px;height:36px;background:#2a50a0;border-radius:6px;position:absolute;left:-13px;top:4px}
-.cm .lgs{display:flex;gap:8px;margin-top:2px}
+.cm .lgs,.cs .lgs{display:flex;gap:8px;margin-top:2px}
 .cm .lg{width:13px;height:30px;background:#1a3080;border-radius:7px;animation:wk 1.1s ease-in-out infinite}
 .cm .lg:last-child{animation-delay:.55s}
-.cs .hw{position:relative}
-.cs .hd{width:48px;height:48px;background:radial-gradient(circle at 35% 35%,#f8d8a0,#e0b070);border-radius:50%;border:2px solid #c09050;display:flex;align-items:center;justify-content:center;font-size:26px}
+.cs .hw2{position:relative}
 .cs .vl{width:58px;height:36px;background:linear-gradient(135deg,var(--pink),var(--deep));border-radius:50% 50% 0 0;position:absolute;bottom:-8px;left:-5px;z-index:-1}
-.cs .bd{width:40px;height:52px;background:linear-gradient(180deg,var(--pink),var(--deep));border-radius:10px 10px 14px 14px;position:relative;margin-top:0}
+.cs .bd{width:40px;height:52px;background:linear-gradient(180deg,var(--pink),var(--deep));border-radius:10px 10px 14px 14px;position:relative}
 .cs .al2{width:11px;height:32px;background:var(--pink);border-radius:6px;position:absolute;left:-13px;top:4px;transform-origin:top;animation:w2 2.2s ease-in-out .4s infinite}
 .cs .sk{width:52px;height:20px;background:linear-gradient(180deg,#f090b8,var(--pink));border-radius:0 0 10px 10px}
-.cs .lgs{display:flex;gap:8px;margin-top:2px}
 .cs .lg{width:13px;height:26px;background:var(--deep);border-radius:7px}
 @keyframes w1{0%,100%{transform:rotate(0)}50%{transform:rotate(-50deg)}}
 @keyframes w2{0%,100%{transform:rotate(0)}50%{transform:rotate(35deg)}}
@@ -326,14 +469,45 @@ section{position:relative;z-index:1}
 @keyframes hf{0%{opacity:0;transform:translateY(0) scale(.3)}25%{opacity:1}100%{opacity:0;transform:translateY(-90px) scale(1.3)}}
 .sb{position:absolute;background:var(--white);border-radius:14px;padding:8px 14px;font-size:.78rem;box-shadow:0 4px 14px rgba(0,0,0,.12);white-space:nowrap}
 .sb::after{content:'';position:absolute;border:8px solid transparent}
-.sb-m{bottom:138px;left:22px;color:#2a50a0;font-weight:600;animation:sp3 3s ease-in-out infinite}
+.sb-m{bottom:138px;left:22px;color:#2a50a0;font-weight:600;animation:sbp 3s ease-in-out infinite}
 .sb-m::after{border-top-color:var(--white);bottom:-16px;left:18px}
-.sb-s{bottom:138px;right:22px;color:var(--deep);font-weight:600;animation:sp3 3s ease-in-out 1s infinite}
+.sb-s{bottom:138px;right:22px;color:var(--deep);font-weight:600;animation:sbp 3s ease-in-out 1s infinite}
 .sb-s::after{border-top-color:var(--white);bottom:-16px;right:18px}
-@keyframes sp3{0%,100%{transform:scale(1)}40%{transform:scale(1.05)}}
-.clabel{font-size:.75rem;font-weight:700;margin-top:7px}
+@keyframes sbp{0%,100%{transform:scale(1)}40%{transform:scale(1.05)}}
 
-/* PROMISES */
+/* ══ FUNNY ══ */
+.funny-sec{padding:100px 22px;background:var(--dark);color:var(--white)}
+.funny-sec .stag{color:rgba(245,200,210,.5)}
+.funny-sec .sh2{color:var(--petal)}
+.fg{display:grid;grid-template-columns:repeat(auto-fill,minmax(258px,1fr));gap:16px}
+.fc{background:rgba(255,255,255,.06);border-radius:18px;padding:26px;border:1px solid rgba(255,255,255,.09);transition:all .3s}
+.fc:hover{background:rgba(255,255,255,.1);transform:translateY(-4px)}
+.fn{font-family:'Lateef',serif;font-size:2.6rem;color:var(--pink);line-height:1;margin-bottom:5px}
+.ft{font-family:'Lateef',serif;font-size:1.18rem;color:var(--petal);font-weight:700;margin-bottom:8px}
+.fb{font-size:.86rem;color:rgba(255,255,255,.72);line-height:1.9}
+
+/* ══ EMERGENCY BUTTON ══ */
+.emergency-sec{padding:80px 22px;background:var(--cream);text-align:center}
+#sos-btn{padding:18px 44px;background:linear-gradient(135deg,#c04060,#8a1830);border:none;border-radius:50px;color:var(--white);font-family:'Lateef',serif;font-size:1.3rem;cursor:pointer;box-shadow:0 6px 28px rgba(180,50,80,.4);transition:transform .2s,box-shadow .2s;animation:sosglow 3s ease-in-out infinite}
+@keyframes sosglow{0%,100%{box-shadow:0 6px 28px rgba(180,50,80,.4)}50%{box-shadow:0 6px 40px rgba(220,80,100,.7)}}
+#sos-btn:hover{transform:translateY(-3px)}
+#sos-result{display:none;max-width:520px;margin:24px auto 0;padding:28px;background:var(--white);border-radius:18px;border:1px solid rgba(212,96,126,.15);box-shadow:0 4px 24px rgba(154,40,88,.09);font-family:'Amiri',serif;font-size:1.05rem;color:var(--ink);line-height:2.2;font-style:italic;animation:slideup .4s ease}
+.sos-sub{text-align:center;font-family:'Amiri',serif;color:var(--muted);font-size:.85rem;font-style:italic;margin-bottom:24px}
+
+/* ══ TIME CAPSULE ══ */
+.capsule-sec{padding:80px 22px;background:var(--dark);text-align:center;color:var(--white)}
+.capsule-sec .stag{color:rgba(255,255,255,.5)}
+.capsule-sec .sh2{color:var(--softgold)}
+.capsule-box{max-width:500px;margin:0 auto;background:rgba(255,255,255,.06);border-radius:24px;padding:40px;border:1px solid rgba(255,200,100,.2)}
+.capsule-lock{font-size:3rem;display:block;margin-bottom:16px;animation:lockpulse 3s ease-in-out infinite}
+@keyframes lockpulse{0%,100%{transform:scale(1) rotate(0)}50%{transform:scale(1.1) rotate(5deg)}}
+.capsule-text{font-family:'Amiri',serif;font-style:italic;color:rgba(255,255,255,.7);line-height:2;margin-bottom:24px;font-size:.95rem}
+.capsule-cd{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:20px}
+.cap-u{background:rgba(255,200,100,.1);border:1px solid rgba(255,200,100,.25);border-radius:14px;padding:18px 22px;min-width:90px}
+.cap-n{font-family:'Lateef',serif;font-size:2.4rem;color:var(--softgold);font-weight:700;display:block;line-height:1}
+.cap-l{font-size:.72rem;color:rgba(255,255,255,.5);margin-top:4px}
+
+/* ══ PROMISES ══ */
 .promise-sec{padding:100px 22px;background:linear-gradient(135deg,var(--deep),#7a1a40);color:var(--white)}
 .promise-sec .sh2{color:var(--white)}
 .promise-sec .stag{color:rgba(255,255,255,.5)}
@@ -344,7 +518,7 @@ section{position:relative;z-index:1}
 .ptext{color:rgba(255,255,255,.9)}
 .ph{color:#ffd8e8;font-style:italic}
 
-/* LETTER */
+/* ══ LETTER ══ */
 .letter-sec{padding:100px 22px;background:radial-gradient(ellipse at 5% 10%,rgba(212,96,126,.08) 0%,transparent 50%),var(--cream)}
 .letter{background:var(--white);border-radius:28px;padding:68px 78px;max-width:780px;margin:0 auto;box-shadow:0 2px 4px rgba(154,40,88,.05),0 16px 60px rgba(154,40,88,.1),0 0 0 1px rgba(212,96,126,.1);position:relative;overflow:hidden}
 .letter-wm{position:absolute;bottom:-22px;left:-10px;font-family:'Lateef',serif;font-size:18rem;color:rgba(212,96,126,.04);font-weight:700;line-height:1;pointer-events:none}
@@ -354,78 +528,163 @@ section{position:relative;z-index:1}
 .lp{font-family:'Amiri',serif;font-size:1.1rem;color:var(--ink);line-height:2.6;margin-bottom:18px}
 .lsig{font-family:'Lateef',serif;font-size:1.35rem;color:var(--gold);text-align:left;border-top:1px solid var(--blush);padding-top:18px;margin-top:8px}
 .lsig-name{color:var(--deep);font-size:1.5rem}
+@media(max-width:640px){.letter{padding:36px 24px}}
 
-/* FOOTER */
+/* ══ FOOTER ══ */
 footer{background:var(--dark);color:rgba(255,255,255,.45);text-align:center;padding:60px 22px;font-family:'Amiri',serif;font-style:italic;font-size:1rem;line-height:2.4;position:relative;z-index:1}
 
-@media(max-width:640px){.beauty-card,.letter{padding:36px 26px}.name-card{padding:40px 26px}.love-box{padding:36px 26px}.cdu{min-width:84px;padding:18px 20px}.s-chars{gap:40px}.sb-m{left:8px;font-size:.7rem}.sb-s{right:8px;font-size:.7rem}}
+/* ══ GLOBE ══ */
+.globe-wrap{max-width:560px;margin:0 auto;text-align:center}
+#globeCanvas{border-radius:50%;box-shadow:0 0 60px rgba(212,96,126,.25),0 0 120px rgba(42,80,128,.15);cursor:pointer;display:block;margin:0 auto;max-width:100%;background:transparent}
+.globe-btns{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin:24px 0}
+.gpin-btn{padding:12px 26px;border:none;border-radius:50px;font-family:'Lateef',serif;font-size:1.1rem;cursor:pointer;transition:all .3s;box-shadow:0 4px 16px rgba(0,0,0,.15)}
+.gpin-btn{background:linear-gradient(135deg,var(--pink),var(--deep));color:#fff}
+.gpin-btn-sa{background:linear-gradient(135deg,#1a6630,#0a4020);color:#fff}
+.globe-msgs{margin-top:8px}
+.globe-msg{display:none;background:var(--white);border-radius:20px;padding:28px 32px;border:1px solid rgba(212,96,126,.15);box-shadow:0 4px 24px rgba(154,40,88,.1);text-align:right;animation:slideup .4s ease}
+.globe-msg.show{display:block}
+.gm-flag{font-size:2.5rem;margin-bottom:10px}
+.gm-title{font-family:'Lateef',serif;font-size:1.3rem;color:var(--deep);font-weight:700;margin-bottom:10px}
+.gm-body{font-family:'Amiri',serif;font-size:1rem;color:var(--muted);line-height:2.1;font-style:italic}
+
+/* ══ CROSSWORD NEW ══ */
+.cw-new-wrap{max-width:860px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:28px}
+@media(max-width:700px){.cw-new-wrap{grid-template-columns:1fr}}
+.cw-qs-panel{background:var(--white);border-radius:20px;padding:28px;border:1px solid rgba(212,96,126,.12);box-shadow:0 3px 18px rgba(154,40,88,.06)}
+.cw-q-group{margin-bottom:22px}
+.cw-q-group:last-child{margin-bottom:0}
+.cwg-title{font-family:'Lateef',serif;font-size:1.1rem;color:var(--deep);font-weight:700;margin-bottom:12px;padding-bottom:6px;border-bottom:2px solid var(--blush)}
+.cwq-item{display:flex;gap:10px;align-items:flex-start;margin-bottom:10px}
+.cwq-n{background:var(--pink);color:#fff;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;flex-shrink:0;margin-top:2px;font-family:'Lateef',serif;font-weight:700}
+.cwq-text{font-family:'Amiri',serif;font-size:.88rem;color:var(--muted);line-height:1.85}
+.cw-ans-panel{background:var(--white);border-radius:20px;padding:28px;border:1px solid rgba(212,96,126,.12);box-shadow:0 3px 18px rgba(154,40,88,.06);display:flex;flex-direction:column;gap:6px}
+.cw-ans-row{display:flex;align-items:center;gap:10px}
+.cw-ans-label{font-family:'Amiri',serif;font-size:.82rem;color:var(--muted);min-width:80px;display:flex;align-items:center;gap:6px}
+.cw-ans-inp{flex:1;padding:9px 14px;border:2px solid rgba(212,96,126,.2);border-radius:10px;font-family:'Noto Naskh Arabic',serif;font-size:.95rem;outline:none;direction:rtl;transition:border .25s,background .25s}
+.cw-ans-inp:focus{border-color:var(--pink);background:var(--light)}
+.cw-ans-inp.correct{border-color:#50c878;background:#f0fff4}
+.cw-ans-inp.wrong{border-color:#e04060;background:#fff0f2;animation:shake .35s ease}
+.cw-ans-icon{font-size:1.2rem;width:26px;text-align:center}
+.cw-reveal-msg{display:none;margin-bottom:8px;padding:12px 16px;background:linear-gradient(135deg,var(--blush),var(--light));border-radius:12px;border-right:3px solid var(--pink);font-family:'Amiri',serif;font-size:.88rem;color:var(--deep);line-height:1.8;font-style:italic;animation:slideup .4s ease}
+.cw-reveal-msg.show{display:block}
+.cw-score-bar{height:8px;background:var(--blush);border-radius:4px;margin-top:14px;overflow:hidden}
+.cw-score-fill{height:100%;background:linear-gradient(to left,var(--pink),var(--deep));border-radius:4px;width:0%;transition:width .6s ease}
+.cw-score-txt{font-family:'Amiri',serif;font-size:.85rem;color:var(--muted);text-align:center;margin-top:8px}
+.cw-final{display:none;margin-top:12px;padding:18px;background:linear-gradient(135deg,var(--blush),var(--light));border-radius:14px;font-family:'Amiri',serif;font-size:.95rem;color:var(--deep);line-height:2;text-align:center;animation:slideup .4s ease;font-weight:600}
+
+/* ══ JOKES SECTION ══ */
+.jokes-sec{padding:100px 22px;background:var(--dark);color:var(--white)}
+.jokes-sec .stag{color:rgba(245,200,210,.5)}
+.jokes-sec .sh2{color:var(--petal)}
+.jokes-box-wrap{max-width:520px;margin:0 auto;text-align:center}
+.jokes-box{display:inline-block;cursor:pointer;position:relative;width:200px;height:220px;transition:transform .3s}
+.jokes-box:hover{transform:scale(1.05) rotate(-1deg)}
+.jokes-box:active{transform:scale(.97)}
+.jbox-label{position:absolute;top:-28px;left:50%;transform:translateX(-50%);font-family:'Amiri',serif;font-size:.85rem;color:rgba(255,255,255,.5);white-space:nowrap;font-style:italic}
+/* Box body */
+.jokes-box::before{content:'';position:absolute;inset:30px 10px 0;background:linear-gradient(135deg,#6b2440,#9a2858);border-radius:0 0 12px 12px;box-shadow:0 8px 30px rgba(154,40,88,.4)}
+/* Papers sticking out */
+.jbox-papers{position:absolute;top:0;left:50%;transform:translateX(-50%);width:140px;height:60px}
+.jpaper{position:absolute;bottom:0;width:28px;height:55px;border-radius:3px 3px 0 0;transform-origin:bottom center}
+.jp1{left:10px;background:#fff9f0;transform:rotate(-18deg);height:52px}
+.jp2{left:30px;background:#fef0f8;transform:rotate(-6deg);height:58px}
+.jp3{left:55px;background:#fffde0;transform:rotate(3deg);height:60px}
+.jp4{left:80px;background:#f0fef5;transform:rotate(12deg);height:54px}
+.jp5{left:100px;background:#f0f4ff;transform:rotate(22deg);height:50px}
+.jbox-icon{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);font-size:2.8rem}
+/* Animation when clicked */
+@keyframes paperfly{0%{transform:translateY(0) rotate(0) scale(1);opacity:1}100%{transform:translateY(-200px) rotate(720deg) scale(.3);opacity:0}}
+.joke-result{margin-top:24px;min-height:120px}
+.joke-paper{display:none;background:#fffdf5;border-radius:14px;padding:24px 28px;border:2px dashed rgba(212,96,126,.3);box-shadow:0 4px 20px rgba(0,0,0,.2);animation:jreveal .5s ease;text-align:right}
+.joke-paper.show{display:block}
+@keyframes jreveal{from{transform:rotateY(-90deg);opacity:0}to{transform:rotateY(0);opacity:1}}
+.joke-text{font-family:'Amiri',serif;font-size:1.05rem;color:var(--ink);line-height:2.1}
+.joke-counter{font-family:'Amiri',serif;font-size:.8rem;color:rgba(255,255,255,.4);margin-top:12px;font-style:italic}
 </style>
 </head>
 <body>
 
 <!-- ══════════ WELCOME SCREEN ══════════ -->
-<div id="welcome-screen">
-  <div id="welcome-inner">
-    <div id="w-petals"></div>
-    <div class="w-logo">💕</div>
-    <div class="w-from">رسالة خاصة جداً من مصطفى</div>
-    <div class="w-q">إنتِ مين؟</div>
-    <div class="w-hint">اكتبي اسمك هنا 🌸</div>
-    <input id="name-input" type="text" placeholder="اكتبي اسمك..." autocomplete="off" />
-    <button id="name-btn">ادخلي 💕</button>
-    <div id="w-error" class="w-error"></div>
+<div id="ws">
+  <div id="wi">
+    <div id="wp"></div>
+    <span class="w-logo">💕</span>
+    <div class="w-from">رسالة خاصة جداً من مصطفى إلى</div>
+    <div class="w-q">حبيبتي هي؟ 🌸</div>
+    <div class="w-hint">اكتبي في إجابة واحدة بس تفتحلك قلبي 🌸</div>
+    <input id="nin" type="text" placeholder="اكتبي الإجابة..." autocomplete="off" />
+    <button id="nbtn">ادخلي 💕</button>
+    <div id="werr"></div>
   </div>
 </div>
 
 <!-- ══════════ MIDNIGHT POPUP ══════════ -->
-<div id="midnight-popup">
-  <div id="midnight-inner">
-    <div class="mp-stars" id="mp-stars"></div>
-    <div class="mp-icon">🌙</div>
-    <div class="mp-title">رسالة الليل السري</div>
+<div id="mp">
+  <div id="mpi">
+    <div class="mp-stars" id="mps"></div>
+    <span class="mp-icon">🌙</span>
+    <div class="mp-title">رسالة الليل السري 🤫</div>
     <div class="mp-body">
-      في يوم زي النهارده — الساعة ١ إلا ربع بالليل<br><br>
+      في يوم زي النهارده — الساعة ١ إلا ربع بالليل<br>
       قولتِ لي لأول مرة في حياتنا:<br><br>
       <span class="mp-love">"بحبك يا صفا 🩷"</span><br><br>
       وأنا رديت:<br><br>
       <span class="mp-me">"أنا بحبك حب ما لوش وصف."</span><br><br>
       <span class="mp-sub">ليلة ٩ أبريل ٢٠٢٦ — من أسعد لحظات حياتي 🥹</span>
     </div>
-    <button class="mp-close" onclick="document.getElementById('midnight-popup').classList.remove('show')">أنا عارفة 🥹❤️</button>
+    <button class="mp-close" onclick="document.getElementById('mp').classList.remove('show')">أنا عارفة 🥹❤️</button>
+  </div>
+</div>
+
+<!-- ══════════ SECRET POPUP ══════════ -->
+<div id="secret-popup">
+  <div id="secret-inner">
+    <span class="si-icon">🌸</span>
+    <div class="si-title">وجدتِ الكنز الخفي!</div>
+    <div class="si-body" id="si-body"></div>
+    <button class="si-close" onclick="document.getElementById('secret-popup').classList.remove('show')">أغلق 🌸</button>
+  </div>
+</div>
+
+<!-- ══════════ OPEN WHEN MODAL ══════════ -->
+<div id="letter-modal">
+  <div id="letter-modal-inner">
+    <button class="lm-close" onclick="document.getElementById('letter-modal').classList.remove('show')">✕</button>
+    <span class="lm-icon" id="lm-icon">💌</span>
+    <div class="lm-title" id="lm-title"></div>
+    <div class="lm-body" id="lm-body"></div>
   </div>
 </div>
 
 <!-- ══════════ MUSIC BOX ══════════ -->
-<div id="music-box" style="opacity:0;transition:opacity 1s ease">
-  <div id="music-inner">
-    <div class="mb-note" id="mb-note">🎵</div>
-    <div class="mb-text" id="mb-text">موسيقى القصة</div>
-  </div>
+<div id="mb">
+  <div id="mbn">🎵</div>
+  <div id="mbt">أهديكِ زهراً وأنتِ العبير</div>
 </div>
 
 <div id="petals"></div>
 
-<!-- HERO -->
+<!-- ══════════ HERO ══════════ -->
 <section class="hero">
-  <div class="h-tag">مصطفى بيكتب لـ <span class="dname">شروق</span></div>
-  <div class="h-name">شـروق</div>
+  <div class="h-tag">مصطفى بيكتب لـ <span class="dname">شروقي</span></div>
+  <div class="h-name">شـروقي</div>
   <div class="h-sub">
     "<span class="float">شاء الله</span> لبهجة عمري أن تكتمل<br>
     فأشرقتِ في حياتي كأجمل أقداري<br>
     وبكِ صار قدري نعمةً أحمد الله عليها"
   </div>
   <div class="h-heart">💕</div>
-  <div class="h-date">٢٣ يناير ٢٠٢٦ — أول يوم من أجمل قصة في حياتي</div>
-  <div class="scroll">↓ &nbsp; اقري معايا &nbsp; ↓</div>
+  <div class="h-date">٢٣ يناير ٢٠٢٦ — أول يوم من أجمل قصة في حياتي<span class="secret-dot" id="sdot" title="">.</span></div>
+  <div class="scroll-hint">↓ &nbsp; اقري معايا &nbsp; ↓</div>
 </section>
 
-<!-- RETURN COUNTDOWN -->
+<!-- ══════════ RETURN COUNTDOWN ══════════ -->
 <section class="return-sec">
   <div class="inner">
     <div class="stag">عداد الرجوع</div>
     <div class="sh2">الوقت لحد ما أرجعلك 🛫</div>
     <div class="r-sub">
-      يوم <strong>٢٤ مايو ٢٠٢٦</strong> — اليوم اللي بتخيله كتير<br>
+      يوم <strong>٢٤ مايو ٢٠٢٦</strong><br>
       <span class="glow" style="-webkit-text-fill-color:rgba(255,255,255,.9);text-shadow:0 0 20px rgba(255,180,200,.8)">مفتقداكِ أوي أوي أوي</span>
     </div>
     <div class="cd-wrap" id="countdown">
@@ -440,108 +699,59 @@ footer{background:var(--dark);color:rgba(255,255,255,.45);text-align:center;padd
 
 <div class="wave"></div>
 
-<!-- MILESTONES -->
+<!-- ══════════ NIGHT SKY ══════════ -->
+<section class="sky-sec">
+  <canvas id="skycanvas"></canvas>
+  <div class="sky-label">
+    <strong>السماء في ليلة ٢٨ يناير ٢٠٢٦</strong>
+    "السماء في الليلة التي بدأت فيها قصتنا الأجمل — ليلة خطوبتنا"
+  </div>
+</section>
+
+<div class="wave"></div>
+
+<!-- ══════════ MILESTONES ══════════ -->
 <section class="miles-sec">
   <div class="inner">
     <div class="stag">محطاتنا</div>
     <div class="sh2">الأيام الحلوة من حياتي معاكِ</div>
     <div class="ms-wrap">
-
-      <div class="ms-row r">
-        <div class="ms-l"><div class="mc sp">
-          <div class="mc-date">السبت ١٧ يناير ٢٠٢٦</div>
-          <div class="mc-title">🌸 أول مرة أشوفك</div>
-          <div class="mc-body">أول رؤية شرعية — أول مرة وقعت عيني عليكِ. يوم مستنيه من زمان ومش قدرت أوصفلك الإحساس ده بكلام. بس عرفت من اللحظة دي إن في حاجة هتحصل.</div>
-        </div></div>
-        <div class="ms-dc"><div class="dot d-b"></div></div>
-        <div class="ms-empty"></div>
-      </div>
-
-      <div class="ms-row r">
-        <div class="ms-empty"></div>
-        <div class="ms-dc"><div class="dot d-p"></div></div>
-        <div class="ms-r"><div class="mc">
-          <div class="mc-date">الثلاثاء ٢٠ يناير ٢٠٢٦</div>
-          <div class="mc-title">🍫 تاني رؤية وأول هدية</div>
-          <div class="mc-body">تاني مرة أشوفك — وجبتلك شوكولاتة. مكنتش عارف أعبّر غير بإني أجيبلك حاجة حلوة زيّك. وعرفت إنك مش مجرد خطوبة — إنتِ بداية.</div>
-        </div></div>
-      </div>
-
-      <div class="ms-row r">
-        <div class="ms-l"><div class="mc">
-          <div class="mc-date">الجمعة ٢٣ يناير ٢٠٢٦</div>
-          <div class="mc-title">👨‍👩‍👧‍👦 قعدة العيلة والاتفاق</div>
-          <div class="mc-body">اجتمعنا مع العيلتين واتفقنا على الدهب وكل التفاصيل — وحسيت إن اللي بينا بقى رسمي وباركه ربنا.</div>
-        </div></div>
-        <div class="ms-dc"><div class="dot d-g"></div></div>
-        <div class="ms-empty"></div>
-      </div>
-
-      <div class="ms-row r">
-        <div class="ms-empty"></div>
-        <div class="ms-dc"><div class="dot d-b"></div></div>
-        <div class="ms-r"><div class="mc sp">
-          <div class="mc-date">الاثنين ٢٦ يناير ٢٠٢٦</div>
-          <div class="mc-title">💍 الدهب — أول صورة سوا وأول مكالمة طويلة</div>
-          <div class="mc-body">أول يوم أقرب منك — وأول صورة سوا. ومكالمة أكتر من ساعتين — أطول مكالمة وأحلاها. وقولتلك "أنا بغير جداً" وعرفتِ من ساعتها 😄</div>
-        </div></div>
-      </div>
-
-      <div class="ms-row r">
-        <div class="ms-l"><div class="mc">
-          <div class="mc-date">الثلاثاء ٢٧ يناير ٢٠٢٦</div>
-          <div class="mc-title">😢 أول دموع علشاني</div>
-          <div class="mc-body">قولتلك إني حاسس إنك مش بتكلميني بحماس — وبكيتِ. ساعتها فهمت إنك بتهتمي جداً وإن دموعك حتى بتقولي كتير جداً.</div>
-        </div></div>
-        <div class="ms-dc"><div class="dot d-p"></div></div>
-        <div class="ms-empty"></div>
-      </div>
-
-      <div class="ms-row r">
-        <div class="ms-empty"></div>
-        <div class="ms-dc"><div class="dot d-b"></div></div>
-        <div class="ms-r"><div class="mc sp">
-          <div class="mc-date">الثلاثاء ٢٨ يناير ٢٠٢٦ 💍</div>
-          <div class="mc-title">✨ يوم خطوبتنا</div>
-          <div class="mc-body">شوفتك بالفستان وأديتلك الورد وكتبت عليه: "<em>شاء الله لبهجة عمري أن تكتمل.</em>" ضحكتك في لعبة الأسئلة قولتِ لي "يخربيتك!" — يوم ما هنساه.</div>
-        </div></div>
-      </div>
-
-      <div class="ms-row r">
-        <div class="ms-l"><div class="mc love">
-          <div class="mc-date">ليلة ٩ — صبح ١٠ أبريل ٢٠٢٦ — الساعة ١ إلا ربع</div>
-          <div class="mc-title">❤️ أول <span class="heartbeat">بحبك</span> في حياتنا</div>
-          <div class="mc-body">اللحظة اللي قولتِ فيها "<em>بحبك يا صفا 🩷</em>" وأنا رديت "<em>أنا بحبك حب ما لوش وصف.</em>" وقولتِ "أنا طايرة في السما!" وأنا كمان — الحمد لله يا شروق.</div>
-        </div></div>
-        <div class="ms-dc"><div class="dot d-l"></div></div>
-        <div class="ms-empty"></div>
-      </div>
-
+      <div class="ms-row r"><div class="ms-l"><div class="mc sp"><div class="mc-date">السبت ١٧ يناير ٢٠٢٦</div><div class="mc-title">🌸 أول مرة أشوفك</div><div class="mc-body">أول رؤية شرعية — أول مرة وقعت عيني عليكِ. يوم مستنيه من زمان ومش قدرت أوصف الإحساس ده بكلام.</div></div></div><div class="ms-dc"><div class="dot d-b"></div></div><div class="ms-empty"></div></div>
+      <div class="ms-row r"><div class="ms-empty"></div><div class="ms-dc"><div class="dot d-p"></div></div><div class="ms-r"><div class="mc"><div class="mc-date">الثلاثاء ٢٠ يناير ٢٠٢٦</div><div class="mc-title">🍫 تاني رؤية وأول هدية</div><div class="mc-body">جبتلك شوكولاتة — أول هدية بقدمها ليكِ. مكنتش عارف أعبّر غير بإني أجيبلك حاجة حلوة زيّك.</div></div></div></div>
+      <div class="ms-row r"><div class="ms-l"><div class="mc"><div class="mc-date">الجمعة ٢٣ يناير ٢٠٢٦</div><div class="mc-title">👨‍👩‍👧‍👦 قعدة العيلة والاتفاق</div><div class="mc-body">اجتمعنا مع العيلتين واتفقنا على الدهب وكل التفاصيل — يوم حسيت إن اللي بينا بقى رسمي وباركه ربنا.</div></div></div><div class="ms-dc"><div class="dot d-g"></div></div><div class="ms-empty"></div></div>
+      <div class="ms-row r"><div class="ms-empty"></div><div class="ms-dc"><div class="dot d-b"></div></div><div class="ms-r"><div class="mc sp"><div class="mc-date">الاثنين ٢٦ يناير ٢٠٢٦</div><div class="mc-title">💍 الدهب — أول صورة وأول مكالمة طويلة</div><div class="mc-body">أول يوم أقرب منك — وأول صورة سوا. ومكالمة أكتر من ساعتين — أطول مكالمة وأحلاها. وقولتلك "أنا بغير جداً" وعرفتِ من ساعتها 😄</div></div></div></div>
+      <div class="ms-row r"><div class="ms-l"><div class="mc"><div class="mc-date">الثلاثاء ٢٧ يناير ٢٠٢٦</div><div class="mc-title">😢 أول دموع علشاني</div><div class="mc-body">قولتلك إني حاسس إنك مش بتكلميني بحماس — وبكيتِ. ساعتها فهمت إنك بتهتمي جداً وإن دموعك حتى بتقولي كتير.</div></div></div><div class="ms-dc"><div class="dot d-p"></div></div><div class="ms-empty"></div></div>
+      <div class="ms-row r"><div class="ms-empty"></div><div class="ms-dc"><div class="dot d-b"></div></div><div class="ms-r"><div class="mc sp"><div class="mc-date">الثلاثاء ٢٨ يناير ٢٠٢٦ 💍</div><div class="mc-title">✨ يوم خطوبتنا</div><div class="mc-body">شوفتك بالفستان وأديتلك الورد وكتبت عليه: "<em>شاء الله لبهجة عمري أن تكتمل.</em>" ضحكتك في لعبة الأسئلة — يوم ما هنساه أبداً.</div></div></div></div>
+      <div class="ms-row r"><div class="ms-l"><div class="mc lv"><div class="mc-date">ليلة ٩ — صبح ١٠ أبريل ٢٠٢٦</div><div class="mc-title">❤️ أول <span class="heartbeat">بحبك</span> في حياتنا</div><div class="mc-body">اللحظة اللي قولتِ فيها "<em>بحبك يا صفا 🩷</em>" — وأنا رديت "<em>أنا بحبك حب ما لوش وصف.</em>" الحمد لله يا شروقي.</div></div></div><div class="ms-dc"><div class="dot d-l"></div></div><div class="ms-empty"></div></div>
     </div>
   </div>
 </section>
 
 <div class="wave"></div>
 
-<!-- NAME -->
-<section class="name-sec">
+<!-- ══════════ MAP OF US ══════════ -->
+<section class="map-sec">
   <div class="inner">
-    <div class="stag">اسمك</div>
-    <div class="sh2">اسمك لوحده حكاية</div>
-    <div class="name-card rs">
-      <span class="shimmer-name">شـروق</span>
-      <div class="name-text">
-        "من أول اسمك — <span class="glow">شروق</span> اللي هو لوحده حكاية.<br>
-        فيه نور وشمس وطلوع نهار. في قوة ووضوح وأمل وبداية جديدة.<br>
-        مش مجرد اسم — ده إحساس من اللحظة اللي الدنيا بتبدأ تضحك فيها.<br>
-        <span class="rainbow">وكأنكِ إنتِ شروق حياتي اللي ما بتنتهيش.</span>"
+    <div class="stag">خريطة حبنا</div>
+    <div class="sh2">حبنا عابر للمسافات 🌍</div>
+    <p style="text-align:center;font-family:'Amiri',serif;font-style:italic;color:var(--muted);margin-bottom:28px;font-size:.9rem">اضغطي على البلد عشان تشوفي رسالتها 🌸</p>
+    <div class="globe-wrap">
+      <canvas id="globeCanvas" width="500" height="500"></canvas>
+      <div class="globe-btns">
+        <button class="gpin-btn" onclick="showGlobeMsg('egypt')">🇪🇬 مصر — شروقي</button>
+        <button class="gpin-btn gpin-btn-sa" onclick="showGlobeMsg('saudi')">🇸🇦 السعودية — مصطفى</button>
       </div>
-      <div class="chips">
-        <div class="chip">🌅 نور وضوء</div>
-        <div class="chip">🌸 بداية جديدة</div>
-        <div class="chip">☀️ إشراق وأمل</div>
-        <div class="chip">✨ بهجة وجمال</div>
-        <div class="chip">🌺 حياة كاملة</div>
+      <div class="globe-msgs">
+        <div class="globe-msg" id="gmsg-egypt">
+          <div class="gm-flag">🇪🇬</div>
+          <div class="gm-title">مصر — بلد شروقي 🌸</div>
+          <div class="gm-body">هنا في مصر — في بيت صغير حلو — بتصحي كل يوم وبتحفظي القرآن وبتضحكي وتعلقي النوتة جنبك وإنتِ نايمة. هنا أول مرة وقعت عيني عليكِ وأول مرة وقع قلبي. هنا بيتنا هيكون إن شاء الله — وهنا هنبني كل اللي بنحلم بيه سوا. 🌸</div>
+        </div>
+        <div class="globe-msg" id="gmsg-saudi">
+          <div class="gm-flag">🇸🇦</div>
+          <div class="gm-title">السعودية — مكاني دلوقتي 💙</div>
+          <div class="gm-body">هنا أنا بشتغل وأسعى وأدعي ليكِ كل يوم. بيني وبينك مسافة — بس مفيش مسافة بين القلبين. "حين أشتاق إليكِ يصبح كل ما فيّ نداءً صامتاً لا يسمعه سواكِ." منتظر يوم ٢٤ مايو — اليوم اللي أرجع فيه ليكِ. 💙</div>
+        </div>
       </div>
     </div>
   </div>
@@ -549,47 +759,109 @@ footer{background:var(--dark);color:rgba(255,255,255,.45);text-align:center;padd
 
 <div class="wave"></div>
 
-<!-- BEAUTY LETTER -->
+<!-- ══════════ PASSWORD UNLOCK ══════════ -->
+<section class="unlock-sec">
+  <div class="inner">
+    <div class="stag">كنز مخبأ</div>
+    <div class="sh2">عشان تشوفي الرسالة دي 🔑</div>
+    <div class="unlock-wrap r">
+      <div class="unlock-hint">اكتبي لون أول فستان جبتهولك في الصندوق<br><em>(الإجابة هتفتحلك رسالة خاصة جداً)</em></div>
+      <input id="pw-input" type="text" placeholder="اكتبي الإجابة هنا..." />
+      <br><button id="pw-btn" onclick="checkPassword()">افتحي 🌸</button>
+      <div id="pw-result">
+        <div class="pw-dates-title">🌸 عارفاني كويس! — دي تواريخنا اللي مستحيل أنساها</div>
+        <div class="pw-date-item">🌸 <span>١٧ يناير ٢٠٢٦</span> — أول مرة شوفتك وأنا فقدت الكلام</div>
+        <div class="pw-date-item">🍫 <span>٢٠ يناير ٢٠٢٦</span> — تاني رؤية وأول هدية — الشوكولاتة</div>
+        <div class="pw-date-item">👨‍👩‍👧‍👦 <span>٢٣ يناير ٢٠٢٦</span> — قعدة العيلة والاتفاق على كل حاجة</div>
+        <div class="pw-date-item">💍 <span>٢٦ يناير ٢٠٢٦</span> — الدهب وأول صورة سوا وأول مكالمة طويلة</div>
+        <div class="pw-date-item">💕 <span>٢٨ يناير ٢٠٢٦</span> — يوم خطوبتنا — يوم ما هنساه</div>
+        <div class="pw-date-item">❤️ <span>٩ أبريل ٢٠٢٦</span> — أول "بحبك" في حياتنا — الليلة الأعظم</div>
+        <div style="margin-top:16px;font-family:'Amiri',serif;font-style:italic;color:rgba(255,255,255,.7);font-size:.9rem">"كل تفصيلة فيكِ محفورة في قلبي — أنا بهتم بأدق التفاصيل زي ما بهتم بيكِ إنتِ." 💕</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wave"></div>
+
+<!-- ══════════ JAR OF REASONS ══════════ -->
+<section class="jar-sec">
+  <div class="inner">
+    <div class="stag">صندوق الأسباب</div>
+    <div class="sh2">ليه بحبك يا شروقي 🫙</div>
+    <div class="jar-wrap">
+      <div class="jar-visual" onclick="pickReason()">
+        <svg class="jar-svg" viewBox="0 0 160 200" fill="none">
+          <ellipse cx="80" cy="55" rx="55" ry="18" fill="rgba(212,96,126,.3)" stroke="var(--pink)" stroke-width="2"/>
+          <rect x="30" y="55" width="100" height="120" rx="18" fill="rgba(253,237,242,.9)" stroke="var(--pink)" stroke-width="2"/>
+          <ellipse cx="80" cy="175" rx="50" ry="14" fill="rgba(212,96,126,.2)" stroke="var(--pink)" stroke-width="1.5"/>
+          <text x="80" y="130" text-anchor="middle" font-size="40" font-family="sans-serif">💕</text>
+          <text x="80" y="165" text-anchor="middle" font-size="10" fill="var(--deep)" font-family="Amiri,serif">اضغطي!</text>
+        </svg>
+      </div>
+      <div id="jar-reason"></div>
+      <button class="jar-btn" onclick="pickReason()">🫙 اسحبي ورقة عشوائية</button>
+      <div class="jar-count" id="jar-count"></div>
+    </div>
+  </div>
+</section>
+
+<div class="wave"></div>
+
+<!-- ══════════ SCRATCH COUPONS ══════════ -->
+<section class="scratch-sec">
+  <div class="inner">
+    <div class="stag">كوبونات الحب</div>
+    <div class="sh2">كوبوناتك يا شروقي 🎟️</div>
+    <p class="scratch-hint">امسحي الكوبون باصبعك أو الماوس عشان تشوفي الهدية! 🌸</p>
+    <div class="coupons-grid" id="coupons-grid"></div>
+  </div>
+</section>
+
+<div class="wave"></div>
+
+<!-- ══════════ OPEN WHEN LETTERS ══════════ -->
+<section class="letters-sec">
+  <div class="inner">
+    <div class="stag">رسائل مخصصة</div>
+    <div class="sh2">افتحيها لما... 💌</div>
+    <div class="letters-grid" id="letters-grid"></div>
+  </div>
+</section>
+
+<div class="wave"></div>
+
+<!-- ══════════ NIGHT SKY SECTION ══════════ (already above as canvas) -->
+
+<!-- ══════════ BEAUTY LETTER ══════════ -->
 <section class="beauty-sec">
   <div class="inner">
     <div class="stag">كلامي فيكِ</div>
-    <div class="sh2">كتبتلك الصبح الباكر — مش لاقي حاجة أتكلم فيها غيرك</div>
+    <div class="sh2">كتبتلك الصبح الباكر</div>
     <div class="beauty-card rs">
-      <div class="bp">يا شروق — مش قادر أوصفلك قد إيه إنتِ <span class="glow sparkle-word">مُبهرة</span> بشكل عام. ما شاء الله — شيء إلهي. مش حاجة واحدة بس حلوة فيها — كل حاجة فيكِ حرفياً مميزة جداً.</div>
-      <div class="bp">من أول اسمك — <span class="glow">شروق</span> اللي هو لوحده حكاية. في نور وشمس وطلوع نهار. مش مجرد اسم — ده إحساس من اللحظة اللي الدنيا بتبدأ تضحك فيها. <span class="rainbow">وكأنكِ إنتِ شروق حياتي اللي ما بتنتهيش.</span></div>
-      <div class="bp">أما شكلك — اللهم بارك، سبحان ربي الخلاق. كل ما ببصلك بحس كأن <strong>ربنا حط كل جمال الدنيا في وشك.</strong> واللي يشوفك ما يعرفش إنه يبص بعيد. ملامحك فيها رقة تخلي الحجر ينطق.</div>
-      <div class="bp">وياه على <span class="glow">ضحكتك</span> — مش مجرد صوت، كأنها موسيقى حلال. كأن في نجوم بتخرج منك وإنتِ بتضحكي. لما بتتضحكي الدنيا بتنور. <strong>لو خيّروني بين الدنيا وضحكتك — هختار ضحكتك وأنا مطمن.</strong></div>
-      <div class="bp">وياريت جمالك بيتنهى هنا. إنتِ جمالك خارجي وداخلي. كأن جواكِ نور رباني بيطلع منك يطمن كل اللي حواليكِ. روحك عاملة زي نسمة الهوا. <span class="sparkle-word"><strong>أجمل هدية ربنا بعتهالي.</strong></span></div>
-      <div class="beauty-attr">— مصطفى، ٦ فبراير ٢٠٢٦ — ٦:١٧ ص — وأنا صاحي من الفجر ومش لاقي حاجة أتكلم فيها غيرك</div>
+      <div class="bp">يا شروقي — مش قادر أوصفلك قد إيه إنتِ <span class="glow sparkle-word">مُبهرة</span> بشكل عام. ما شاء الله — شيء إلهي. مش حاجة واحدة بس حلوة فيها — كل حاجة فيكِ حرفياً مميزة جداً.</div>
+      <div class="bp">من أول اسمك — <span class="glow">شروق</span> اللي هو لوحده حكاية. في نور وشمس وطلوع نهار. وكأنكِ إنتِ <span class="rainbow">شروق حياتي اللي ما بتنتهيش.</span></div>
+      <div class="bp">وياه على <span class="glow">ضحكتك</span> — لما بتتضحكي الدنيا بتنور. <strong>لو خيّروني بين الدنيا وضحكتك — هختار ضحكتك وأنا مطمن.</strong> في ضحكتك دي كل اللي محتاجه.</div>
+      <div class="bp">جمالك خارجي وداخلي. روحك عاملة زي نسمة الهوا. <span class="sparkle-word"><strong>أجمل هدية ربنا بعتهالي.</strong></span></div>
+      <div class="beauty-attr">— مصطفى، ٦ فبراير ٢٠٢٦ — ٦:١٧ ص — صاحي من الفجر ومش لاقي حاجة أتكلم فيها غيرك</div>
     </div>
   </div>
 </section>
 
 <div class="wave"></div>
 
-<!-- LOVE NIGHT -->
+<!-- ══════════ LOVE NIGHT ══════════ -->
 <section class="love-sec">
-  <div class="stars" id="stars"></div>
+  <div class="stars-bg" id="stars"></div>
   <div class="inner">
     <div class="stag">اللحظة الأعظم</div>
     <div class="sh2">ليلة ٩ أبريل — من أسعد لحظات حياتي</div>
-    <div class="love-dtag">الساعة ١ إلا ربع بالليل — أول "بحبك" في حياتنا</div>
+    <div class="love-dtag">الساعة ١ إلا ربع — أول "بحبك" في حياتنا</div>
     <div class="love-box rs">
-      <span class="love-icon">💕</span>
-      <div class="love-her">
-        إنتِ قولتِ لي يا شروق:<br><br>
-        "<span class="glow" style="-webkit-text-fill-color:rgba(255,220,230,.9);text-shadow:0 0 15px rgba(212,96,126,.6)">حياتي قبلك كانت ظلمة أوي أوي</span> — جيت نوّرتها وأشرقتها. كانت شبه الصحراء — جيت أزهرتها كلها فتفوتة فتفوتة.<br><br>
-        حبيتك حب ما لوش وصف وكل ثانية بتعدي بحبك أكتر من اللي قبلها. معاك عرفت مين شروق. كأنك مالك قصور وكنوز الدنيا كلها بل أفضل من كده بكتير.<br><br>
-        <span class="heartbeat">بحبك يا صفا 🩷</span>"
-      </div>
+      <span class="love-icon-big">💕</span>
+      <div class="love-her">"<span class="glow" style="-webkit-text-fill-color:rgba(255,220,230,.9);text-shadow:0 0 15px rgba(212,96,126,.6)">حياتي قبلك كانت ظلمة أوي أوي</span> — جيت نوّرتها وأشرقتها. كانت شبه الصحراء — جيت أزهرتها كلها فتفوتة فتفوتة.<br><br>حبيتك حب ما لوش وصف وكل ثانية بتعدي بحبك أكتر.<br><br><span class="heartbeat">بحبك يا صفا 🩷</span>"</div>
       <div class="ldiv"><span>❤️</span></div>
-      <div class="love-me">
-        وأنا رديت عليكِ:<br><br>
-        "<span class="glow-gold" style="-webkit-text-fill-color:rgba(245,230,180,.9);text-shadow:0 0 15px rgba(192,144,64,.6)">أنا غرقان في تفاصيلك</span> — هي دي الكلمة الوحيدة اللي بتوصف حالي معاكِ.<br><br>
-        في حاجات بتيجي في العمر مرة واحدة — <span class="glow-gold" style="-webkit-text-fill-color:rgba(245,230,180,.95)">إنتِ دي.</span> وجودك في حياتي مش صدفة — ده ترتيب ربنا ليّا علشان يطبطب على قلبي.<br><br>
-        لمعة عينيكِ ووشك هي الحاجة الوحيدة اللي تستاهل تكون وطني وبيتي.<br><br>
-        <span class="bounce" style="color:var(--petal);font-family:'Lateef',serif;font-size:1.15em">شروق — أنا بحبك حب ما لوش وصف."</span>
-      </div>
+      <div class="love-me">"<strong>أنا غرقان في تفاصيلك.</strong> في حاجات بتيجي في العمر مرة واحدة — <span class="glow" style="-webkit-text-fill-color:rgba(245,230,180,.9)">إنتِ دي.</span><br><br>لمعة عينيكِ ووشك هي الحاجة الوحيدة اللي تستاهل تكون وطني وبيتي.<br><br><span class="bounce" style="color:var(--petal);font-family:'Lateef',serif;font-size:1.15em">شروقي — أنا بحبك حب ما لوش وصف."</span></div>
     </div>
     <div class="love-stamp">❤️ &nbsp; يوم ٩ أبريل — يوم لا يُنسى &nbsp; ❤️</div>
   </div>
@@ -597,69 +869,79 @@ footer{background:var(--dark);color:rgba(255,255,255,.45);text-align:center;padd
 
 <div class="wave"></div>
 
-<!-- HER WORDS -->
+<!-- ══════════ HER WORDS ══════════ -->
 <section class="her-sec">
   <div class="inner">
     <div class="stag">كلامها اللي وقف معايا</div>
-    <div class="sh2">جُمَل من شروق — فضلت في قلبي</div>
+    <div class="sh2">جُمَل من شروقي — فضلت في قلبي</div>
     <div class="hw-grid">
-      <div class="hw-card r"><span class="hw-icon">🌟</span><div class="hw-from">شروق قالت — ١٠ أبريل</div><div class="hw-text">"<span class="glow">حياتي قبلك كانت ظلمة أوي أوي</span> — جيت نوّرتها وأشرقتها. كانت شبه الصحراء — جيت أزهرتها كلها فتفوتة فتفوتة."</div></div>
-      <div class="hw-card r"><span class="hw-icon">💕</span><div class="hw-from">شروق قالت</div><div class="hw-text">"إنت أجمل حاجة حصلتلي وأجمل رجل وأجمل سند — <span class="glow">يا سندي ورجلي وقرة عيني.</span>"</div></div>
-      <div class="hw-card r"><span class="hw-icon">🤍</span><div class="hw-from">شروق قالت — ٦ فبراير</div><div class="hw-text">"والله ما في حد متهني ولا بيسمع كلام جميل أوي كده زيّي. اسعدتني وأبهرتني وكل يوم بتعلّقني بيك أكتر."</div></div>
-      <div class="hw-card r"><span class="hw-icon">🥹</span><div class="hw-from">شروق قالت</div><div class="hw-text">"<span class="glow">إنني متيّمة بكلامك</span> يا صفائي وحياتي وعيني وأيامي الحلوة — يا عزيزي وحبيبي وقرة عيوني."</div></div>
-      <div class="hw-card r"><span class="hw-icon">✨</span><div class="hw-from">شروق قالت</div><div class="hw-text">"<span class="glow">مفيش حاجة في الدنيا تقدر تزعلني</span> طول ما مصطفى معايا."</div></div>
-      <div class="hw-card r"><span class="hw-icon">🌸</span><div class="hw-from">شروق قالت — ١٠ أبريل</div><div class="hw-text">"<span class="glow">إحنا بنكتب روايتنا</span> — اللي هنعيشها بأجمل شكل إن شاء الله. وهنحكيها لأولادنا — وبعدين لأحفادنا!" 🥹</div></div>
-      <div class="hw-card r"><span class="hw-icon">💖</span><div class="hw-from">شروق قالت</div><div class="hw-text">"إنت الأجمل والأنقى يا صفا — <span class="glow">يا كل الجهات وكل النظر.</span> ربنا يخليك ليا وما يحرمنيش منك أبداً."</div></div>
-      <div class="hw-card r"><span class="hw-icon">😂</span><div class="hw-from">شروق قالت — بعد ليلة ٩ أبريل</div><div class="hw-text">"جدو <span class="bounce" style="display:inline-block;font-weight:700;color:var(--deep)">صاصا</span> وتيتا شوشو — واحنا كحكوحين بنحكي للأحفاد! 😂" وأنا مش قادر أوصفلك فرحتي!</div></div>
+      <div class="hw-card r"><span class="hw-icon">🌟</span><div class="hw-from">شروقي قالت — ١٠ أبريل</div><div class="hw-text">"<span class="glow">حياتي قبلك كانت ظلمة أوي أوي</span> — جيت نوّرتها وأشرقتها. كانت شبه الصحراء — جيت أزهرتها كلها فتفوتة فتفوتة."</div></div>
+      <div class="hw-card r"><span class="hw-icon">💕</span><div class="hw-from">شروقي قالت</div><div class="hw-text">"إنت أجمل حاجة حصلتلي — <span class="glow">يا سندي ورجلي وقرة عيني.</span> ربنا يخليك ليا وما يحرمنيش منك."</div></div>
+      <div class="hw-card r"><span class="hw-icon">🤍</span><div class="hw-from">شروقي قالت — ٦ فبراير</div><div class="hw-text">"والله ما في حد متهني ولا بيسمع كلام جميل أوي كده زيّي. اسعدتني وأبهرتني وكل يوم بتعلّقني بيك أكتر."</div></div>
+      <div class="hw-card r"><span class="hw-icon">🥹</span><div class="hw-from">شروقي قالت</div><div class="hw-text">"<span class="glow">إنني متيّمة بكلامك</span> يا صفائي وحياتي وعيني — يا عزيزي وحبيبي وقرة عيوني."</div></div>
+      <div class="hw-card r"><span class="hw-icon">✨</span><div class="hw-from">شروقي قالت</div><div class="hw-text">"<span class="glow">مفيش حاجة في الدنيا تقدر تزعلني</span> طول ما مصطفى معايا."</div></div>
+      <div class="hw-card r"><span class="hw-icon">🌸</span><div class="hw-from">شروقي قالت — فبراير</div><div class="hw-text">"أأهديكِ زهراً وأنتِ العبير — مش قادرة أطلعها من دماغي!" 🥰</div></div>
+      <div class="hw-card r"><span class="hw-icon">💖</span><div class="hw-from">شروقي قالت</div><div class="hw-text">"إنت الأجمل والأنقى يا صفا — <span class="glow">يا كل الجهات وكل النظر.</span>"</div></div>
+      <div class="hw-card r"><span class="hw-icon">😂</span><div class="hw-from">شروقي قالت — بعد ليلة ٩ أبريل</div><div class="hw-text">"جدو <span class="bounce" style="display:inline-block;font-weight:700;color:var(--deep)">صاصا</span> وتيتا شوشو — واحنا كحكوحين بنحكي للأحفاد! 😂"</div></div>
     </div>
   </div>
 </section>
 
 <div class="wave"></div>
 
-<!-- APPRECIATE -->
+<!-- ══════════ APPRECIATE ══════════ -->
 <section class="ap-sec">
   <div class="inner">
     <div class="stag">بقدّرك</div>
-    <div class="sh2">ليه إنتِ مش زي أي حد يا شروق</div>
+    <div class="sh2">ليه إنتِ مش زي أي حد</div>
     <div class="ap-grid">
       <div class="ap-card r"><span class="ap-icon">🌸</span><div class="ap-title">روحك تهدي وتريح</div><div class="ap-text">"روحك دي عاملة زي نسمة الهوا — حاجة تهدي وتريح. وقلبك أبيض ما يعرفش يكره ولا يشيل أبداً."</div></div>
-      <div class="ap-card r"><span class="ap-icon">🧠</span><div class="ap-title">عقلك يجنّن</div><div class="ap-text">لما شاركتيني تفسيرك للآيات — قولتلك "سن ٢١ عقل ٧٠!" ما شاء الله. وأنا مش مجاملك — ده فعلاً اللي بشوفه.</div></div>
-      <div class="ap-card r"><span class="ap-icon">😊</span><div class="ap-title">ضحكتك بتدي طاقة</div><div class="ap-text">"إزاي ضحكتك كأنها بتدي طاقة؟!" سألتك ده بجد. مش صوت بس — كأنها عزف لبهجة. لما بتتضحكي الكون بيتبسط.</div></div>
-      <div class="ap-card r"><span class="ap-icon">🤲</span><div class="ap-title">إيمانك بيرفعني</div><div class="ap-text">كل يوم بشوف إيمانك وحفظك القرآن وخوفك من ربنا — وبقول في نفسي: "ربنا رزقني بنعمة — إزاي أكون حافظ عليها؟"</div></div>
-      <div class="ap-card r"><span class="ap-icon">🌟</span><div class="ap-title">الأضواء بتدور عليكِ</div><div class="ap-text">"إنتِ مش بتسرقي الأضواء — الأضواء كلها بتدور عليكِ." مفيش أي مكان هتقعدي فيه هيكون في شخص روح أنقى من روحك.</div></div>
-      <div class="ap-card r"><span class="ap-icon">❤️</span><div class="ap-title">معنديش غيرك</div><div class="ap-text">"إنتِ أخدتِ حلاوة وخفة دم كل بنات الدنيا — علشان كده ما بقاش في بنات في عيني غيرك." — مش كلام. قرار من قلبي.</div></div>
+      <div class="ap-card r"><span class="ap-icon">🧠</span><div class="ap-title">عقلك يجنّن</div><div class="ap-text">قولتلك "سن ٢١ عقل ٧٠!" ما شاء الله. عقلك بنضجه بيحسب حسابات مش بتجي لكتير من الناس.</div></div>
+      <div class="ap-card r"><span class="ap-icon">😊</span><div class="ap-title">ضحكتك بتدي طاقة</div><div class="ap-text">"ضحكتك من عجائب الدنيا السبعة!" — مش صوت بس، كأنها موسيقى حلال. لما بتتضحكي الكون بيتبسط.</div></div>
+      <div class="ap-card r"><span class="ap-icon">🤲</span><div class="ap-title">إيمانك بيرفعني</div><div class="ap-text">كل يوم بشوف إيمانك وحفظك القرآن — وبقول في نفسي "ربنا رزقني بنعمة — إزاي أكون حافظ عليها؟"</div></div>
+      <div class="ap-card r"><span class="ap-icon">❤️</span><div class="ap-title">معنديش غيرك</div><div class="ap-text">"إنتِ أخدتِ حلاوة وخفة دم كل بنات الدنيا — علشان كده ما بقاش في بنات في عيني غيرك." قرار من قلبي.</div></div>
+      <div class="ap-card r"><span class="ap-icon">🏆</span><div class="ap-title">أفخر بيكِ</div><div class="ap-text">"دي صفات تخليني أمشي وأنا فخور بيكِ وسط الدنيا كلها." مش فخور إنك جميلة بس — فخور إنك إنتِ.</div></div>
     </div>
   </div>
 </section>
 
-<!-- ANIMATED SCENE -->
+<!-- ══════════ HOUSE BLUEPRINT ══════════ -->
+<section class="house-sec">
+  <div class="inner">
+    <div class="stag">مشروع عمرنا</div>
+    <div class="sh2">بيتنا — خطوة بخطوة 🏡</div>
+    <div class="blueprint r">
+      <div class="bp-title">【 مخطط بيت مصطفى وشروق 】</div>
+      <div class="rooms-grid">
+        <div class="room" onclick="showRoom('kitchen')"><span class="room-icon">🍳</span><div class="room-name">المطبخ</div><div class="room-hint">اضغطي عشان تشوفي رسالته</div></div>
+        <div class="room" onclick="showRoom('living')"><span class="room-icon">🛋️</span><div class="room-name">الصالة</div><div class="room-hint">اضغطي عشان تشوفي رسالته</div></div>
+        <div class="room" onclick="showRoom('quran')"><span class="room-icon">📖</span><div class="room-name">كورنر القرآن</div><div class="room-hint">اضغطي عشان تشوفي رسالته</div></div>
+        <div class="room" onclick="showRoom('balcony')"><span class="room-icon">🌙</span><div class="room-name">البلكونة</div><div class="room-hint">اضغطي عشان تشوفي رسالته</div></div>
+        <div class="room room-wide" onclick="showRoom('door')"><span class="room-icon">🚪</span><div class="room-name">الباب</div><div class="room-hint">اضغطي عشان تشوفي رسالته</div></div>
+      </div>
+      <div id="room-msg">
+        <div class="rm-title" id="rm-title"></div>
+        <div class="rm-body" id="rm-body"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ ANIMATED SCENE ══════════ -->
 <section class="scene-sec">
   <div class="inner">
     <div class="stag">لحظة خيال</div>
-    <div class="sh2">إحنا السوا 🌸🤍</div>
-    <p style="text-align:center;font-family:'Amiri',serif;font-style:italic;color:var(--muted);margin-bottom:20px;font-size:.9rem">البينك لون شروق — الأبيض لون مصطفى 🌸🤍</p>
+    <div class="sh2">إحنا السوا — البينك والأبيض 🌸🤍</div>
     <div class="scene-box rs">
       <div class="s-sun"></div>
-      <div class="s-cloud ca"></div>
-      <div class="s-cloud cb"></div>
+      <div class="s-cloud ca2"></div>
+      <div class="s-cloud cb2"></div>
       <div class="sb sb-m">الدنيا حلوة معاكِ! 🤍</div>
       <div class="sb sb-s">وإنت أحلى فيها! 🌸</div>
       <div class="s-chars">
-        <div class="cm">
-          <div class="hd">😊</div>
-          <div class="bd"><div class="ar"></div><div class="al"></div></div>
-          <div class="lgs"><div class="lg"></div><div class="lg"></div></div>
-          <div class="clabel" style="color:#2a50a0">مصطفى 🤍</div>
-        </div>
+        <div class="cm"><div class="hd">😊</div><div class="bd"><div class="ar"></div><div class="al"></div></div><div class="lgs"><div class="lg"></div><div class="lg"></div></div><div style="font-size:.75rem;font-weight:700;margin-top:7px;color:#2a50a0">مصطفى 🤍</div></div>
         <div class="s-hearts"><div class="sh">💕</div><div class="sh">🌸</div><div class="sh">❤️</div></div>
-        <div class="cs">
-          <div class="hw"><div class="hd">🥰</div><div class="vl"></div></div>
-          <div class="bd"><div class="al2"></div></div>
-          <div class="sk"></div>
-          <div class="lgs"><div class="lg"></div><div class="lg"></div></div>
-          <div class="clabel" style="color:var(--deep)">شروق 🌸</div>
-        </div>
+        <div class="cs"><div class="hw2"><div class="hd">🥰</div><div class="vl"></div></div><div class="bd"><div class="al2"></div></div><div class="sk"></div><div class="lgs"><div class="lg"></div><div class="lg"></div></div><div style="font-size:.75rem;font-weight:700;margin-top:7px;color:var(--deep)">شروقي 🌸</div></div>
       </div>
       <div class="s-ground"></div>
     </div>
@@ -668,45 +950,400 @@ footer{background:var(--dark);color:rgba(255,255,255,.45);text-align:center;padd
 
 <div class="wave"></div>
 
-<!-- FUNNY -->
+<!-- ══════════ FUNNY ══════════ -->
 <section class="funny-sec">
   <div class="inner">
     <div class="stag">المواقف الكوميدية</div>
-    <div class="sh2">يا شروق — ده اللي بفتكره وبضحك 😂</div>
+    <div class="sh2">يا شروقي — ده اللي بفتكره وبضحك 😂</div>
     <div class="fg">
-      <div class="fc r"><div class="fn">١</div><div class="ft"><span class="bounce" style="display:inline-block">صاصا</span> الأبدية 😂</div><div class="fb">قولت "بلاش!" من أول يوم — وآخر رسالة قولتِ "سلام يا صاصا 👀 — أقصد مصطفى 😂" الحرب ما وقفتش!</div></div>
-      <div class="fc r"><div class="fn">٢</div><div class="ft">ماما والخضة 😂</div><div class="fb">ماما صحّتك "يا شروق يا شروق!" — وإنتِ صحيتِ وفكّرتِ "هو مصطفى جه بدري ولا إيه؟!" ووقعتِ على الأرض من الضحك 😂</div></div>
-      <div class="fc r"><div class="fn">٣</div><div class="ft">الكلب التاريخي 😂</div><div class="fb">رفضتِ خاطب لأنه بيربي كلاب! "تخيلت لو زعل يجيب الكلب وأنا أقوم ميتة!" — أنا قولت "الحمد لله الذي نجانا!" 😂</div></div>
-      <div class="fc r"><div class="fn">٤</div><div class="ft">Gemini الخطوبة 😂</div><div class="fb">ضحكتِ من قلبك في فقرة الـgemini يوم خطوبتنا. قولتِ "كسفني!" وأنا قولت "شوفتِ؟!" وأنا فخران إني كنت صح!</div></div>
-      <div class="fc r"><div class="fn">٥</div><div class="ft">السر المكشوف 😎</div><div class="fb">"ربنا يحبك ولاد بس!" وأنا "قفشتك! إنتِ أخدتِ حلاوة كل بنات الدنيا!" وإنتِ "هو ده المطلوب إثباته!" 😂</div></div>
-      <div class="fc r"><div class="fn">٦</div><div class="ft">ايلين المجرمة 😂</div><div class="fb">طلبت لانش بوكس وبعدين ضربتك! قولتِ لها "الشيطان بيقولك عذّبي عمتك!" وهي حطت إيدها على رأسها 😂</div></div>
-      <div class="fc r"><div class="fn">٧</div><div class="ft">إحنا نمنا سوا! 😂</div><div class="fb">في ليلة ٩ أبريل — وأنا بكتب "عايزهمفمعدددد؟" وإنتِ قولتِ "احنا كده نمنا فعلاً 😂" — الإجهاد والحب سوا 😂</div></div>
-      <div class="fc r"><div class="fn">٨</div><div class="ft">الروايه الحلوة 🥹</div><div class="fb">قولتِ "إحنا أجمل من أي رواية!" وأنا قولت "إحنا بنكتب روايتنا بتاعتنا — وهنحكيها للأحفاد!" 😂🥹</div></div>
-      <div class="fc r"><div class="fn">٩</div><div class="ft">البينك والأبيض 😄</div><div class="fb">إنتِ بتحبي البينك وأنا بحب الأبيض — ومن يومها ألوان قصتنا مع بعض 🌸🤍 مش هيبقى في بيتنا غير الاتنين دول!</div></div>
+      <div class="fc r"><div class="fn">١</div><div class="ft"><span class="bounce" style="display:inline-block">صاصا</span> الأبدية 😂</div><div class="fb">قولت "بلاش!" من أول يوم — وآخر رسالة قولتِ "سلام يا صاصا 👀 — أقصد مصطفى 😂"</div></div>
+      <div class="fc r"><div class="fn">٢</div><div class="ft">ماما والخضة 😂</div><div class="fb">ماما صحّتك "يا شروق يا شروق!" — وإنتِ صحيتِ وفكّرتِ "هو مصطفى جه بدري ولا إيه؟!" 😂</div></div>
+      <div class="fc r"><div class="fn">٣</div><div class="ft">الكلب التاريخي 😂</div><div class="fb">رفضتِ خاطب لأنه بيربي كلاب! "تخيلت لو زعل يجيب الكلب وأنا أقوم ميتة!" 😂</div></div>
+      <div class="fc r"><div class="fn">٤</div><div class="ft">Gemini الخطوبة 😂</div><div class="fb">ضحكتِ من قلبك في فقرة الـgemini وقولتِ "كسفني!" وأنا فخران إني كنت صح! 😂</div></div>
+      <div class="fc r"><div class="fn">٥</div><div class="ft">السر المكشوف 😎</div><div class="fb">"ربنا يحبك ولاد بس!" وأنا "قفشتك! إنتِ أخدتِ حلاوة كل بنات الدنيا!" 😂</div></div>
+      <div class="fc r"><div class="fn">٦</div><div class="ft">ايلين المجرمة 😂</div><div class="fb">طلبت لانش بوكس وبعدين ضربتك! قولتِ لها "الشيطان بيقولك عذّبي عمتك!" 😂</div></div>
+      <div class="fc r"><div class="fn">٧</div><div class="ft">بكينا سوا 😂</div><div class="fb">في ليلة ٩ أبريل — أنا بكتب "عايزهمفمعدددد؟" وإنتِ قولتِ "احنا كده نمنا فعلاً 😂"</div></div>
+      <div class="fc r"><div class="fn">٨</div><div class="ft">البينك والأبيض 😄</div><div class="fb">إنتِ بتحبي البينك وأنا بحب الأبيض — ومن يومها ألوان قصتنا مع بعض 🌸🤍</div></div>
+      <div class="fc r"><div class="fn">٩</div><div class="ft">إحنا بنكتب الرواية 🥹</div><div class="fb">قولتِ "إحنا أجمل من أي رواية!" وأنا "إحنا بنكتب روايتنا — وهنحكيها للأحفاد!" 😂🥹</div></div>
     </div>
   </div>
 </section>
 
 <div class="wave"></div>
 
-<!-- PROMISES -->
+<!-- ══════════ DIGITAL MEMORY BOX ══════════ -->
+<section class="membox-sec">
+  <div class="inner">
+    <div class="stag">صندوق الذكريات</div>
+    <div class="sh2">صندوق هداياك الديجيتالي 🎁</div>
+    <p style="text-align:center;font-family:'Amiri',serif;font-style:italic;color:var(--muted);margin-bottom:32px;font-size:.9rem">اضغطي على الصندوق عشان تفتحيه 🌸</p>
+    <div class="membox-wrap">
+      <div class="giftbox" id="giftbox" onclick="openGiftBox()">
+        <div class="box-lid" id="box-lid">
+          <div class="box-bow">🎀</div>
+        </div>
+        <div class="box-body">
+          <div class="box-ribbon-v"></div>
+          <div class="box-ribbon-h"></div>
+        </div>
+        <div class="box-hint">اضغطي هنا 💕</div>
+      </div>
+      <div class="box-contents" id="box-contents">
+        <div class="box-item bi-dress">
+          <div class="dress-icon">👗</div>
+          <div class="dress-title">الفستان البينك 🌸</div>
+          <div class="dress-text">أول هدية اخترتهالك — فستان البينك اللي شوفتك بيه يوم خطوبتنا. اخترته لأن البينك هو لونك إنتِ. لما شوفتك بيه قولت في نفسي "ربنا حط نور في وشك." اللون ده هيفضل يذكّرني بأجمل يوم في حياتي — يوم ٢٨ يناير ٢٠٢٦.</div>
+        </div>
+        <div class="box-item bi-dates">
+          <div class="dates-title">📅 التواريخ اللي مستحيل أنساها</div>
+          <div class="date-row"><span class="dr-icon">🌸</span><span class="dr-date">١٧ يناير ٢٠٢٦</span><span class="dr-txt">أول مرة شوفتك — أول مرة يقع قلبي</span></div>
+          <div class="date-row"><span class="dr-icon">🍫</span><span class="dr-date">٢٠ يناير ٢٠٢٦</span><span class="dr-txt">تاني رؤية وأول هدية شوكولاتة</span></div>
+          <div class="date-row"><span class="dr-icon">📞</span><span class="dr-date">٢٦ يناير ٢٠٢٦</span><span class="dr-txt">أول مكالمة — أكتر من ساعتين</span></div>
+          <div class="date-row"><span class="dr-icon">💍</span><span class="dr-date">٢٨ يناير ٢٠٢٦</span><span class="dr-txt">يوم خطوبتنا — أجمل يوم</span></div>
+          <div class="date-row"><span class="dr-icon">❤️</span><span class="dr-date">٩ أبريل ٢٠٢٦</span><span class="dr-txt">أول "بحبك" في حياتنا</span></div>
+        </div>
+        <div class="box-item bi-note">
+          <div class="note-icon">💌</div>
+          <div class="note-text">"فكرة إني أحوّل هداياك المادية لذكرى رقمية عايشة للأبد — عشان تفضل موجودة معاكِ في أي وقت وفي أي مكان. تفاصيلك محفورة في دماغي وفي قلبي. أبد." — مصطفى 🤍</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wave"></div>
+
+<!-- ══════════ CROSSWORD ══════════ -->
+<section class="crossword-sec">
+  <div class="inner">
+    <div class="stag">لعبة ذهنية 🧩</div>
+    <div class="sh2">كلمات متقاطعة — خاصة بينا</div>
+    <p style="text-align:center;font-family:'Amiri',serif;font-style:italic;color:var(--muted);margin-bottom:36px;font-size:.95rem">الأسئلة كلها عننا — كل إجابة صح هتشوفي رسالة خاصة! 💕</p>
+    <div class="cw-new-wrap r">
+      <!-- Questions -->
+      <div class="cw-qs-panel">
+        <div class="cw-q-group">
+          <div class="cwg-title">↔️ أفقي</div>
+          <div class="cwq-item"><span class="cwq-n">١</span><div class="cwq-text">لون أول فستان جبتهولك في الصندوق؟ <em>(٤ حروف)</em></div></div>
+          <div class="cwq-item"><span class="cwq-n">٣</span><div class="cwq-text">الأنشودة اللي مش قادرة تطلعيها من دماغك؟ <em>(أول كلمة)</em></div></div>
+          <div class="cwq-item"><span class="cwq-n">٥</span><div class="cwq-text">اسم دلعك اللي بستخدمه أنا؟ <em>(٦ حروف)</em></div></div>
+        </div>
+        <div class="cw-q-group">
+          <div class="cwg-title">↕️ رأسي</div>
+          <div class="cwq-item"><span class="cwq-n">٢</span><div class="cwq-text">أول هدية جبتهالك كانت إيه؟ <em>(٩ حروف)</em></div></div>
+          <div class="cwq-item"><span class="cwq-n">٤</span><div class="cwq-text">اللقب اللي بتنادوني بيه وأنا "زعلان"؟ <em>(٤ حروف)</em></div></div>
+          <div class="cwq-item"><span class="cwq-n">٦</span><div class="cwq-text">شهر خطوبتنا؟ <em>(٦ حروف)</em></div></div>
+        </div>
+      </div>
+      <!-- Inputs + feedback -->
+      <div class="cw-ans-panel">
+        <div class="cw-ans-list" id="cw-ans-list">
+          <div class="cw-ans-row" id="cwr1">
+            <div class="cw-ans-label"><span class="cwq-n">١</span> أفقي</div>
+            <input class="cw-ans-inp" id="cw1" type="text" placeholder="..." maxlength="5" oninput="liveCheck(1)" />
+            <span class="cw-ans-icon" id="ci1"></span>
+          </div>
+          <div class="cw-reveal-msg" id="cm1"></div>
+          <div class="cw-ans-row" id="cwr2">
+            <div class="cw-ans-label"><span class="cwq-n">٢</span> رأسي</div>
+            <input class="cw-ans-inp" id="cw2" type="text" placeholder="..." maxlength="10" oninput="liveCheck(2)" />
+            <span class="cw-ans-icon" id="ci2"></span>
+          </div>
+          <div class="cw-reveal-msg" id="cm2"></div>
+          <div class="cw-ans-row" id="cwr3">
+            <div class="cw-ans-label"><span class="cwq-n">٣</span> أفقي</div>
+            <input class="cw-ans-inp" id="cw3" type="text" placeholder="..." maxlength="7" oninput="liveCheck(3)" />
+            <span class="cw-ans-icon" id="ci3"></span>
+          </div>
+          <div class="cw-reveal-msg" id="cm3"></div>
+          <div class="cw-ans-row" id="cwr4">
+            <div class="cw-ans-label"><span class="cwq-n">٤</span> رأسي</div>
+            <input class="cw-ans-inp" id="cw4" type="text" placeholder="..." maxlength="5" oninput="liveCheck(4)" />
+            <span class="cw-ans-icon" id="ci4"></span>
+          </div>
+          <div class="cw-reveal-msg" id="cm4"></div>
+          <div class="cw-ans-row" id="cwr5">
+            <div class="cw-ans-label"><span class="cwq-n">٥</span> أفقي</div>
+            <input class="cw-ans-inp" id="cw5" type="text" placeholder="..." maxlength="7" oninput="liveCheck(5)" />
+            <span class="cw-ans-icon" id="ci5"></span>
+          </div>
+          <div class="cw-reveal-msg" id="cm5"></div>
+          <div class="cw-ans-row" id="cwr6">
+            <div class="cw-ans-label"><span class="cwq-n">٦</span> رأسي</div>
+            <input class="cw-ans-inp" id="cw6" type="text" placeholder="..." maxlength="7" oninput="liveCheck(6)" />
+            <span class="cw-ans-icon" id="ci6"></span>
+          </div>
+          <div class="cw-reveal-msg" id="cm6"></div>
+        </div>
+        <div class="cw-score-bar"><div class="cw-score-fill" id="cwscorebar"></div></div>
+        <div class="cw-score-txt" id="cwscoretxt">٠ / ٦ إجابات صح 🧩</div>
+        <div class="cw-final" id="cw-final"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wave"></div>
+
+<!-- ══════════ JOKES SECTION ══════════ -->
+<section class="jokes-sec">
+  <div class="inner">
+    <div class="stag">كوميدي 😂</div>
+    <div class="sh2">ورقة نكتة عشوائية 😂</div>
+    <p style="text-align:center;font-family:'Amiri',serif;font-style:italic;color:rgba(255,255,255,.6);margin-bottom:32px;font-size:.9rem">اسحبي ورقة من الصندوق وهتطلعلك نكتة! 🎭</p>
+    <div class="jokes-box-wrap">
+      <div class="jokes-box" id="jokes-box" onclick="drawJoke()">
+        <div class="jbox-label">اسحبي ورقة 😂</div>
+        <div class="jbox-papers">
+          <div class="jpaper jp1"></div>
+          <div class="jpaper jp2"></div>
+          <div class="jpaper jp3"></div>
+          <div class="jpaper jp4"></div>
+          <div class="jpaper jp5"></div>
+        </div>
+        <div class="jbox-icon">🎭</div>
+      </div>
+      <div class="joke-result" id="joke-result">
+        <div class="joke-paper" id="joke-paper">
+          <div class="joke-text" id="joke-text"></div>
+        </div>
+      </div>
+      <div class="joke-counter" id="joke-counter"></div>
+    </div>
+  </div>
+</section>
+
+<div class="wave"></div>
+
+<!-- ══════════ EMERGENCY BUTTON ══════════ -->
+<section class="emergency-sec">
+  <div class="inner">
+    <div class="stag">زرار الطوارئ</div>
+    <div class="sh2">لو يومك كان وحش 💊</div>
+    <p class="sos-sub">اضغطي هنا لو زعلانة أو يومك مش حلو — وأنا هكون معاكِ 🌸</p>
+    <button id="sos-btn" onclick="sosMessage()">اضغطي هنا 💕</button>
+    <div id="sos-result"></div>
+  </div>
+</section>
+
+<div class="wave"></div>
+
+<!-- ══════════ TIME CAPSULE ══════════ -->
+<section class="capsule-sec">
+  <div class="inner">
+    <div class="stag">رسالة من المستقبل</div>
+    <div class="sh2">عداد عيد ميلادك 🎂</div>
+    <div class="capsule-box r">
+      <span class="capsule-lock">🎂</span>
+      <div class="capsule-text">
+        يوم <strong>٢٥ نوفمبر ٢٠٢٦</strong> — عيد ميلادك يا أجمل هدية ربنا بعتهالي<br>
+        في الصندوق ده رسالة كتبتها ليكِ من قلبي النهارده.<br>
+        مكتوب فيها كل اللي بتمناه ليكِ وكل اللي بحلم به في مستقبلنا سوا. 🥹
+      </div>
+      <div class="capsule-cd">
+        <div class="cap-u"><span class="cap-n" id="cap-d">—</span><div class="cap-l">يوم</div></div>
+        <div class="cap-u"><span class="cap-n" id="cap-h">—</span><div class="cap-l">ساعة</div></div>
+        <div class="cap-u"><span class="cap-n" id="cap-m">—</span><div class="cap-l">دقيقة</div></div>
+        <div class="cap-u"><span class="cap-n" id="cap-s">—</span><div class="cap-l">ثانية</div></div>
+        <div class="cap-u"><span class="cap-n" id="cap-s">—</span><div class="cap-l">ثانية</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wave"></div>
+
+<!-- ══════════ PROMISES ══════════ -->
 <section class="promise-sec">
   <div class="inner">
     <div class="stag">عهدي</div>
-    <div class="sh2">وعودي ليكِ يا شروق</div>
+    <div class="sh2">وعودي ليكِ يا شروقي</div>
     <ul class="plist">
       <li class="pitem r"><span class="pnum">١</span><span class="ptext">هكون جنبك في الصعب والسهل. <span class="ph">"إنتِ مش لوحدك خالص — وأنا معاكِ طول الوقت."</span></span></li>
       <li class="pitem r"><span class="pnum">٢</span><span class="ptext">مش هسيبك تعيطي من الزعل. <span class="ph">"أي دموع زعل — أنا مش هسكت، هفرحك بعدها على طول."</span></span></li>
       <li class="pitem r"><span class="pnum">٣</span><span class="ptext">هسمعك حتى لو "رغي مش جذاب" — <span class="ph">"مستنيكِ جداً وعايزك على طبيعتك."</span></span></li>
       <li class="pitem r"><span class="pnum">٤</span><span class="ptext">هطبق نموذج رسولنا ﷺ في بيتنا. <span class="ph">"بيخدم أهله ويضحك معاهم ويسمع ليهم ويواسي."</span></span></li>
-      <li class="pitem r"><span class="pnum">٥</span><span class="ptext">بيتنا مبني على الصلاة والكلمة الحلوة. <span class="ph">"نربي أولادنا — وبعدين أحفادنا 😄 — على العقيدة السليمة."</span></span></li>
+      <li class="pitem r"><span class="pnum">٥</span><span class="ptext">بيتنا مبني على الصلاة والكلمة الحلوة. <span class="ph">"نربي أولادنا — وأحفادنا 😄 — على العقيدة السليمة."</span></span></li>
       <li class="pitem r"><span class="pnum">٦</span><span class="ptext">هفخر بيكِ وسط الدنيا كلها. <span class="ph">"دي صفات تخليني أمشي وأنا فخور بيكِ."</span></span></li>
       <li class="pitem r"><span class="pnum">٧</span><span class="ptext">هنمشي الساعة ٣ صبح في الصيف. <span class="ph">اتفقنا — وأنا ما بنساش 😄</span></span></li>
     </ul>
   </div>
 </section>
 
-<!-- LETTER -->
+<!-- ══════════ ROMANTIC GALLERY ══════════ -->
+<section class="gallery-sec">
+  <div class="inner">
+    <div class="stag">خواطر عاشق متيّم</div>
+    <div class="sh2">كتبتها ليكِ أنا — من أعماق قلبي 🌹</div>
+    <div class="quotes-grid">
+      <div class="qcard r qc-dark">
+        <div class="qmark">"</div>
+        <div class="qtext">أنا لا أحبك فحسب، أنا أُحب كل ما بيننا، وأُحب تفاصيلك معي، وأُحب الأيام برفقتك، وأُحب الحياة معك.</div>
+        <div class="qsrc">مصطفى 🤍</div>
+      </div>
+      <div class="qcard r qc-light">
+        <div class="qmark">"</div>
+        <div class="qtext">لماذا يضيء قلبي حين أراكِ؟ لماذا لا تتوقفين عن كونكِ رائعةً إلى هذا الحد؟ لماذا أتساءل وأنا أعرفك؟</div>
+        <div class="qsrc">مصطفى 🤍</div>
+      </div>
+      <div class="qcard r qc-dark">
+        <div class="qmark">"</div>
+        <div class="qtext">ممتنٌّ لكونكِ بهذا الحنان، وكأنكِ استراحة من العالم، وكأنك مطر الشتاء، وكأنك دعوات الأمهات، وكأنك رحمة من الله تسير على الأرض.</div>
+        <div class="qsrc">مصطفى 🤍</div>
+      </div>
+      <div class="qcard r qc-rose">
+        <div class="qmark">"</div>
+        <div class="qtext">في حياتي أنتِ ضحكة الأمل وطمأنينة القلب، وأنتِ قمر الليالي كلها، وأنتِ الشمس لولا أن للشمس مشرقاً ومغرباً وأنتِ تُشرقين من كل الجهات.</div>
+        <div class="qsrc">مصطفى 🤍</div>
+      </div>
+      <div class="qcard r qc-light">
+        <div class="qmark">"</div>
+        <div class="qtext">حين أشتاق إليكِ يصبح كل ما فيّ نداءً صامتاً لا يسمعه سواكِ. أشتاق لكِ بحنيّة تفوق صبري، كـ حنين الأرض المجدبة لأول قطرة مطر.</div>
+        <div class="qsrc">مصطفى 🤍</div>
+      </div>
+      <div class="qcard r qc-dark">
+        <div class="qmark">"</div>
+        <div class="qtext">أتعلمين ما معنى أن تسكني بي؟ يعني أنني أراكِ "رقيقة" كـ ملمس الغيم، وأخافُ عليكِ من نسمة هواء تخدش صفاءكِ، وأتحسس وجعَ قلبكِ كما تتحسس الأرض أول خطوات الربيع.</div>
+        <div class="qsrc">مصطفى 🤍</div>
+      </div>
+      <div class="qcard r qc-rose">
+        <div class="qmark">"</div>
+        <div class="qtext">لم أسأل، لقد عرفتكِ بقلبي، لم يخبرني عنكِ أحد. حين رأيتكِ لأول مرة شعرت أن لديكِ شيئاً يخصّني. وما زلت أسكن في نظرتكِ الأولى منذ التقينا.</div>
+        <div class="qsrc">مصطفى 🤍</div>
+      </div>
+      <div class="qcard r qc-light">
+        <div class="qmark">"</div>
+        <div class="qtext">أعرف إنكِ امرأة تغبط السماء سعة روحها. أعرف أن لكِ عينان تبدو النجوم باهتةً للغاية بجانبها. أعرف أن ابتسامتكِ منسوجة من خيوط الفجر.</div>
+        <div class="qsrc">مصطفى 🤍</div>
+      </div>
+    </div>
+    
+      <div class="qcard r qc-dark">
+        <div class="qmark">"</div>
+        <div class="qtext">أنتِ لستِ مجرد شخص أحبّه — أنتِ الفضاء الذي أتنفس فيه، والمكان الذي أهرب إليه حين يضيق بي كل شيء، وأنتِ الوحيدة التي تجعلني أشعر أن الحياة تستحق.</div>
+        <div class="qsrc">— مصطفى 🌹</div>
+      </div>
+      <div class="qcard r qc-rose">
+        <div class="qmark">"</div>
+        <div class="qtext">ما أعرفه يقيناً، أن روحي تُشبهكِ حقاً — فيها حنانٌ يشبه حنانكِ، ولا ترضى بالسوء لأحد، ولا تعرف للقسوة طريقاً، وفيها الأدب أصيل، والرحمة لها طبع.</div>
+        <div class="qsrc">— مصطفى 🌹</div>
+      </div>
+      <div class="qcard r qc-light">
+        <div class="qmark">"</div>
+        <div class="qtext">أنا معكِ — إلى حيث يكون الطريق وحيداً، وإلى حيث يكون الأمل بعيداً. لست مجرد حاضر، بل أنا صمتكِ حين تحتاجين إليه، وضحكتكِ حين تفرحين، ودموعكِ حين تبكين.</div>
+        <div class="qsrc">— مصطفى 🌹</div>
+      </div>
+      <div class="qcard r qc-dark">
+        <div class="qmark">"</div>
+        <div class="qtext">وقعتُ بالحُب بكل إرادتي وقوتي وإصراري — بحديثكِ ثانياً، بضحكتكِ ثالثاً، بـ طريقة تحمّلكِ رابعاً، بحرصكِ وفيّ بغرامكِ لأسبابٍ عديدة كان أهمّها — أنني أحببتُ ذاتي معكِ.</div>
+        <div class="qsrc">— مصطفى 🌹</div>
+      </div>
+      <div class="qcard r qc-rose">
+        <div class="qmark">"</div>
+        <div class="qtext">حين أبتسم دون أسباب — فلأنني أتذكركِ. آهٍ لو تعلمين كم أنتِ ممتدة في أعماقي. أشعر بالانتماء إليكِ، وكل البشر سواكِ عابرون، والشمس تُشرق حين تأتين.</div>
+        <div class="qsrc">— مصطفى 🌹</div>
+      </div>
+    </div>
+    <div class="gallery-note r">كل كلمة من دي — كتبتها وأنا بفكر فيكِ يا شروقي 🌹</div>
+  </div>
+</section>
+
+<div class="wave"></div>
+
+<!-- ══════════ POEM ══════════ -->
+<section class="poem-sec">
+  <div class="inner">
+    <div class="stag">قصيدة</div>
+    <div class="sh2">كتبتها ليكِ — من القلب 🌹</div>
+    <div class="poem-wrap rs">
+      <div class="poem-deco">🌸</div>
+      <div class="poem-lines">
+        <div class="poem-line r" style="animation-delay:.1s">يا شروقًا على الروحِ <span class="glow">أضاءتْها،</span></div>
+        <div class="poem-line r" style="animation-delay:.2s">ويا آيةَ نورٍ إذا مرّت بالقلبِ أحيتْهُ وأحياها.</div>
+        <div class="poem-line r" style="animation-delay:.3s">يا أوّلَ الفجرِ إذا تنفّسَ صبحُه،</div>
+        <div class="poem-line r" style="animation-delay:.4s">وآخرَ الحلمِ إذا ضاق الطريقُ وتاهتْ خُطاها.</div>
+        <div class="poem-break"></div>
+        <div class="poem-name r">شروق…</div>
+        <div class="poem-break"></div>
+        <div class="poem-line r">كُتِبَ على جبينِها بحروفٍ من نور: <span class="glow">لا تَمسّوها بسوء،</span></div>
+        <div class="poem-line r">فهي أمانُ الضوءِ إذا خاف،</div>
+        <div class="poem-line r">وسَكينةُ القلبِ إذا اضطرب،</div>
+        <div class="poem-line r">ووعدُ السماءِ إذا ضاقَتْ أرضُها.</div>
+        <div class="poem-break"></div>
+        <div class="poem-line r">كُتِبَ على جبينِها: هذهِ للضياءِ عنوان،</div>
+        <div class="poem-line r">وللرِّفقِ ميزان، وللحبِّ أمان،</div>
+        <div class="poem-line r">فمن رامَها بصدقٍ سعد، ومن رامَها بسوءٍ خابَ مسعاهُ ومُناه.</div>
+        <div class="poem-break"></div>
+        <div class="poem-line r">تأتي كالفجرِ… بشرًا وبِشرًا،</div>
+        <div class="poem-line r">نورًا ونَبضًا، لطفًا ولفظًا،</div>
+        <div class="poem-line r">فتكسو الأيامَ أنسًا، وتزرعُ في العمرِ رضًا ورضاها.</div>
+        <div class="poem-break"></div>
+        <div class="poem-line r">إذا ابتسمتْ <span class="heartbeat">أشرقتْ دنيايَ إشراقين،</span></div>
+        <div class="poem-line r">وإذا سكتتْ تكلّمَ في صمتِها معنى الجَمالِ ومعناها.</div>
+        <div class="poem-break"></div>
+        <div class="poem-line r">لها في القلبِ عهدٌ لا يُنقَض،</div>
+        <div class="poem-line r">ووُدٌّ لا يُقبَض، وشوقٌ لا يُرفَض،</div>
+        <div class="poem-line r">وعرفانُ فضلٍ بأنها في العمرِ <span class="glow">أجملُ عطاياهُ وأغلاها.</span></div>
+        <div class="poem-break"></div>
+        <div class="poem-name r">يا شروق…</div>
+        <div class="poem-break"></div>
+        <div class="poem-line r">يا صفحةَ الضوءِ حين يُتلى بيانُ الجمال،</div>
+        <div class="poem-line r">يا قصيدةَ الفجرِ إذا انسابَ في الحرفِ سناها،</div>
+        <div class="poem-line r">إن كان للصبحِ تاجٌ يُزيِّنُ هامَته،</div>
+        <div class="poem-line r"><span class="rainbow">فأنتِ تاجُ الصباحِ… ونورُهُ إذا اعتلى سماها.</span></div>
+      </div>
+      <div class="poem-sig">— مصطفى 🌹</div>
+    </div>
+  </div>
+</section>
+
+<div class="wave"></div>
+
+<!-- ══════════ BLUE DRESS ══════════ -->
+<section class="dress-sec">
+  <div class="inner">
+    <div class="stag">لحظة لا تُنسى</div>
+    <div class="sh2">إنتِ بالفستان الأزرق 💙</div>
+    <div class="dress-wrap">
+      <div class="dress-card rs">
+        <div class="dress-top">
+          <div class="dress-emoji-big">👗</div>
+          <div class="dress-subtitle">يوم شوفتك بالفستان الأزرق — فقدت الكلام</div>
+        </div>
+        <div class="dress-paragraphs">
+          <div class="dress-p r">
+            <span class="dp-icon">🌊</span>
+            <div class="dp-text">يا شروقي — إنتِ بالفستان الأزرق ده مش مجرد واحدة لابسة شيك. إنتِ كأنك حتة من السما نزلت الأرض، أو حورية طلعت من البحر عشان تعلمنا يعني إيه <span class="glow">جمال حقيقي.</span></div>
+          </div>
+          <div class="dress-p r">
+            <span class="dp-icon">🎨</span>
+            <div class="dp-text">تفاصيل جسمك مع لون الفستان مديين لوحة ولا أعظم فنان يعرف يرسمها. قوامك زي الموج الهادي، فيه انسيابية ورقة تخلي العين ما تقدرش ترمش وهي بتبصلك. كأن ربنا رسمك بيد الجمال وأهداكِ للدنيا هدية.</div>
+          </div>
+          <div class="dress-p r">
+            <span class="dp-icon">💙</span>
+            <div class="dp-text">الأزرق عليكِ مش مجرد لون — ده بقى حكاية. <span class="glow">كأن البحر كله اتلخص في الفستان ده، وإنتِ الملكة اللي متوجة عليه وماشية تتباهى بجمالها.</span> خطوتك وإنتِ لابساه عاملة زي الموجة اللي بتسحب القلب براحة، من غير ما الواحد يحس، بيلاقي نفسه غرقان في تفاصيلك.</div>
+          </div>
+          <div class="dress-p r">
+            <span class="dp-icon">☀️</span>
+            <div class="dp-text">وشك ده فيه نور رباني — كأن "شروق" الشمس بيبدأ من عندك إنتِ أولاً قبل ما يطلع للدنيا. <span class="glow">بشرتك الصافية اللي بتلمع دي كأنها سحابة هادية ونقية في عز السما الصافية.</span> سبحان من رزقك الوش السمح الجلوي ده — الوش اللي أول ما الواحد يبصله بيحس إن روحه اتغسلت من كل هموم الدنيا.</div>
+          </div>
+          <div class="dress-p r">
+            <span class="dp-icon">✨</span>
+            <div class="dp-text">لما النور بيضرب في وشك وإنتِ بالأزرق — بحس إني قدام لوحة طبيعية خلقها ربنا بإتقان. السما والبحر اتقابلوا في ملامحك الصافية دي. <span class="glow">وضحكتك بقى مع لمعة عينيكِ في الفستان ده — بتعمل حالة من السكينة.</span> زي قعدة بحر في يوم صافي والنسيم بيطبطب على القلب.</div>
+          </div>
+          <div class="dress-p r">
+            <span class="dp-icon">🥹</span>
+            <div class="dp-text">يا شروقي — في اليوم ده شوفتك وقلت في نفسي: "ربنا حط كل جمال الدنيا في واحدة — وهداها ليّا." <span class="rainbow">إنتِ مش بس جميلة. إنتِ معنى الجمال نفسه.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wave"></div>
+
+<!-- ══════════ LETTER ══════════ -->
 <section class="letter-sec">
   <div class="inner">
     <div class="stag">رسالة</div>
@@ -714,98 +1351,225 @@ footer{background:var(--dark);color:rgba(255,255,255,.45);text-align:center;padd
     <div class="letter rs">
       <div class="letter-wm">شروق</div>
       <div class="ldate">مصطفى بيكتب — ٢٠٢٦</div>
-      <div class="lsal">يا <span class="glow"><span class="dname">شروق</span>تي</span> الغالية،</div>
+      <div class="lsal">يا <span class="glow">شروقي</span> الغالية،</div>
       <div class="lp">من أول ما شوفتك في أول رؤية شرعية يوم ١٧ يناير — عرفت إن في حاجة جميلة بتحصل. ومن أول "السلام عليكم" في ٢٣ يناير — كانت روحين بدأت تتعرف على بعض.</div>
       <div class="lp">شوفت فيكِ بنت بتصحى الفجر وبتقرأ أذكارها وبتحفظ القرآن وبتفرح بالنوتة النايمة جنبها 😄 وبتحتوي العيال وبتعمل لهم لانش بوكس وبعدين بيضربوها 😂</div>
-      <div class="lp">وفي ليلة ٩ أبريل — اللحظة الأعظم في حياتنا — قولتلك: <strong>"في حاجات بتيجي في العمر مرة واحدة — إنتِ دي. وجودك في حياتي مش صدفة — ده ترتيب ربنا ليّا. أنا <span class="heartbeat">بحبك</span> حب ما لوش وصف."</strong></div>
-      <div class="lp">دلوقتي أنا في السعودية — ومنتظرك يوم ٢٤ مايو. وكل يوم بيعدي أنا <span class="glow">مفتقداكِ أوي أوي أوي.</span> بفتكر وشك وبشكر ربنا إنك في حياتي.</div>
+      <div class="lp">وفي ليلة ٩ أبريل قولتلك: <strong>"في حاجات بتيجي في العمر مرة واحدة — إنتِ دي. أنا <span class="heartbeat">بحبك</span> حب ما لوش وصف."</strong></div>
+      <div class="lp">دلوقتي أنا في السعودية — ومنتظرك يوم ٢٤ مايو. <span class="glow">مفتقداكِ أوي أوي أوي.</span></div>
       <div class="lp"><strong>"<span class="rainbow">شاء الله لبهجة عمري أن تكتمل، فأشرقتِ في حياتي كأجمل أقداري. وبكِ صار قدري نعمةً أحمد الله عليها صباحاً ومساءً.</span>"</strong></div>
-      <div class="lsig">
-        بكل حبي يا شروق،<br>
-        <span class="lsig-name">مصطفى ❤️</span>
+      <div class="lsig">بكل حبي يا شروقي،<br><span class="lsig-name">مصطفى ❤️</span></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════ ANA MAAK ══════════ -->
+<section class="maak-sec">
+  <div class="inner">
+    <div class="stag">أنا معاكِ</div>
+    <div class="sh2">في كل لحظة — قريب أو بعيد 🤍</div>
+    <div class="maak-grid">
+      <div class="maak-card r">
+        <div class="maak-icon">🌅</div>
+        <div class="maak-title">لما تصحي الصبح</div>
+        <div class="maak-text">أنا معاكِ — معكِ حين تظلين وحيدة بين جدران صامتة، أسمع نبض قلبكِ الذي يحكي قصص ألمكِ وأحلامكِ المخفية. ارخي جفنيكِ هدوءاً — أنا أحرس أحلامك بدعائي.</div>
+      </div>
+      <div class="maak-card r">
+        <div class="maak-icon">☁️</div>
+        <div class="maak-title">لما الدنيا تضغط</div>
+        <div class="maak-text">أنا معكِ عندما يثقل العالم عليكِ — فأكون ذراعكِ الذي يحضنكِ والكتف الذي تتكئين عليه دون خوف أن أرحل. "معكِ حين تبتسمين للهواء وكأن لا أحد يراكِ."</div>
+      </div>
+      <div class="maak-card r">
+        <div class="maak-icon">🌙</div>
+        <div class="maak-title">في هدوء الليل</div>
+        <div class="maak-text">أحملكِ في دعائي كلما ثقل عليّ الليل، وأُخبّئُ اسمكِ في صدري حين يخذلني الكلام. "حين أشتاق إليكِ يصبح كل ما فيّ نداءً صامتاً لا يسمعه سواكِ."</div>
+      </div>
+      <div class="maak-card r">
+        <div class="maak-icon">💪</div>
+        <div class="maak-title">لما تحسي إنك ضعيفة</div>
+        <div class="maak-text">أنا معكِ — حتى حين تظنين أنكِ ضعيفة. فأنتِ لستِ ضعيفة، أنتِ فقط تعبانة. والتعب دليل إنك بتحاولي. وأنا هنا — أكون الأرض التي لا تميل والريح التي تفديكِ بكل ما فيها.</div>
+      </div>
+      <div class="maak-card r">
+        <div class="maak-icon">🎉</div>
+        <div class="maak-title">في فرحكِ وانجازاتك</div>
+        <div class="maak-text">أنا أول من يفرح بيكِ — حتى قبل ما تفرحي إنتِ. كل خطوة بتخطيها بحس إنها انتصار ليّا أنا كمان. لأن سعادتكِ دي — أغلى جايزة في الدنيا.</div>
+      </div>
+      <div class="maak-card r">
+        <div class="maak-icon">🛫</div>
+        <div class="maak-title">حتى لو المسافة بعيدة</div>
+        <div class="maak-text">المسافة جسد — بس اللي بيننا أعمق من أي جغرافيا. أنتِ لستِ غائبةً عن عيني — أنتِ النور الذي يرى به عيني. وأنا يبقيني طالع كل صبح — إن أرجع ليكِ.</div>
       </div>
     </div>
   </div>
 </section>
 
+<div class="wave"></div>
+
 <footer>
   <div style="color:var(--petal);font-size:2rem;margin-bottom:10px">💕</div>
-  صنعها مصطفى بكل حبه — لشروق وحدها<br>
-  <span style="color:var(--gold)">"ربنا يخليكِ لي — ويخليني ليكِ دايماً"</span><br>
-  <span style="font-size:.73rem;opacity:.35;display:block;margin-top:10px">البينك لون شروق 🌸 — الأبيض لون مصطفى 🤍</span>
+  صنعها مصطفى بكل حبه — لشروقي وحدها<br>
+  <span style="color:var(--gold)">"أأهديكِ زهراً وأنتِ العبير 🌸"</span><br>
+  <span style="font-size:.73rem;opacity:.35;display:block;margin-top:10px">البينك لون شروقي 🌸 — الأبيض لون مصطفى 🤍</span>
 </footer>
 
 <script>
-/* ═══════════════════════════════════════
-   ١. WELCOME SCREEN — "إنتِ مين؟"
-   ═══════════════════════════════════════ */
-const CORRECT_NAME = 'شروق';
-const ws = document.getElementById('welcome-screen');
-const inp = document.getElementById('name-input');
-const btn = document.getElementById('name-btn');
-const werr = document.getElementById('w-error');
+/* ══════════════════════════════════════
+   DATA
+══════════════════════════════════════ */
+const REASONS = [
+  "لأن ضحكتك بتدي طاقة لمن يشوفها — كأنها عزف لبهجة 🎵",
+  "لأن روحك عاملة زي نسمة الهوا — بتهدي وبتريح اللي جنبك 🌸",
+  "لأن عقلك بنضجه بيحسب حسابات مش بتجي لكتير — سن ٢١ عقل ٧٠! 🧠",
+  "لأن قلبك أبيض ما يعرفش يكره ولا يشيل على حد 🤍",
+  "لأن إيمانك وحفظك القرآن بيرفعني كل يوم 📖",
+  "لأنك بتحتوي الصغيرين والكبيرين بنفس الروح الطيبة 💕",
+  "لأن بتبقي طفلة مع العيال وناضجة مع الكبار في نفس الوقت ✨",
+  "لأن اسمك — شروقي — لوحده حكاية فيها نور وأمل 🌅",
+  "لأنك أول ما تفتكري حاجة بتقوليها على طول — مش بتتحسبي 😊",
+  "لأن دموعك من الفرح بتحسسيني إني بعمل الصح 🥹",
+  "لأنك حفظتِ وضحكتِ ودعيتِ في نفس اليوم — ده مش عادي 🌟",
+  "لأن أأهديكِ زهراً — وإنتِ العبير نفسه 🌺",
+  "لأن مفيش حاجة في الدنيا تقدر تزعلك طول ما ربنا معانا 🤲",
+  "لأنك بتصحي الفجر وبتقري أذكارك — وده بيطمنني عليكِ 🌙",
+  "لأن ضحكتك في فقرة الـgemini يوم الخطوبة هتفضل في بالي للأبد 😂",
+  "لأن وشك بيهدي اللي يبص فيه — ربنا حط نور في وشك 💫",
+  "لأنك قولتِ 'بحبك' وأنا مش مصدق عيني لحد دلوقتي 💕",
+  "لأن روايتنا اللي بنكتبها أجمل من أي رواية قريتها 📝",
+  "لأن وشك بيهدي اللي يبص فيه — كأن ربنا حط فيه نور للعالم كله 💫",
+  "لأن في روحكِ شيء يبقيني على قيد الحياة ويجعلني أغفر للحياة 🌸",
+  "لأنك قلتِ 'حياتي قبلك كانت ظلمة — جيت نوّرتها وأزهرتها كلها فتفوتة فتفوتة' 🥹",
+  "لأن صمتك بيتكلم أكتر من كلام الناس كلهم 💕",
+  "لأن لما بتتضحكي بحس كأن السما بتمطر ورد مش ماء 🌹",
+  "لأنك بتصحي الفجر وبتقري القرآن وده بيطمنني عليكِ كل يوم 📖",
+  "لأنكِ أنتِ — وده بلوحده كافي جداً جداً 🤍",
+  "لأنك بتفكري في أولادنا قبل ما نتجوز — وده بيبين حجم قلبك 🥹",
+  "لأنك نايمة جنب النوتة من كتر ما فرحتِ بيها 😂❤️",
+  "لأنك رفضتِ خاطب بسبب كلب — وده من أذكى قراراتك 😂",
+  "لأنك قولتِ 'شروقتي أوف مصطفى أون' من أول يوم 😂",
+  "لأن الصيف بالنسبالك مش موسم — ده أسلوب حياة 🌞",
+  "لأنك بتطمنيني حتى وأنا اللي المفروض أطمنك ❤️",
+  "لأن كلامك بيوصل لقلبي بدون ما تحاولي — ده نادر جداً 💌",
+];
 
-// Welcome screen petals
-const wpc = document.getElementById('w-petals');
+const SOS_MESSAGES = [
+  "يا شروقي — اعرفي إن لحظة زعلك دي مؤقتة وهتعدي. وأنا هنا — حتى لو من بعيد — معاكِ في كل لحظة. ربنا يهون عليكِ ويحول زعلك فرح. بحبك يا أجمل هدية 🥹❤️",
+  "شروقي الحلوة — لما الدنيا بتضغط، افتكري إنك مش لوحدك. أنا بفكر فيكِ كل يوم وبدعيلك. المشكلة دي أصغر من ربنا ومن صبرك. هتعدي ان شاء الله. 🌸",
+  "يا نور عيني — لو يومك وحش، فتكري بضحكتك. ده السلاح السري بتاعك! ضحكة منك بتعمل أجازة من كل مشاكل الدنيا 😊💕 تعالي نضحك سوا لما أرجع! وعشان تضحكي: مرة واحد طلب قهوة ميكانيكي قالها كاوتشينو 😂",
+  "شروقي — 'في روحي شيء منك، شيء يبقيني على قيد الحياة.' حتى من بعيد روحك جنبي. أنا مش هسيبك تحملي أي حاجة لوحدك. 🤍",
+  "يا شروقي الغالية — ربنا يسهل عليكِ ويفرج همك ويخليكِ تضحكي قريب. وانتِ عارفة إن ضحكتك دي هي اللي بتخليني أمشي وأنا فخور بيكِ 🌸❤️",
+  "يا شروقي — 'أواسي بكِ نفسي حتى وانتِ لا تكونين هنا.' روحك بتطمنني حتى من بعيد. اصبري — يوم ٢٤ مايو جايي وهيبقى كل شيء أحلى 🤍📖",
+];
+
+const OPEN_WHEN = [
+  {icon:'😢', title:'افتحيها لما تكوني زعلانة مني', body:`يا شروقي — لو إنتِ زعلانة مني دلوقتي، اعرفي إن زعلك ده مش من فراغ. يمكن قصّرت أو ما انتبهتش. بس اعرفي إن في قلبي مكانك مش هيتغير.
+
+"أنا معك — معك حين تظلين وحيدة بين جدران صامتة، أسمع نبض قلبك الذي يحكي قصص ألمك وأحلامك المخفية."
+
+مش هسيبك زعلانة — هيجي وقت وهفضل جنبك لحد ما ترجعي. بحبك يا شروقي. 🥹💕`},
+  {icon:'😰', title:'افتحيها لما تكوني مضغوطة', body:`يا نور عيني — الضغط ده مؤقت. الدراسة والسكشنات دي كلها خطوات في طريقك.
+
+"أنا معك عندما يثقل العالم عليكِ وتظنين أنك لا تستطيعين الاستمرار، فأكون ذراعك الذي يحضنك والكتف الذي تتكئين عليه دون خوف أن أرحل."
+
+خذي نفس. اقري "حسبي الله ونعم الوكيل." ربنا ما كلّف نفساً إلا وسعها. هتعدي ان شاء الله. 🤍📖`},
+  {icon:'🥺', title:'افتحيها لما وحشاكِ', body:`يا شروقي — "حين أشتاق إليكِ يصبح كل ما فيّ نداءً صامتاً لا يسمعه سواكِ."
+
+أنا كمان واحشني جداً. كل يوم بيعدي وأنا بفتكر ضحكتك وصوتك. المسافة بيننا جسدية بس — اللي بيننا في القلوب أكبر من أي مسافة.
+
+"أنتِ لستِ غائبةً عن عيني — أنتِ النور الذي يرى به عيني، ولا أملك من أمري شيئاً سوى أن أحرس مكانكِ في قلبي بنبضي."
+
+اصبري — يوم ٢٤ مايو جايي. 🌸💕`},
+  {icon:'🌙', title:'افتحيها قبل النوم', body:`يا شروقي — قبل ما تنامي، اقري "آية الكرسي" وأنامي وأنتِ مطمنة.
+
+"ارخي جفنيكِ هدوءاً — أنا أحرس أحلامك بدعائي، وأمسح على ضيقك بحنان، كأنكِ طفلتي التي لم تكبر قط."
+
+"في حياتي أنتِ ضحكة الأمل وطمأنينة القلب، وأنتِ قمر الليالي كلها. أنتِ الشمس مشرقاً ومغرباً وأنتِ تُشرقين من كل الجهات."
+
+تصبحي على خير يا أجمل ما في حياتي. نوم الهنا. 🤍🌙`},
+  {icon:'🎉', title:'افتحيها لما تجيبي نتيجة حلوة', body:`يا شروقي — بـرافو عليكِ! دي مش صدفة — دي نتيجة شغلك وصبرك ودعاؤك. ربنا ما ضيّع تعبك.
+
+"أتعلمين؟ أنكِ روحي ولستِ بروحي أفرط، وأن حين أنظر إليكِ اشعر أني ملكت كل ما أردت وكل ما أريده أن يكون معي ذات يوم، وجدت فيكِ دنياً كبيرة وجميلة ليس للحزن فيها مجال."
+
+وأنا من هنا — فخور بيكِ جداً جداً. 🏆💕`},
+  {icon:'💪', title:'افتحيها لما تحسي إنك ضعيفة', body:`يا شروقي — "في روحي شيء منك، شيء يبقيني على قيد الحياة، يجعلني أبتسم في لحظة شرود وأقول لنفسي لقد زلت من الحياة ما يجعلني أغفر للحياة."
+
+الضعف اللي بتحسيه ده مش ضعف — ده إحساس بالتعب بس. والتعب دليل إنك بتحاولي.
+
+"أنا معكِ — حتى حين تظنين أنكِ ضعيفة. لستُ مجرد حاضر، بل أنا صمتك حين تحتاجين إليه، وضحكتك حين تفرحين، ودموعك حين تبكين."
+
+ربنا معاكِ وأنا معاكِ. 🤍💪`},
+]
+
+const COUPONS_DATA = [
+  {color:'#d4607e', icon:'🍵', title:'شاي بعد الأكل من إيدي', body:'شاي مظبوط بعد كل وجبة — من إيدي وبالطريقة اللي بتحبيها إنتِ بالظبط. 🍵\nمع لفتة حلوة ومسح الطاولة بعدها 😄'},
+  {color:'#9a2858', icon:'🍝', title:'عشاء كامل من إيدي', body:'وجبة دسمة من إيدي وإنتِ قاعدة ومستنياها! 🍽️\nمن الأول للآخر — وبعدها شاي بتاع الكوبون الأول 😂'},
+  {color:'#c09040', icon:'🎬', title:'فيلم سوا بدون مقاطعة', body:'مشاهدة فيلم سوا بدون مقاطعة — بفشار من إيدي وكنبة ودفا. 🎬\nإنتِ تختاري الفيلم وأنا موافق من دلوقتي 😄'},
+  {color:'#6b2440', icon:'🌙', title:'مشية الساعة ٣ صبح', body:'خروجة ليلية في الصيف الساعة ٣ — اتفقنا من زمان يا شروقي! 🌙\nوعد مكتوب ومحفور في القلب.'},
+  {color:'#7a1a40', icon:'📖', title:'درس قرآن سوا', body:'درس قرآن أو سيرة النبي ﷺ سوا — زي أجمل أيامنا. 📖\nوهنتسابق على الحفظ زي الأول 🌸'},
+  {color:'#c04060', icon:'🌸', title:'يوم كامل ليكِ وبس', body:'يوم كله مخصص ليكِ — البرنامج إنتِ تختاريه من الصبح للنوم. 🌸\nوكلمة "بكرة" ممنوعة في اليوم ده!'},
+  {color:'#2a5080', icon:'🌅', title:'فطار في البلكونة سوا', body:'فطار هادي في البلكونة مع الصبح والهواء — وإنتِ وأنا وبس. ☕🌅\nمحتاجش حاجة تانية في الدنيا غير كده.'},
+  {color:'#6b4020', icon:'🚗', title:'جولة بالعربية بدون وجهة', body:'نركب العربية ومنعرفش هنروح فين — وده الجمال فيه! 🚗\nأنا بوصلة وإنتِ الوجهة.'},
+];
+
+const ROOM_DATA = {
+  kitchen: {title:'🍳 المطبخ', body:'هنا هساعدك في الطبخ حتى لو بوظّت الأكل 😄 وهنتعلم سوا وهنضحك على محاولاتنا. وهنبدأ كل يوم من هنا — بسم الله الرحمن الرحيم.'},
+  living: {title:'🛋️ الصالة', body:'هنا هنسهر نتفرج على أفلامنا ونحكي عن يومنا ونضحك على الحاجات السخيفة اللي بتحصل. وهنا هنقعد سوا بعد يوم تعبان ونحس إن كل حاجة بخير.'},
+  quran: {title:'📖 كورنر القرآن', body:'هنا هيبقى أجمل ركن في البيت. ساجادة وقرآن وشمعة وهدوء. هنا هنقوم الليل سوا ونحفظ سوا ونتسابق على الختمة. "ونجعل بيتنا عامراً بذكر الله."'},
+  balcony: {title:'🌙 البلكونة', body:'هنا هيبقى مكانك المفضل. نصف ليل بنقعد هنا — أنا وإنتِ وفنجان قهوة والسكوت الجميل. وهنا هنتأمل في النجوم ونشكر ربنا على كل نعمة.'},
+  door: {title:'🚪 الباب', body:'"وده الباب اللي هقف وراه كل يوم أستنى أشوف ضحكتك." كل يوم لما أرجع — أول حاجة بفتكرها إنك جوا. ده مش مجرد باب — ده البداية.'},
+};
+
+/* ══════════════════════════════════════
+   WELCOME SCREEN
+══════════════════════════════════════ */
+const ws=document.getElementById('ws');
+const nin=document.getElementById('nin');
+const nbtn=document.getElementById('nbtn');
+const werr=document.getElementById('werr');
+
+// Welcome petals
+const wp=document.getElementById('wp');
 ['🌸','💕','✿','🌹'].forEach(s=>{
   for(let i=0;i<8;i++){
     const p=document.createElement('div');
     p.style.cssText=`position:absolute;top:-30px;left:${Math.random()*100}%;font-size:${.6+Math.random()*.8}rem;opacity:0;animation:pfall ${8+Math.random()*8}s linear ${Math.random()*10}s infinite`;
-    p.textContent=s;wpc.appendChild(p);
+    p.textContent=s;wp.appendChild(p);
   }
 });
 
-function enterPage(name){
-  // Replace every dynamic name placeholder
-  document.querySelectorAll('.dname').forEach(el=>{
-    el.textContent = name;
-  });
-  // Hide welcome screen
+function enterPage(){
   ws.classList.add('gone');
-  setTimeout(()=>{ ws.style.display='none'; initPage(); },800);
+  setTimeout(()=>{ws.style.display='none';initPage();},800);
 }
 
 function checkName(){
-  const val = inp.value.trim();
-  // Accept شروق or shorouk or shrouk (case insensitive)
-  const valid = ['شروق','شروق ','shorouk','shrouk','shrouq','شروق💕'].includes(val.toLowerCase().trim()) || val.trim() === CORRECT_NAME;
-  if(valid){
-    // Big heart burst
+  const v=nin.value.trim().toLowerCase();
+  const ok=['حياتي','حياتى','hayati','my life'].includes(v)||nin.value.trim()==='حياتي';
+  if(ok){
     for(let i=0;i<20;i++){
       const h=document.createElement('div');
-      const angle=Math.random()*360, dist=80+Math.random()*120;
-      const rect=btn.getBoundingClientRect();
-      h.style.cssText=`position:fixed;left:${rect.left+rect.width/2}px;top:${rect.top}px;pointer-events:none;z-index:99999;font-size:${1+Math.random()}rem;animation:sparkout .9s ease forwards;--tx:${Math.cos(angle*Math.PI/180)*dist}px;--ty:${Math.sin(angle*Math.PI/180)*dist}px`;
+      const angle=Math.random()*360,dist=80+Math.random()*120;
+      const rect=nbtn.getBoundingClientRect();
+      h.style.cssText=`position:fixed;left:${rect.left+rect.width/2}px;top:${rect.top}px;pointer-events:none;z-index:99999;font-size:${.9+Math.random()}rem;animation:sparkout .9s ease forwards;--tx:${Math.cos(angle*Math.PI/180)*dist}px;--ty:${Math.sin(angle*Math.PI/180)*dist}px`;
       h.textContent=['💕','🌸','❤️','✨'][Math.floor(Math.random()*4)];
-      document.body.appendChild(h);
-      setTimeout(()=>h.remove(),900);
+      document.body.appendChild(h);setTimeout(()=>h.remove(),900);
     }
-    setTimeout(()=>enterPage(val.trim()), 400);
+    setTimeout(enterPage,400);
   } else {
-    // Wrong name — shake and show hint
-    inp.classList.add('wrong-shake');
-    setTimeout(()=>inp.classList.remove('wrong-shake'),400);
-    const hints = [
-      'فكّري كويس — إنتِ مين يا جميلة؟ 🌸',
-      'مش لقيتك — جربي تاني 😄',
-      'الصفحة دي مش للكل — بس ليكِ إنتِ 💕',
-    ];
-    werr.textContent = hints[Math.floor(Math.random()*hints.length)];
+    nin.classList.add('wshake');setTimeout(()=>nin.classList.remove('wshake'),400);
+    const hints=['فكّري كويس يا حبيبتي — إنتِ مين بالنسبالي؟ 💕','مش صح — جربي تاني 🌸','الصفحة دي مش للكل — بس ليكِ إنتِ 💕'];
+    werr.textContent=hints[Math.floor(Math.random()*hints.length)];
     setTimeout(()=>werr.textContent='',2500);
   }
 }
+nbtn.addEventListener('click',checkName);
+nin.addEventListener('keydown',e=>{if(e.key==='Enter')checkName();});
+setTimeout(()=>nin.focus(),600);
 
-btn.addEventListener('click', checkName);
-inp.addEventListener('keydown', e=>{ if(e.key==='Enter') checkName(); });
-
-// Auto-focus
-setTimeout(()=>inp.focus(), 600);
-
-/* ═══════════════════════════════════════
-   ٢. MAIN PAGE INIT
-   ═══════════════════════════════════════ */
+/* ══════════════════════════════════════
+   INIT PAGE
+══════════════════════════════════════ */
 function initPage(){
-  /* Petals */
+  // Petals
   const pc=document.getElementById('petals');
   [['🌸',20],['💕',12],['🌹',6],['✿',10]].forEach(([s,n])=>{
     for(let i=0;i<n;i++){
@@ -815,160 +1579,634 @@ function initPage(){
     }
   });
 
-  /* Stars */
+  // Stars
   const sf=document.getElementById('stars');
-  for(let i=0;i<80;i++){
-    const s=document.createElement('div');s.className='star';
-    const sz=Math.random()*2.5+1;
-    s.style.cssText=`width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;animation-delay:${Math.random()*3}s;animation-duration:${1.5+Math.random()*2}s`;
-    sf.appendChild(s);
-  }
+  const mps=document.getElementById('mps');
+  [sf,mps].forEach(el=>{if(!el)return;for(let i=0;i<80;i++){const s=document.createElement('div');s.className='star';const sz=Math.random()*2.5+1;s.style.cssText=`width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;animation-delay:${Math.random()*3}s;animation-duration:${1.5+Math.random()*2}s`;el.appendChild(s);}});
 
-  /* Midnight popup stars */
-  const mps=document.getElementById('mp-stars');
-  for(let i=0;i<50;i++){
-    const s=document.createElement('div');s.className='star';
-    const sz=Math.random()*2+1;
-    s.style.cssText=`width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;animation-delay:${Math.random()*3}s;animation-duration:${1.5+Math.random()*2}s`;
-    mps.appendChild(s);
-  }
-
-  /* Observer */
-  const io=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('on')})},{threshold:.1});
+  // Observer
+  const io=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('on')});},{threshold:.1});
   document.querySelectorAll('.r,.rl,.rr,.rs').forEach(el=>io.observe(el));
 
-  /* Countdown */
+  // Countdowns
   const RETURN=new Date('2026-05-24T00:00:00');
+  const WEDDING=new Date('2026-11-25T00:00:00'); // عيد ميلاد شروقي ٢٥ نوفمبر ٢٠٢٦
   function tick(){
-    const diff=RETURN-new Date();
-    if(diff<=0){
-      document.getElementById('countdown').innerHTML='<div style="font-family:Lateef,serif;font-size:2rem;color:#fff;padding:20px">رجعت ليكِ! ❤️<br><span style="font-size:1.1rem;opacity:.8">اليوم الأجمل وصل 🌸</span></div>';
-      return;
+    const d1=RETURN-new Date();
+    if(d1>0){
+      document.getElementById('cd-d').textContent=Math.floor(d1/86400000);
+      document.getElementById('cd-h').textContent=String(Math.floor(d1%86400000/3600000)).padStart(2,'0');
+      document.getElementById('cd-m').textContent=String(Math.floor(d1%3600000/60000)).padStart(2,'0');
+      document.getElementById('cd-s').textContent=String(Math.floor(d1%60000/1000)).padStart(2,'0');
+    } else {
+      document.getElementById('countdown').innerHTML='<div style="font-family:Lateef,serif;font-size:2rem;color:#fff;padding:20px">رجعت ليكِ! ❤️ 🌸</div>';
     }
-    document.getElementById('cd-d').textContent=Math.floor(diff/86400000);
-    document.getElementById('cd-h').textContent=String(Math.floor(diff%86400000/3600000)).padStart(2,'0');
-    document.getElementById('cd-m').textContent=String(Math.floor(diff%3600000/60000)).padStart(2,'0');
-    document.getElementById('cd-s').textContent=String(Math.floor(diff%60000/1000)).padStart(2,'0');
+    const d2=WEDDING-new Date();
+    if(d2>0){
+      document.getElementById('cap-d').textContent=Math.floor(d2/86400000);
+      document.getElementById('cap-h').textContent=String(Math.floor(d2%86400000/3600000)).padStart(2,'0');
+      document.getElementById('cap-m').textContent=String(Math.floor(d2%3600000/60000)).padStart(2,'0');
+      if(document.getElementById('cap-s'))document.getElementById('cap-s').textContent=String(Math.floor(d2%60000/1000)).padStart(2,'0');
+      const cs=document.getElementById('cap-s');if(cs)cs.textContent=String(Math.floor(d2%60000/1000)).padStart(2,'0');
+    }
   }
   tick();setInterval(tick,1000);
 
-  /* Click sparkle */
+  // Night Sky Canvas
+  drawSky();
+
+  // Midnight check
+  function checkMidnight(){
+    const h=new Date().getHours(),m=new Date().getMinutes();
+    if(h===1&&m>=40&&m<60)setTimeout(()=>document.getElementById('mp').classList.add('show'),3000);
+  }
+  checkMidnight();setInterval(checkMidnight,60000);
+
+  // Music
+  initMusic();
+
+  // Click sparkle
   document.addEventListener('click',function(e){
-    if(e.target.closest('#welcome-screen')||e.target.closest('#midnight-popup')||e.target.closest('#music-box')) return;
-    for(let i=0;i<6;i++){
+    if(e.target.closest('#ws')||e.target.closest('#mp')||e.target.closest('#mb')||e.target.closest('#secret-popup')||e.target.closest('#letter-modal'))return;
+    for(let i=0;i<5;i++){
       const sp=document.createElement('div');
-      const angle=Math.random()*360;const dist=35+Math.random()*60;
+      const angle=Math.random()*360,dist=35+Math.random()*60;
       sp.style.cssText=`position:fixed;left:${e.clientX}px;top:${e.clientY}px;pointer-events:none;z-index:9998;font-size:${.7+Math.random()*.8}rem;animation:sparkout .8s ease forwards;--tx:${Math.cos(angle*Math.PI/180)*dist}px;--ty:${Math.sin(angle*Math.PI/180)*dist}px`;
       sp.textContent=['🌸','💕','✨','❤️','🌹'][Math.floor(Math.random()*5)];
-      document.body.appendChild(sp);
-      setTimeout(()=>sp.remove(),800);
+      document.body.appendChild(sp);setTimeout(()=>sp.remove(),800);
     }
   });
 
-  /* ═══════════════════════════════════════
-     ٣. MIDNIGHT SECRET — ١:٤٥ ص
-     ═══════════════════════════════════════ */
-  function checkMidnight(){
-    const now = new Date();
-    const h = now.getHours();
-    const m = now.getMinutes();
-    // Show between 1:40 AM and 2:00 AM — the magical hour of April 9
-    if(h === 1 && m >= 40 && m < 60){
-      setTimeout(()=>{
-        document.getElementById('midnight-popup').classList.add('show');
-      }, 3000); // Show 3 seconds after page loads at that time
-    }
+  // Build coupons
+  buildCoupons();
+  // Build open-when letters
+  buildLetters();
+
+  setTimeout(()=>document.getElementById('mb').style.opacity='1',1500);
+}
+
+/* ══ NIGHT SKY ══ */
+function drawSky(){
+  const canvas=document.getElementById('skycanvas');
+  if(!canvas)return;
+  const ctx=canvas.getContext('2d');
+  canvas.width=canvas.offsetWidth;
+  canvas.height=400;
+  // Background
+  const grad=ctx.createLinearGradient(0,0,0,400);
+  grad.addColorStop(0,'#020818');
+  grad.addColorStop(1,'#0a1428');
+  ctx.fillStyle=grad;ctx.fillRect(0,0,canvas.width,400);
+  // Stars
+  for(let i=0;i<300;i++){
+    const x=Math.random()*canvas.width,y=Math.random()*320;
+    const r=Math.random()*1.5+.3;
+    const brightness=Math.random()*.8+.2;
+    ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);
+    ctx.fillStyle=`rgba(255,255,255,${brightness})`;ctx.fill();
   }
-  checkMidnight();
-  // Check every minute
-  setInterval(checkMidnight, 60000);
+  // Moon
+  const moonX=canvas.width*.75,moonY=80;
+  ctx.beginPath();ctx.arc(moonX,moonY,40,0,Math.PI*2);
+  const moonGrad=ctx.createRadialGradient(moonX-10,moonY-10,5,moonX,moonY,40);
+  moonGrad.addColorStop(0,'#fffde7');moonGrad.addColorStop(1,'#f0e68c');
+  ctx.fillStyle=moonGrad;ctx.fill();
+  // Moon glow
+  ctx.beginPath();ctx.arc(moonX,moonY,55,0,Math.PI*2);
+  const glowGrad=ctx.createRadialGradient(moonX,moonY,30,moonX,moonY,55);
+  glowGrad.addColorStop(0,'rgba(255,250,200,.15)');glowGrad.addColorStop(1,'rgba(255,250,200,0)');
+  ctx.fillStyle=glowGrad;ctx.fill();
+  // Shooting star
+  ctx.beginPath();ctx.moveTo(canvas.width*.2,60);ctx.lineTo(canvas.width*.35,90);
+  const ssGrad=ctx.createLinearGradient(canvas.width*.2,60,canvas.width*.35,90);
+  ssGrad.addColorStop(0,'rgba(255,255,255,0)');ssGrad.addColorStop(.5,'rgba(255,255,255,.8)');ssGrad.addColorStop(1,'rgba(255,255,255,0)');
+  ctx.strokeStyle=ssGrad;ctx.lineWidth=1.5;ctx.stroke();
+  // Constellation
+  const stars=[[0.3,0.2],[0.35,0.15],[0.4,0.18],[0.38,0.25],[0.32,0.28]];
+  ctx.strokeStyle='rgba(255,255,255,.3)';ctx.lineWidth=.8;
+  for(let i=0;i<stars.length-1;i++){
+    ctx.beginPath();
+    ctx.moveTo(stars[i][0]*canvas.width,stars[i][1]*400);
+    ctx.lineTo(stars[i+1][0]*canvas.width,stars[i+1][1]*400);
+    ctx.stroke();
+  }
+  stars.forEach(([x,y])=>{
+    ctx.beginPath();ctx.arc(x*canvas.width,y*400,2,0,Math.PI*2);
+    ctx.fillStyle='rgba(255,255,255,.9)';ctx.fill();
+  });
+}
 
-  /* ═══════════════════════════════════════
-     ٤. MUSIC BOX — موسيقى القصة
-     ═══════════════════════════════════════ */
-  const musicBox = document.getElementById('music-box');
-  const mbNote = document.getElementById('mb-note');
-  const mbText = document.getElementById('mb-text');
+/* ══ JAR ══ */
+let jarIdx=0;
+const jarShuffled=[...REASONS].sort(()=>Math.random()-.5);
+function pickReason(){
+  const el=document.getElementById('jar-reason');
+  const cnt=document.getElementById('jar-count');
+  const jar=document.querySelector('.jar-visual');
+  jar.classList.add('jar-shake');setTimeout(()=>jar.classList.remove('jar-shake'),600);
+  // Confetti burst
+  for(let i=0;i<12;i++){
+    const c=document.createElement('div');c.className='conf-piece';
+    const angle=Math.random()*360,dist=60+Math.random()*80;
+    const rect=jar.getBoundingClientRect();
+    c.style.cssText=`left:${rect.left+rect.width/2}px;top:${rect.top+rect.height/2}px;--tx:${Math.cos(angle*Math.PI/180)*dist}px;--ty:${Math.sin(angle*Math.PI/180)*dist}px;animation:conffall 1.5s ease-in forwards`;
+    c.textContent=['🌸','💕','✨','🌹'][Math.floor(Math.random()*4)];
+    document.body.appendChild(c);setTimeout(()=>c.remove(),1500);
+  }
+  el.style.display='block';
+  el.style.animation='none';
+  setTimeout(()=>el.style.animation='slideup .4s ease',10);
+  el.textContent=jarShuffled[jarIdx%jarShuffled.length];
+  jarIdx++;
+  cnt.textContent=`ورقة ${jarIdx} من ${REASONS.length} 🌸`;
+}
 
-  // Create audio context for a gentle romantic melody
-  let audioCtx = null;
-  let isPlaying = false;
-  let musicInterval = null;
+/* ══ SCRATCH COUPONS ══ */
+function buildCoupons(){
+  const grid=document.getElementById('coupons-grid');
+  COUPONS_DATA.forEach((c,i)=>{
+    const div=document.createElement('div');div.className='coupon';
+    div.innerHTML=`
+      <div class="coupon-content" style="background:linear-gradient(135deg,${c.color}22,${c.color}11)">
+        <div class="coupon-icon">${c.icon}</div>
+        <div class="coupon-title" style="color:var(--deep)">${c.title}</div>
+        <div class="coupon-text">${c.body}</div>
+      </div>
+      <canvas class="coupon-cover" width="300" height="160" style="position:absolute;inset:0;border-radius:18px;z-index:2;cursor:crosshair"></canvas>
+    `;
+    grid.appendChild(div);
+    const canvas=div.querySelector('canvas');
+    const ctx=canvas.getContext('2d');
+    // Draw cover
+    const grad=ctx.createLinearGradient(0,0,300,160);
+    grad.addColorStop(0,c.color);grad.addColorStop(1,'#6b2440');
+    ctx.fillStyle=grad;ctx.fillRect(0,0,300,160);
+    ctx.fillStyle='rgba(255,255,255,.9)';ctx.font='bold 14px Amiri';ctx.textAlign='center';ctx.fillText(c.text,150,75);
+    ctx.font='12px Amiri';ctx.fillStyle='rgba(255,255,255,.6)';ctx.fillText('امسحي بالصباع 🌸',150,95);
+    // Scratch logic
+    let painting=false;let scratched=0;const total=300*160;
+    function scratch(x,y){
+      ctx.globalCompositeOperation='destination-out';
+      ctx.beginPath();ctx.arc(x,y,22,0,Math.PI*2);ctx.fill();
+      scratched+=22*22*Math.PI;
+      if(scratched/total>.5){canvas.style.opacity='0';canvas.style.pointerEvents='none';}
+    }
+    canvas.addEventListener('mousedown',()=>painting=true);
+    canvas.addEventListener('mouseup',()=>painting=false);
+    canvas.addEventListener('mousemove',e=>{if(painting){const r=canvas.getBoundingClientRect();scratch(e.clientX-r.left,e.clientY-r.top);}});
+    canvas.addEventListener('touchstart',e=>{painting=true;e.preventDefault();});
+    canvas.addEventListener('touchend',()=>painting=false);
+    canvas.addEventListener('touchmove',e=>{e.preventDefault();if(painting){const r=canvas.getBoundingClientRect();const t=e.touches[0];scratch(t.clientX-r.left,t.clientY-r.top);}},{passive:false});
+  });
+}
 
-  // Romantic melody notes (Hz) — simple beautiful sequence
-  const melody = [
-    {freq:392,dur:.4},{freq:440,dur:.4},{freq:494,dur:.4},{freq:523,dur:.6},
-    {freq:494,dur:.3},{freq:440,dur:.3},{freq:392,dur:.5},{freq:0,dur:.3},
-    {freq:349,dur:.4},{freq:392,dur:.4},{freq:440,dur:.4},{freq:494,dur:.6},
-    {freq:440,dur:.3},{freq:392,dur:.3},{freq:349,dur:.8},{freq:0,dur:.4},
-    {freq:523,dur:.4},{freq:494,dur:.3},{freq:440,dur:.4},{freq:392,dur:.5},
-    {freq:440,dur:.4},{freq:494,dur:.4},{freq:523,dur:.8},{freq:0,dur:.5},
+/* ══ OPEN WHEN LETTERS ══ */
+function buildLetters(){
+  const grid=document.getElementById('letters-grid');
+  OPEN_WHEN.forEach(l=>{
+    const div=document.createElement('div');div.className='envelope';
+    div.innerHTML=`<div class="env-badge"></div><span class="env-flap">💌</span><div class="env-title">${l.title}</div>`;
+    div.onclick=()=>openLetter(l);
+    grid.appendChild(div);
+  });
+}
+function openLetter(l){
+  document.getElementById('lm-icon').textContent=l.icon;
+  document.getElementById('lm-title').textContent=l.title;
+  document.getElementById('lm-body').textContent=l.body;
+  document.getElementById('letter-modal').classList.add('show');
+}
+
+/* ══ MAP ══ */
+function showMapPopup(id){
+  document.querySelectorAll('.map-popup').forEach(p=>p.classList.remove('show'));
+  document.getElementById('popup-'+id).classList.add('show');
+}
+
+/* ══ PASSWORD ══ */
+function checkPassword(){
+  const v=document.getElementById('pw-input').value.trim().toLowerCase();
+  if(['بينك','pink','بينكي','البينك'].includes(v)){
+    document.getElementById('pw-result').style.display='block';
+    document.getElementById('pw-result').style.animation='slideup .4s ease';
+    // Confetti
+    for(let i=0;i<20;i++){
+      const c=document.createElement('div');c.className='conf-piece';
+      c.style.cssText=`left:${Math.random()*100}vw;top:30vh;animation-delay:${Math.random()*.5}s`;
+      c.textContent=['🌸','💕','✨','🎊'][Math.floor(Math.random()*4)];
+      document.body.appendChild(c);setTimeout(()=>c.remove(),2000);
+    }
+  } else {
+    document.getElementById('pw-input').classList.add('wshake');
+    setTimeout(()=>document.getElementById('pw-input').classList.remove('wshake'),400);
+  }
+}
+
+/* ══ HOUSE ROOMS ══ */
+function showRoom(id){
+  const d=ROOM_DATA[id];if(!d)return;
+  document.getElementById('rm-title').textContent=d.title;
+  document.getElementById('rm-body').textContent=d.body;
+  const msg=document.getElementById('room-msg');
+  msg.style.display='block';
+  msg.style.animation='none';
+  setTimeout(()=>msg.style.animation='slideup .4s ease',10);
+}
+
+/* ══ GIFT BOX ══ */
+function openGiftBox(){
+  const box=document.getElementById('giftbox');
+  const contents=document.getElementById('box-contents');
+  if(box.classList.contains('open'))return;
+  box.classList.add('open');
+  box.querySelector('.box-hint').textContent='';
+  for(let i=0;i<20;i++){
+    const c=document.createElement('div');
+    const angle=Math.random()*360,dist=60+Math.random()*100;
+    const rect=box.getBoundingClientRect();
+    c.style.cssText=`position:fixed;left:${rect.left+rect.width/2}px;top:${rect.top+rect.height/2}px;pointer-events:none;z-index:99998;font-size:${.9+Math.random()*.8}rem;animation:sparkout 1s ease forwards;animation-delay:${Math.random()*.3}s;--tx:${Math.cos(angle*Math.PI/180)*dist}px;--ty:${Math.sin(angle*Math.PI/180)*dist}px`;
+    c.textContent=['🌸','💕','✨','🎀','❤️'][Math.floor(Math.random()*5)];
+    document.body.appendChild(c);setTimeout(()=>c.remove(),1300);
+  }
+  setTimeout(()=>{contents.classList.add('show');},500);
+}
+
+/* ══ CROSSWORD ══ */
+const CW_ALT={
+  cw1:['بينك','pink','بنك'],
+  cw2:['شوكولاتة','شوكولاته','شكولاتة','شكولاته'],
+  cw3:['أأهديك','اهديك','أهديك','aahdiki'],
+  cw4:['صاصا','ساسا','sasa'],
+  cw5:['شروقي','شروق'],
+  cw6:['يناير','january']
+};
+function checkCrossword(){
+  let score=0;
+  ['cw1','cw2','cw3','cw4','cw5','cw6'].forEach(id=>{
+    const inp=document.getElementById(id);
+    const chk=document.getElementById(id.replace('cw','chk'));
+    const val=(inp.value||'').trim();
+    const alts=CW_ALT[id]||[];
+    const ok=alts.some(a=>a===val||a.toLowerCase()===val.toLowerCase());
+    if(ok){chk.textContent='✅';inp.style.borderColor='#50c060';score++;}
+    else if(val.length>0){chk.textContent='❌';inp.style.borderColor='#e04060';}
+    else{chk.textContent='';inp.style.borderColor='';}
+  });
+  const result=document.getElementById('cw-result');
+  result.style.display='block';
+  if(score===6){
+    result.innerHTML='🎉 ممتازة يا شروقي! عارفاني وعارفة تفاصيلنا كلها! إنتِ وأنا بنكتب قصتنا سوا — وكل تفصيلة فيها غالية 💕';
+    // Confetti
+    for(let i=0;i<25;i++){const c=document.createElement('div');c.className='conf-piece';c.style.cssText=`left:${Math.random()*100}vw;top:0;animation-delay:${Math.random()*.6}s`;c.textContent=['🌸','💕','✨'][Math.floor(Math.random()*3)];document.body.appendChild(c);setTimeout(()=>c.remove(),2500);}
+  } else if(score>=4){
+    result.innerHTML=`✨ ${score}/٦ صح! شاطرة 🌸 — بس في تفاصيل صغيرة تستاهل تتفكريها أكتر 😄`;
+  } else {
+    result.innerHTML=`💕 ${score}/٦ صح — مش مهم، أنا مش هنسي التفاصيل دي حتى لو نسيتِ أنتِ! 😂`;
+  }
+}
+
+/* ══ EMERGENCY SOS ══ */
+let sosIdx=0;
+function sosMessage(){
+  const el=document.getElementById('sos-result');
+  el.style.display='block';
+  el.style.animation='none';
+  setTimeout(()=>el.style.animation='slideup .4s ease',10);
+  el.textContent=SOS_MESSAGES[sosIdx%SOS_MESSAGES.length];
+  sosIdx++;
+  // Hearts
+  for(let i=0;i<15;i++){
+    const h=document.createElement('div');h.className='conf-piece';
+    h.style.cssText=`left:${Math.random()*100}vw;top:60vh;animation-delay:${Math.random()*.5}s`;
+    h.textContent=['💕','❤️','🌸'][Math.floor(Math.random()*3)];
+    document.body.appendChild(h);setTimeout(()=>h.remove(),2000);
+  }
+}
+
+/* ══ SECRET DOT ══ */
+let sdotClicks=0;
+document.getElementById('sdot').addEventListener('click',function(e){
+  sdotClicks++;
+  if(sdotClicks===1){
+    // Confetti rain
+    for(let i=0;i<30;i++){
+      const c=document.createElement('div');c.className='conf-piece';
+      c.style.cssText=`left:${Math.random()*100}vw;top:-20px;animation-delay:${Math.random()*.8}s;animation-duration:${1.5+Math.random()}s`;
+      c.textContent=['💕','🌸','❤️','✨','🌹'][Math.floor(Math.random()*5)];
+      document.body.appendChild(c);setTimeout(()=>c.remove(),2500);
+    }
+    const sp=document.getElementById('secret-popup');
+    document.getElementById('si-body').textContent='"أنا بهتم بأدق تفاصيلك — زي ما بهتم بالنقطة دي بالظبط. حتى الحاجات الصغيرة اللي ما حدش بيلاحظها — أنا بلاقيها وبعتز بيها. إنتِ مش بس خطيبتي — إنتِ تفصيلة في حياتي ما عندهاش مثيل." 🌸💕';
+    sp.classList.add('show');
+  }
+});
+
+/* ══ MUSIC — أأهديكِ زهراً وأنتِ العبير ══ */
+function initMusic(){
+  const mb=document.getElementById('mb');
+  const mbn=document.getElementById('mbn');
+  const mbt=document.getElementById('mbt');
+  let audioCtx=null,isPlaying=false,timer=null;
+
+  // مقام حجاز — Arabic Hijaz scale for nasheed feel
+  // Notes inspired by أأهديكِ زهراً وأنتِ العبير melody
+  // D=293.66, Eb=311.13, F#=369.99, G=392, A=440, Bb=466.16, C#=554.37, D5=587.33
+  const melody=[
+    // Phrase 1: أأهديكِ زهراً
+    {f:392,d:.5,v:.13},{f:440,d:.4,v:.13},{f:466.16,d:.35,v:.12},
+    {f:554.37,d:.7,v:.15},{f:466.16,d:.35,v:.12},{f:440,d:.35,v:.12},
+    {f:392,d:.6,v:.13},{f:0,d:.3},{f:369.99,d:.4,v:.11},
+    // Phrase 2: وأنتِ العبير
+    {f:392,d:.4,v:.13},{f:440,d:.5,v:.14},{f:466.16,d:.4,v:.13},
+    {f:440,d:.35,v:.12},{f:392,d:.35,v:.12},{f:369.99,d:.4,v:.11},
+    {f:311.13,d:.8,v:.13},{f:0,d:.5},
+    // Phrase 3: أبديتُ فيكِ العشق
+    {f:293.66,d:.4,v:.11},{f:311.13,d:.35,v:.11},{f:369.99,d:.4,v:.12},
+    {f:392,d:.5,v:.13},{f:440,d:.4,v:.13},
+    {f:466.16,d:.35,v:.12},{f:554.37,d:.6,v:.15},{f:0,d:.4},
+    // Phrase 4: resolve
+    {f:587.33,d:.4,v:.13},{f:554.37,d:.35,v:.13},{f:466.16,d:.35,v:.12},
+    {f:440,d:.35,v:.12},{f:392,d:.7,v:.14},{f:0,d:.5},
+    {f:369.99,d:.4,v:.11},{f:392,d:.4,v:.12},{f:440,d:.5,v:.13},
+    {f:466.16,d:.35,v:.12},{f:440,d:.35,v:.11},{f:392,d:.9,v:.12},{f:0,d:.8},
   ];
 
-  function playNote(freq, duration, startTime){
-    if(!audioCtx || freq===0) return;
-    const osc = audioCtx.createOscillator();
-    const gain = audioCtx.createGain();
-    osc.connect(gain);
-    gain.connect(audioCtx.destination);
-    osc.type = 'sine';
-    osc.frequency.setValueAtTime(freq, startTime);
-    gain.gain.setValueAtTime(0, startTime);
-    gain.gain.linearRampToValueAtTime(0.15, startTime + 0.05);
-    gain.gain.linearRampToValueAtTime(0, startTime + duration - 0.05);
-    osc.start(startTime);
-    osc.stop(startTime + duration);
+  function playNote(freq,dur,startTime,vol){
+    if(!audioCtx||freq===0)return;
+    const osc=audioCtx.createOscillator();
+    const gain=audioCtx.createGain();
+    // Add reverb-like second oscillator slightly detuned
+    const osc2=audioCtx.createOscillator();
+    const gain2=audioCtx.createGain();
+    osc.connect(gain);gain.connect(audioCtx.destination);
+    osc2.connect(gain2);gain2.connect(audioCtx.destination);
+    osc.type='sine';osc2.type='sine';
+    osc.frequency.setValueAtTime(freq,startTime);
+    osc2.frequency.setValueAtTime(freq*1.002,startTime); // slight chorus
+    const v=vol||.12;
+    gain.gain.setValueAtTime(0,startTime);
+    gain.gain.linearRampToValueAtTime(v,startTime+.04);
+    gain.gain.linearRampToValueAtTime(v*.7,startTime+dur*.5);
+    gain.gain.linearRampToValueAtTime(0,startTime+dur-.03);
+    gain2.gain.setValueAtTime(0,startTime);
+    gain2.gain.linearRampToValueAtTime(v*.3,startTime+.06);
+    gain2.gain.linearRampToValueAtTime(0,startTime+dur-.03);
+    osc.start(startTime);osc.stop(startTime+dur);
+    osc2.start(startTime);osc2.stop(startTime+dur);
   }
 
   function playMelody(){
-    if(!audioCtx) return;
-    let t = audioCtx.currentTime + 0.1;
+    if(!audioCtx)return 8;
+    let t=audioCtx.currentTime+.15;
     melody.forEach(note=>{
-      playNote(note.freq, note.dur, t);
-      t += note.dur;
+      playNote(note.f,note.d,t,note.v);
+      t+=note.d;
     });
-    return t - audioCtx.currentTime + 0.5; // total duration
+    return t-audioCtx.currentTime+1;
   }
 
-  function startMusic(){
-    if(!audioCtx) audioCtx = new (window.AudioContext||window.webkitAudioContext)();
-    if(audioCtx.state === 'suspended') audioCtx.resume();
-    isPlaying = true;
-    musicBox.classList.add('playing');
-    mbText.textContent = 'موسيقى القصة ♪';
+  function loop(){if(!isPlaying)return;const dur=playMelody();timer=setTimeout(loop,dur*1000);}
 
-    function loop(){
-      if(!isPlaying) return;
-      const dur = playMelody();
-      musicInterval = setTimeout(loop, dur * 1000);
+  mb.addEventListener('click',()=>{
+    if(!audioCtx)audioCtx=new(window.AudioContext||window.webkitAudioContext)();
+    if(audioCtx.state==='suspended')audioCtx.resume();
+    if(isPlaying){
+      isPlaying=false;clearTimeout(timer);audioCtx.suspend();
+      mb.classList.remove('playing');mbt.textContent='أأهديكِ زهراً وأنتِ العبير';
+    } else {
+      isPlaying=true;mb.classList.add('playing');mbt.textContent='يُعزف الآن ♪';loop();
     }
-    loop();
-  }
-
-  function stopMusic(){
-    isPlaying = false;
-    musicBox.classList.remove('playing');
-    mbText.textContent = 'موسيقى القصة';
-    clearTimeout(musicInterval);
-    if(audioCtx){
-      audioCtx.suspend();
-    }
-  }
-
-  musicBox.addEventListener('click',()=>{
-    if(isPlaying) stopMusic();
-    else startMusic();
   });
-
-  // Show music box with delay after page loads
-  setTimeout(()=>{
-    musicBox.style.opacity='1';
-  }, 1500);
 }
 
-/* ── Sparkle keyframe ── */
+
+/* ══ GLOBE ══ */
+function drawGlobe(){
+  const canvas=document.getElementById('globeCanvas');
+  if(!canvas)return;
+  const ctx=canvas.getContext('2d');
+  const W=canvas.width,H=canvas.height,cx=W/2,cy=H/2,R=Math.min(W,H)/2-10;
+  let angle=0;
+  function frame(){
+    ctx.clearRect(0,0,W,H);
+    // Ocean
+    const grad=ctx.createRadialGradient(cx-R*.3,cy-R*.3,R*.1,cx,cy,R);
+    grad.addColorStop(0,'#4a90c8');grad.addColorStop(.6,'#2a60a0');grad.addColorStop(1,'#0a3060');
+    ctx.beginPath();ctx.arc(cx,cy,R,0,Math.PI*2);ctx.fillStyle=grad;ctx.fill();
+    // Globe shine
+    const shine=ctx.createRadialGradient(cx-R*.3,cy-R*.4,0,cx-R*.2,cy-R*.3,R*.7);
+    shine.addColorStop(0,'rgba(255,255,255,.18)');shine.addColorStop(1,'rgba(255,255,255,0)');
+    ctx.beginPath();ctx.arc(cx,cy,R,0,Math.PI*2);ctx.fillStyle=shine;ctx.fill();
+    // Latitude lines
+    ctx.strokeStyle='rgba(255,255,255,.08)';ctx.lineWidth=.8;
+    for(let lat=-60;lat<=60;lat+=30){
+      const y=cy+Math.sin(lat*Math.PI/180)*R;
+      const rx=Math.cos(lat*Math.PI/180)*R;
+      ctx.beginPath();ctx.ellipse(cx,y,rx,rx*.25,0,0,Math.PI*2);ctx.stroke();
+    }
+    // Longitude lines (rotating)
+    for(let i=0;i<6;i++){
+      const a=angle+i*Math.PI/3;
+      ctx.beginPath();ctx.ellipse(cx,cy,Math.abs(Math.cos(a))*R,R,0,0,Math.PI*2);
+      ctx.strokeStyle='rgba(255,255,255,.06)';ctx.lineWidth=.8;ctx.stroke();
+    }
+    // Land masses (Africa/Arabia region)
+    ctx.save();
+    // Egypt blob
+    const egLng=(angle+0.6)%(Math.PI*2);
+    const egX=cx+Math.sin(egLng)*R*.55;
+    const egY=cy-R*.1;
+    const egScale=Math.abs(Math.cos(egLng));
+    if(egScale>.2){
+      ctx.globalAlpha=egScale;
+      ctx.fillStyle='#e8d080';
+      ctx.beginPath();
+      ctx.ellipse(egX,egY,R*.14*egScale,R*.18,0,0,Math.PI*2);
+      ctx.fill();
+      // Egypt pin
+      ctx.fillStyle='#d4607e';
+      ctx.beginPath();ctx.arc(egX,egY-R*.2*egScale,R*.045*egScale,0,Math.PI*2);ctx.fill();
+      ctx.fillStyle='#fff';ctx.font=`${Math.max(9,16*egScale)}px serif`;
+      ctx.textAlign='center';ctx.fillText('🇪🇬',egX,egY-R*.18*egScale+5);
+    }
+    // Saudi blob
+    const saLng=(angle+1.3)%(Math.PI*2);
+    const saX=cx+Math.sin(saLng)*R*.55;
+    const saY=cy-R*.06;
+    const saScale=Math.abs(Math.cos(saLng));
+    if(saScale>.2){
+      ctx.globalAlpha=saScale;
+      ctx.fillStyle='#c8b860';
+      ctx.beginPath();
+      ctx.ellipse(saX,saY,R*.18*saScale,R*.16,0,0,Math.PI*2);
+      ctx.fill();
+      ctx.fillStyle='#20a040';
+      ctx.beginPath();ctx.arc(saX,saY-R*.2*saScale,R*.045*saScale,0,Math.PI*2);ctx.fill();
+      ctx.fillStyle='#fff';ctx.font=`${Math.max(9,16*saScale)}px serif`;
+      ctx.textAlign='center';ctx.fillText('🇸🇦',saX,saY-R*.18*saScale+5);
+    }
+    // Love line between countries
+    if(egScale>.3&&saScale>.3){
+      ctx.globalAlpha=Math.min(egScale,saScale)*.7;
+      ctx.strokeStyle='rgba(212,96,126,.8)';
+      ctx.lineWidth=2;ctx.setLineDash([6,4]);
+      ctx.beginPath();ctx.moveTo(egX,egY);ctx.lineTo(saX,saY);ctx.stroke();
+      ctx.setLineDash([]);
+      // Flying heart
+      const hx=(egX+saX)/2;const hy=(egY+saY)/2-20;
+      ctx.font='18px serif';ctx.fillText('💕',hx-9,hy);
+    }
+    ctx.globalAlpha=1;ctx.restore();
+    // Border glow
+    ctx.beginPath();ctx.arc(cx,cy,R,0,Math.PI*2);
+    ctx.strokeStyle='rgba(212,96,126,.3)';ctx.lineWidth=3;ctx.stroke();
+    angle+=0.008;
+    requestAnimationFrame(frame);
+  }
+  frame();
+}
+
+function showGlobeMsg(id){
+  document.querySelectorAll('.globe-msg').forEach(m=>m.classList.remove('show'));
+  const el=document.getElementById('gmsg-'+id);
+  if(el){el.classList.add('show');el.scrollIntoView({behavior:'smooth',block:'nearest'});}
+}
+
+/* ══ ANIMATED CROSSWORD ══ */
+const CW_DATA={
+  1:{answers:['بينك','pink','بنك'],msg:'ماشاء الله! 🌸 أيوه البينك — لوّنك وبقى لوّن قصتنا كلها! البينك لون شروقي والأبيض لوني — وسوا بنكوّن أجمل لوحة!'},
+  2:{answers:['شوكولاتة','شوكولاته','شكولاتة','شكولاته'],msg:'تمام يا شروقي! 🍫 الشوكولاتة دي أول هدية جبتهالك — واخترتها لأنك حلوة زيها بالظبط!'},
+  3:{answers:['أأهديك','اهديك','أهديك','aahdiki'],msg:'عارفاني! 🎵 "أأهديكِ زهراً وأنتِ العبير" — دي الأنشودة اللي مش أقدر أطلعها من دماغي من يوم ما ذكرتيها!'},
+  4:{answers:['صاصا','ساسا','sasa'],msg:'😂 أيوه يا شروقي اللي موتّتيني ضحك من أول يوم! "سلام يا صاصا 👀 — أقصد مصطفى!" الحرب ما وقفتش!'},
+  5:{answers:['شروقي','شروق'],msg:'دي إنتِ! 🌸 شروقي — اسم دلعك عندي. لأن "شروق" لوحدها تقصير — وإنتِ أكبر من أي اسم!'},
+  6:{answers:['يناير','january'],msg:'صح! 💍 يناير ٢٠٢٦ — الشهر اللي غيّر حياتي كلها. يوم ٢٨ يناير — أجمل يوم في تاريخي.'},
+};
+let cwScore=0;
+function liveCheck(n){
+  const inp=document.getElementById('cw'+n);
+  const icon=document.getElementById('ci'+n);
+  const msg=document.getElementById('cm'+n);
+  const val=(inp.value||'').trim();
+  const data=CW_DATA[n];
+  const ok=data.answers.some(a=>a.toLowerCase()===val.toLowerCase());
+  if(ok){
+    inp.classList.add('correct');inp.classList.remove('wrong');
+    inp.setAttribute('readonly','readonly');
+    icon.textContent='✅';
+    msg.textContent=data.msg;msg.classList.add('show');
+    // confetti
+    for(let i=0;i<10;i++){
+      const c=document.createElement('div');
+      const angle=Math.random()*360,dist=50+Math.random()*80;
+      const rect=inp.getBoundingClientRect();
+      c.style.cssText=`position:fixed;left:${rect.left+rect.width/2}px;top:${rect.top}px;pointer-events:none;z-index:99999;font-size:.9rem;animation:sparkout .9s ease forwards;animation-delay:${i*.05}s;--tx:${Math.cos(angle*Math.PI/180)*dist}px;--ty:${Math.sin(angle*Math.PI/180)*dist}px`;
+      c.textContent=['🌸','💕','✨','🎉'][Math.floor(Math.random()*4)];
+      document.body.appendChild(c);setTimeout(()=>c.remove(),1000);
+    }
+    updateCwScore();
+  } else if(val.length>=4){
+    inp.classList.add('wrong');inp.classList.remove('correct');
+    icon.textContent='';msg.classList.remove('show');
+    setTimeout(()=>inp.classList.remove('wrong'),400);
+  } else {
+    inp.classList.remove('correct','wrong');icon.textContent='';msg.classList.remove('show');
+  }
+}
+function updateCwScore(){
+  const score=[1,2,3,4,5,6].filter(n=>{
+    const inp=document.getElementById('cw'+n);
+    return inp&&inp.classList.contains('correct');
+  }).length;
+  const bar=document.getElementById('cwscorebar');
+  const txt=document.getElementById('cwscoretxt');
+  const final=document.getElementById('cw-final');
+  if(bar)bar.style.width=(score/6*100)+'%';
+  if(txt)txt.textContent=score+' / ٦ إجابات صح 🧩';
+  if(score===6&&final){
+    final.style.display='block';
+    final.innerHTML='🎉 ممتازة يا شروقي! عارفاني وعارفة كل تفاصيلنا! إنتِ وأنا بنكتب قصتنا — وكل حرف فيها بحبك! 💕';
+    for(let i=0;i<25;i++){
+      const c=document.createElement('div');c.className='conf-piece';
+      c.style.cssText=`left:${Math.random()*100}vw;top:0;animation-delay:${Math.random()*.8}s`;
+      c.textContent=['🌸','💕','✨','🎊','❤️'][Math.floor(Math.random()*5)];
+      document.body.appendChild(c);setTimeout(()=>c.remove(),2500);
+    }
+  }
+}
+
+/* ══ JOKES SECTION ══ */
+const ALL_JOKES=[
+  "مرة واحد بيلعب كارتيه على أمل إنه يبقى شبسي 😂",
+  "مرة واحد اشترى عربية ركنها ببطن رجله 😂",
+  "مرة واحد كتب على الحيطة — معرفش يطلقها! 😂",
+  "مرة واحد بيقيس الضغط معرفش يكمل خمس عدات 😂",
+  "مرة اتنين تلاتة سافروا أمريكا — رجعوا وان توو ثري! 😂",
+  "مرة واحد معرفش ينشر الخشب — وقع المشابك! 😂",
+  "مرة واحد بيحب ينشر الحب والسلام والخشب 😂",
+  "مرة واحد عمل عمرة لعربيته — راح السعودية! 😂",
+  "مرة واحد دخل فيتنام ملقاش حد في الشارع — لأن الناس هناك فتنام بدري 😂",
+  "مرة واحد معاه جنيه سلف والتاني معاه جنيه أخوان 😂",
+  "مرة واحد شال حديد — امتحنه دور تاني 😂",
+  "مرة حديدة صدت — وقفوها جون 😂",
+  "مرة ثعبان أحول فضل يحب في واحدة — لقاها خرطوم 😂",
+  "مرة واحد نزلت منه دمعة — سألها: إنتِ دمعة القاهرة ولا دمعت عين شمس؟ 😂",
+  "مرة واحد دخل عمارة ملقاش الحارس — جاب جول! 😂",
+  "مرة واحد اشترى شاشتين — واحدة بلازما والتانية من غير لازمة 😂",
+  "مرة مدرس رياضة اتجوز مدرسة رياضة — لما ماتوا اتدفنوا في جبر واحد 😂",
+  "بيقولك مرة عجوز أوي أوي — اده بومبة جاله شد عضل 😂",
+  "مرة أسد شاف واحدة سودانية بتقوله لا تاكلني — قالها لآ، أنا ممنوع من أكل المشويات 😂",
+  "لكي تصبح ثري: كن ون، ثم كن توو، ثم كن ثري 😂",
+  "مرة واحد راح لجدته — قالها افتحي الباب أنا حفيدك — قالتله: هتفيدني بإيه؟ 😂",
+  "مرة ممرضة اتجوزت — خلّفت اتنين توأم: سمّت الأول وليد والتاني عضل 😂",
+  "مرة اتنين مدرسين عربي — واحد قاعد في حاله والتاني قاعد في نعته 😂",
+  "مرة مدرس رياضة عمل حادثة — قالوله فيه كسور كتير — قالهم: وحّدوا المقام! 😂",
+  "مرة حلة شاطت — جابت جون 😂",
+  "مرة صعيدي زغزغ ابنه — خرملة بطن 😂",
+  "مرة برتقانة معصورة والتانية مع فيديو 😂",
+  "مرة واحد صام لحد المغرب وواحد صام لحد تونس 😂",
+  "مدرس بيقول لطالب: مش عيب لما تاخد صفر — رد الطالب: لما هو عيب تدهوني ليه؟ 😂",
+  "واحد ركب طيارة — المضيفة جاتله: تحب أجيبلك فطار كامل؟ قالها: ليه كامل مش هيفطر؟ 😂",
+  "مرة مدرس عربي جاب كلب عشان بيخاف من النصوص 😂",
+  "واحد أقرع اتزحلق وقع على راسه — اتزحلق تاني! 😂",
+  "مرة ميكانيكي قعد على قهوة طلب كاوتشينو 😂",
+  "ليه الأرنب بيخاف من القهوة؟ علشان فيها السحلب المكار! 😂",
+  "مرة واحد غبي عرف إن الشيطان شاطر — راح يذاكر معاه 😂",
+  "مرة ميكانيكي جاع — أكل قطع خيار 😂",
+  "مرة واحد اشترى قلمين — واحد يكتب بيه والتاني يكتب C 😂",
+  "اتنين بيلعبوا كورة — واحد شات والتاني ماسنجر 😂",
+  "مرة واحد اتجوز من أجل الحلاوة — خلّف كنافة وبسبوسة 😂",
+  "مرة واحد فتح مطعم اسمه القلب — الأكل فيه بيكسر! 😂",
+];
+let jokeIdx=0;
+const jokeShuffled=[...ALL_JOKES].sort(()=>Math.random()-.5);
+function drawJoke(){
+  const box=document.getElementById('jokes-box');
+  const paper=document.getElementById('joke-paper');
+  const txt=document.getElementById('joke-text');
+  const counter=document.getElementById('joke-counter');
+  // Animate papers flying out
+  box.querySelectorAll('.jpaper').forEach((p,i)=>{
+    p.style.animation=`paperfly .6s ease ${i*.08}s forwards`;
+    setTimeout(()=>{p.style.animation='';},800);
+  });
+  setTimeout(()=>{
+    txt.textContent=jokeShuffled[jokeIdx%jokeShuffled.length];
+    jokeIdx++;
+    paper.classList.add('show');
+    counter.textContent=`ورقة ${jokeIdx} من ${ALL_JOKES.length} 😂`;
+  },400);
+}
+
+/* ══ FIX showMapPopup for new globe ══ */
+function showMapPopup(id){showGlobeMsg(id);}
+
+/* ══ SPARKLE KEYFRAME ══ */
 const ks=document.createElement('style');
-ks.textContent='@keyframes sparkout{0%{opacity:1;transform:translate(0,0) scale(1)}100%{opacity:0;transform:translate(var(--tx),var(--ty)) scale(0)}}';
+ks.textContent=`
+@keyframes sparkout{0%{opacity:1;transform:translate(0,0) scale(1)}100%{opacity:0;transform:translate(var(--tx),var(--ty)) scale(0)}}
+@keyframes conffall{0%{opacity:1;transform:translateY(0) rotate(0) scale(1)}100%{opacity:0;transform:translateY(90vh) rotate(720deg) scale(.5)}}
+@keyframes slideup{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+`;
 document.head.appendChild(ks);
 </script>
 </body>
